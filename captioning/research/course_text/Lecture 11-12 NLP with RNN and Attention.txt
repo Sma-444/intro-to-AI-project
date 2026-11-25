@@ -1,0 +1,1292 @@
+SLIDE 1
+AIAA   2205: Introduction   to   AI 
+Natural Language Processing with RNN and Attention
+Chen XU
+The   Hong Kong University of Science and Technology (Guangzhou)
+cx@hkust-gz.edu.cn
+
+SLIDE 2
+Contents to be Mastered In this PPT
+Word Embedding and Embedding Matrix
+Structure of Seq2Seq Model
+Structure of the Attention Mechanism
+Structure of Self-Attention
+2
+
+SLIDE 3
+Natural Language Processing
+3
+
+SLIDE 4
+Natural Language
+19/10/2026
+4
+Any language that has evolved naturally in humans through use and repetition without conscious planning or premeditation
+
+SLIDE 5
+Natural Language Processing
+19/10/2026
+5
+Natural Language Processing (NLP) gives machine abilities to read, understand and derive meaning from human languages (text and speech) 
+
+SLIDE 6
+Task s and  Applications
+19/10/2026
+6
+Searching engine
+Text classification
+
+SLIDE 7
+Task s and  Applications
+19/10/2026
+7
+Machine Translation
+Email filtering
+
+SLIDE 8
+Task s and  Applications
+19/10/2026
+8
+Search Autocorrect
+Text generation/Autocomplete
+
+SLIDE 9
+Task s and  Applications
+19/10/2026
+9
+Sentiment analysis
+Text summarization
+My experience so far has been fantastic!
+
+SLIDE 10
+Task s and  Applications
+19/10/2026
+10
+Voice assistants
+Conversational agents  
+Speech to text
+
+SLIDE 11
+Task s and  Applications
+19/10/2026
+11
+Chatbot
+Knowledge graph
+
+SLIDE 12
+Task s and  Applications
+19/10/2026
+12
+Code Generation
+
+SLIDE 13
+Task s and  Applications
+19/10/2026
+13
+Text-to-Image Generation
+
+SLIDE 14
+Workflow of NLP with Transformer
+19/10/2026
+14
+Tokenize : Convert text to initial numerical representations
+Embedding : Better numerical representations
+Machine Learning Model  (Transformer)
+Output
+
+SLIDE 15
+Token
+A  token  is a basic unit of text processed by a language model. A token may be:
+a word: ["I", "like", "AI"]
+a  subword : ["un", " believ ", "able"]
+a character: ["A", "I"]
+19/10/2026
+15
+
+SLIDE 16
+Tokenize Examples
+I like machine learning   [I, like, machine, learning]
+She is unbelievable   [She, is, un,  believ , able]
+Each token is assigned a token ID according to the tokenizer's vocabulary.
+The token ID is then used to look up the token's embedding vector.
+ 
+19/10/2026
+16
+
+SLIDE 17
+Why  subwords  as tokens?
+Subwords  provide a useful compromise:
+manageable vocabulary size;
+can represent rare/unseen words;
+preserve more meaningful units than individual characters.
+19/10/2026
+17
+
+SLIDE 18
+Popular  subword  tokenization methods
+BPE (Byte-Pair Encoding) Repeatedly merges frequently occurring token pairs.
+WordPiece Builds a vocabulary of useful  subword  units; famously used by BERT.
+SentencePiece Learns tokenization directly from raw text and does not require spaces to define words.
+Byte-level BPE Operates from byte-level units, making it possible to represent essentially arbitrary text.
+19/10/2026
+18
+
+SLIDE 19
+Popular Tokenization Methods
+Different  existing tokenize methods  can be used to divide text into tokens.
+19/10/2026
+19
+Strategy
+Example
+Main idea
+Word-level
+learning → ["learning"]
+Each word is a token
+Character-level
+cat → ["c","a","t"]
+Each character is a token
+Subword-level
+unbelievable → ["un","believ","able"]
+Frequent pieces of words become tokens
+
+SLIDE 20
+Lookup Dictionary  for Tokens
+A token ID is a unique integer assigned to each token in the vocabulary of a tokenize method.
+Vocabulary: the set of all tokens.
+19/10/2026
+20
+Token
+Token ID
+[PAD]
+0
+[UNK]
+1
+I
+2
+like
+3
+machine
+4
+learning
+5
+un
+6
+##believable
+7
+…
+…
+Example of a Vocabulary
+
+SLIDE 21
+Token IDs are not meaningful vectors. For example,
+Token IDs are just indices.
+The number 105 does not mean that cats is “larger” than token 47.
+Neural networks work with numerical vectors, so we need a meaningful vector representation.
+ 
+19/10/2026
+21
+`
+Why do we need embeddings? 
+From Token IDs to Meaningful Vectors.
+
+SLIDE 22
+An embedding is a dense numerical vector representing a token.  For example, 
+Usually, we store the embeddings of all tokens in the vocabulary in a matrix.
+19/10/2026
+22
+`
+What is an embedding? 
+
+SLIDE 23
+23
+
+SLIDE 24
+Embeddings are usually initialized with small random values.
+They are trainable parameters.
+They are trained during model training with concrete tasks (e.g., prediction tasks).  
+Tokens used in similar contexts may end up with similar vector representations.
+19/10/2026
+24
+`
+How are embeddings learned? – Learned during Training
+
+SLIDE 25
+19/10/2026
+25
+Neural 
+Language Model 
+
+SLIDE 26
+Neural Language Model
+19/10/2026
+26
+Train a classifier model to predict the next word, given the prefix.
+
+SLIDE 27
+Use vectors (embeddings) to represent words/sentences
+Neural networks compose word embeddings, and predict the next word from composed prefix representation
+19/10/2026
+27
+Neural Language Model
+vectors
+
+SLIDE 28
+Neural Language Model
+19/10/2026
+28
+Word embedding:
+Use vectors (embeddings) to represent words/sentences
+Train a classifier model to predict the next word, given the prefix.
+
+SLIDE 29
+19/10/2026
+29
+A fixed-window size 
+The most commonly-used choice of 𝑓 is  ReLu . Other choices include  tanh  and  sigmoid
+Neural Language Model
+
+SLIDE 30
+Neural Language Model
+19/10/2026
+30
+Advantages:
+No sparsity problem
+Model size is reduced
+Disadvantages:
+Fix window is too small
+Window can never be large enough!
+We don’t share weights across the window.
+
+SLIDE 31
+RNN Language Model
+19/10/2026
+31
+Exact the same 𝑾 ℎ  and 𝑾 𝑒
+
+SLIDE 32
+RNN Language Model
+19/10/2026
+32
+Size of 𝑐: 4x1
+Size of  ℎ : 4x1
+Size of 𝑾 ℎ  and 𝑾 𝑒  : 4x4
+Size of 𝑾 2  : vx4
+RNN   can process any length and weights.
+
+SLIDE 33
+19/10/2026
+33
+How   to train an RNN-LM?
+
+SLIDE 34
+19/10/2026
+34
++
++
++
+How   to train an RNN-LM?
+“Teacher Forcing”
+
+SLIDE 35
+Get a  big corpus of text  which is a sequence of   words 
+Feed into RNN-LM; compute output distribution        for every step 𝑡
+Loss function  on step  𝑡  is usual cross-entropy between our predicted probability distribution       , and the true next word                          :
+Average this to get  overall loss  for entire training set:
+Training   an   RNN - LM
+19/10/2026
+35
+
+SLIDE 36
+RNN Language Model
+19/10/2026
+36
+RNN Advantages:
+Can process any length input, model size doesn’t increase for longer input
+Computation for step 𝑡 can (in theory) use information from many steps back
+Weights are shared across timesteps (representations are shared)
+RNN Disadvantages:
+Recurrent computation is slow
+In practice, difficult to access information from many steps back
+
+SLIDE 37
+Example: Text Generation 
+19/10/2026
+37
+A trained RNN Language Model could be used to generate text by repeated sampling. Sampled output becomes next step’s input.
+
+SLIDE 38
+Example: Text Generation 
+19/10/2026
+38
+A trained RNN Language Model could be used to generate text by repeated sampling. Sampled output becomes next step’s input.
+
+SLIDE 39
+Example: Text Generation 
+19/10/2026
+39
+A trained RNN Language Model could be used to generate text by repeated sampling. Sampled output becomes next step’s input.
+
+SLIDE 40
+Example: Text Generation 
+19/10/2026
+40
+A trained RNN Language Model could be used to generate text by repeated sampling. Sampled output becomes next step’s input.
+
+SLIDE 41
+Special Symbols
+19/10/2026
+41
+A   sequence   of words by itself does not indicate if it is a complete sentence or not
+Unclear if this is the start of sentence, the end of a sentence, or both (i.e., a complete sentence)
+To make it explicit, we will add two additional symbols to the base vocabulary
+< sos >:  indicate  start of a sentence
+< eos >:  indicate  end of a sentence
+
+SLIDE 42
+Applications of Language Model
+19/10/2026
+42
+It  can be used to generate text
+RNN-LM trained on Harry Potter
+
+SLIDE 43
+Applications of Language Model
+19/10/2026
+43
+LM is a subcomponent of many NLP tasks, especially those involving generating text or estimating the probability of text: 
+Machine translation 
+Summarization 
+Dialogue 
+…
+Predictive typing 
+Speech recognition 
+Handwriting recognition
+Spelling/grammar correction
+
+SLIDE 44
+Sequence-to-sequence (seq2seq)
+19/10/2026
+44
+The NMT architecture is called  sequence-to-sequence   (seq2seq),  and it involves two RNNs
+Source sentence
+Encoder
+Decoder
+Vector representation
+Target sentence
+
+SLIDE 45
+Sequence-to-sequence (seq2seq)
+19/10/2026
+45
+
+SLIDE 46
+Application of Seq2seq
+19/10/2026
+46
+Seq2seq is versatile , which is useful for more than just MT 
+Many NLP tasks can be phrased as seq2seq: 
+Dialogue  (previous utterances → next utterance)
+Automatic speech recognition  (speech recording → text)
+Image to text  (image→ caption)
+Summarization  (long text → short text) 
+…
+
+SLIDE 47
+Application:  Image Captioning
+19/10/2026
+47
+Not really a seq2seq problem, more an image-to-sequence problem.
+Process it with CNN to get output of classification layer.
+
+SLIDE 48
+Application:  Video Captioning
+19/10/2026
+48
+Translating videos to text using deep RNN.
+
+SLIDE 49
+Issues with the Original  Seq2seq
+19/10/2026
+49
+All the information about the input sequence is embedded into a single vector , which may not  preserve all the information needed from a long input sequence.
+Bottleneck problem!
+
+SLIDE 50
+RNN-based Seq2Seq with a Fixed Context Vector at Every Decoder Step
+19/10/2026
+50
+The fixed context vector (in the red box) is used for prediction at every prediction step.
+A better model: Encoded input embedding is input to all output timesteps
+
+SLIDE 51
+Application to Image-to-Description Task
+19/10/2026
+51
+
+SLIDE 52
+Issue with  Fixed Context Vector (FCV) at Every Decoder Step
+19/10/2026
+52
+Every output is related to the inputs directly (for example, “Ich” is directly related to “I”).
+But  Seq2Seq with a Fixed Context Vector  indirectly  relates any specific input token to any specific output token.
+
+SLIDE 53
+Solution: Use Average Rather than FCV
+19/10/2026
+53
+In this modified Seq2Seq model, the average of hidden states is used instead of the last hidden state   from the encoder.
+ 
+In   practice,  different outputs may be related to different inputs.
+
+SLIDE 54
+54
+Issue with the Average of Hidden States
+To correctly translate “Apple” in the input sentence, “phone” should be given more weight than other tokens. However, the  -average cannot achieve this.
+ 
+Average of { }
+ 
+
+SLIDE 55
+19/10/2026
+55
+Solution : Use a different-weights average for each output word. This mechanism is called  Attention.
+
+SLIDE 56
+Seq2Seq model with attention
+19/10/2026
+56
+In reality: All hidden values carry information 
+Ich	
+I	 a te 	a n
+apple   <eos>
+< sos>
+0
+1
+2
+3
+- 1
+4
+𝑐 0
+ 
+ 
+ 
+: The weight of the    input token for prediction at step 0.
+ 
+
+SLIDE 57
+Seq2Seq model with attention
+19/10/2026
+57
+In reality: All hidden values carry information 
+I c h 	
+Ich	 habe
+I	 a te 	a n
+apple   <eos>
+< sos>
+0
+1
+2
+3
+- 1
+4
+𝑐 0
+𝑐 1
+ 
+ 
+Habe = 
+ 
+ 
+ 
+: The weight of the    input token for prediction at step 1.
+ 
+
+SLIDE 58
+Seq2Seq model with attention
+19/10/2026
+58
+In reality: All hidden values carry information 
+I c h 	 h a be
+Ich	 habe   einen	
+I	 a te 	a n
+apple   <eos>
+< sos>
+0
+1
+2
+3
+- 1
+4
+𝑐 0
+𝑐 1
+𝑐 2
+ 
+ 
+ 
+ 
+ 
+einen = 
+ 
+: The weight of the    input token for prediction at step 2.
+ 
+
+SLIDE 59
+Seq2Seq model with attention
+19/10/2026
+59
+In reality: All hidden values carry information 
+I c h 	 h a be
+e in e n
+Ich	 habe   einen	 apfel 	 	
+I	 a te 	a n
+apple   <eos>
+< sos>
+0
+1
+2
+3
+- 1
+4
+𝑐 0
+𝑐 1
+𝑐 2
+𝑐 3
+ 
+ 
+ 
+ 
+ 
+ 
+
+SLIDE 60
+Seq2Seq model with attention
+19/10/2026
+60
+In reality: All hidden values carry information 
+I c h 	 h a be
+e in e n
+a p fe l
+Ich	 habe   einen	apfel	 gegessen
+	
+I	 a te 	a n
+apple   <eos>
+< sos>
+0
+1
+2
+3
+- 1
+4
+𝑐 0
+𝑐 1
+𝑐 2
+𝑐 3
+𝑐 4
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+SLIDE 61
+Ich	 habe   einen	apfel	gegessen   <eos>
+Seq2Seq model with attention
+19/10/2026
+61
+In reality: All hidden values carry information 
+I c h 	 h a be
+e in e n
+a p fe l
+g e g e ss e n
+I	 a te 	a n
+apple   <eos>
+< sos>
+0
+1
+2
+3
+- 1
+4
+𝑐 0
+𝑐 1
+𝑐 2
+𝑐 3
+𝑐 4
+𝑐 5
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Simplified Version of Attention: use h to compute weights.
+
+SLIDE 62
+Question: How to compute the weights in the Attention Mechanism?
+62
+
+SLIDE 63
+19/10/2026
+63
+Attention Mechanism
+-- A more detailed introduction and how are the weights computed
+
+SLIDE 64
+Attention Mechanism
+19/10/2026
+64
+Intuition: we “attend to” a certain part when reading a large amount of information
+
+SLIDE 65
+Attention Mechanism
+19/10/2026
+65
+Intuition: we “attend to” a certain part when reading a large amount of information
+The idea behind attention mechanism is that we use  multiple vectors to represent a context , instead of using one single vector 
+Attention mechanisms allow language models to  focus on a particular part  of the observed context at each time step
+
+SLIDE 66
+Key and Query for Computing Weights
+19/10/2026
+66
+Query vector: current hidden state
+Key vector: 
+previous   hidden states
+In a language model, we have a single query vector and multiple key vectors. We want to score each query-key pair.
+
+SLIDE 67
+LM   with   Attention
+19/10/2026
+67
+Query 1: Hidden state at the current step
+1. Dot product with keys (encoder hidden states).
+In a language model, we have a single query vector and multiple key vectors. We want to score each query-key pair.
+                     
+ 
+ 
+             
+ 
+
+SLIDE 68
+LM   with   Attention
+19/10/2026
+68
+Query 1: Hidden state at the current step
+softmax
+In a language model, we have a single query vector and multiple key vectors. We want to score each query-key pair.
+0.7
+0.1
+0.1
+0.1
+
+SLIDE 69
+19/10/2026
+69
+LM   with   Attention
+2. Compute  softmax  over the dot products to turn them into a probability distribution.
+3. We use the attention distribution to compute a  weighted sum  of the hidden states.
+Query 1: Hidden state at the current step
+0.7
+0.1
+0.1
+0.1
+0.7
+0.1
+0.1
+0.1
++
++
++
+
+SLIDE 70
+19/10/2026
+70
+LM   with   Attention
+Intuitively, the resulting attention output contains info from hidden states that received high attention scores.
+2. Compute  softmax  over the dot products to turn them into a probability distribution.
+3. We use the attention distribution to compute a  weighted sum  of the hidden states.
+Query 1: Hidden state at the current step
+
+SLIDE 71
+19/10/2026
+71
+LM   with   Attention
+Query 1: Hidden state at the current step
+4. Concatenate (or otherwise compose) the attention output with the current hidden state, then pass through a  softmax  layer to predict the next word.
+
+SLIDE 72
+19/10/2026
+72
+Move to the next query, predict the following words in the sequence. 
+At different steps, the decoder may need to focus different source tokens, the ones which are more relevant at this step.
+Query 2: Hidden state at the current step
+LM   with   Attention
+72
+
+SLIDE 73
+19/10/2026
+73
+Seq2seq   with   Attention
+73
+Query vector: output sequence
+Key vector: 
+Input sequence
+
+SLIDE 74
+19/10/2026
+74
+A concrete example
+of machine translation
+weighted average of encoder  ,
+Different weights at different decoder steps
+ 
+
+SLIDE 75
+19/10/2026
+75
+A concrete example
+of machine translation
+weighted average of encoder  ,
+Different weights at different decoder steps
+ 
+
+SLIDE 76
+19/10/2026
+76
+A concrete example
+of machine translation
+weighted average of encoder  ,
+Different weights at different decoder steps
+ 
+
+SLIDE 77
+19/10/2026
+77
+A concrete example
+of machine translation
+weighted average of encoder  ,
+Different weights at different decoder steps
+ 
+
+SLIDE 78
+19/10/2026
+78
+A concrete example
+of machine translation
+weighted average of encoder  ,
+Different weights at different decoder steps
+ 
+
+SLIDE 79
+19/10/2026
+79
+A concrete example
+of machine translation
+weighted average of encoder  ,
+Different weights at different decoder steps
+ 
+
+SLIDE 80
+19/10/2026
+80
+A concrete example
+of machine translation
+weighted average of encoder  ,
+Different weights at different decoder steps
+ 
+
+SLIDE 81
+19/10/2026
+81
+A concrete example
+of machine translation
+weighted average of encoder  ,
+Different weights at different decoder steps
+ 
+
+SLIDE 82
+Seq2seq Model with Attention
+19/10/2026
+82
+
+SLIDE 83
+Variants of Attention
+19/10/2026
+83
+There are many other computations to have the attention scores
+
+SLIDE 84
+Alignment Visualization 
+19/10/2026
+84
+From the examples, we see that attention learned (nearly) alignment between source and target words
+Matrix of attention weights/scores
+Interpretability
+
+SLIDE 85
+Attention Mechanism
+19/10/2026
+85
+Formal definition: 
+Given a set of vector values, and a vector query, attention is a technique to compute a weighted sum of the values, dependent on the query.
+The weighted sum is a selective summary of the information contained in the values, where the  query determines which values to focus on.
+Attention is a way to  obtain a fixed-size representation  of an arbitrary set of representations (the values), dependent on some other representation (the query).
+
+SLIDE 86
+Attention Mechanism
+19/10/2026
+86
+Attention  solves the bottleneck problem
+Attention allows decoder to look directly at source .
+It’s very useful to allow decoder to focus on certain parts of the source.
+Attention significantly improves NMT performance.
+Attention  helps with vanishing gradient problem
+It   p rovides shortcut to faraway states.
+We sometimes say that the  query attends to the values.
+For example, in the seq2seq + attention model, each decoder hidden state (query) attends to all the encoder hidden states (values).
+
+SLIDE 87
+Attention Mechanism
+19/10/2026
+87
+Attention  provides some interpretability
+By inspecting attention distribution, we can see   what the decoder was focusing on
+The network just learned alignment by itself
+Attention is a great way to improve the sequence-to-sequence model for Machine Translation.
+Attention could be used in many architectures (not just seq2seq) and many tasks
+Self-attention : based solely on attention mechanisms: i.e., without recurrence or convolutions
+
+SLIDE 88
+19/10/2026
+88
+In   the encoder, do we still need the recurrence?
+
+SLIDE 89
+Self-attention
+19/10/2026
+89
+Self-attention   directly models relationships between all words in a sentence, regardless of their respective position
+I      saw   a    cat  on   mat
+I      saw   a    cat  on   mat
+
+SLIDE 90
+Self-attention
+19/10/2026
+90
+query
+key
+value
+word   embedding
+W Q
+W k
+W v
+q 1
+k 2
+a 1
+a 2
+a 3
+a 4
+k 3
+k 4
+Dot product  q•k
+Attention score
+Three projections   of the embedding
+The self-attention layer computes new representations for each input token.
+
+SLIDE 91
+Self-attention
+19/10/2026
+91
+query
+key
+value
+word   embedding
+W Q
+W k
+W v
+q 1
+k 2
+a 1
+a 2
+a 3
+a 4
+k 3
+k 4
+Dot product  q•k
+k 1
+Attention score
+Three projections   of the embedding
+
+SLIDE 92
+Self-attention
+19/10/2026
+92
+query
+key
+value
+word   embedding
+W Q
+W k
+W v
+k 2
+a 1
+a 2
+a 3
+a 4
+k 3
+k 4
+𝑎 12
+𝑎 13
+𝑎 14
+𝑤 ’ 12
+𝑤 ’ 13
+𝑤 ’ 14
+𝑎 11
+𝑤 ’ 11
+q 1
+k 1
+Three projections   of the embedding
+Softmax
+
+SLIDE 93
+Softmax
+Self-attention
+19/10/2026
+93
+query
+key
+value
+word   embedding
+v 1
+W Q
+W k
+W v
+k 2
+a 1
+a 2
+a 3
+a 4
+k 3
+k 4
+𝑎 12
+𝑎 13
+𝑎 14
+𝑤 ’ 12
+𝑤 ’ 13
+𝑤 ’ 14
+𝑎 11
+𝑤 ’ 11
+q 1
+k 1
+v 2
+v 3
+v 3
+x
+x
+x
+x
+Self-attention vector   =    
+ 
+sum
+Three projections   of the embedding
+
+SLIDE 94
+Softmax
+Self-attention
+19/10/2026
+94
+query
+key
+value
+word   embedding
+v 1
+W Q
+W k
+W v
+k 2
+a 1
+a 2
+a 3
+a 4
+k 3
+k 4
+𝑎 12
+𝑎 13
+𝑎 14
+𝑤 ’ 12
+𝑤 ’ 13
+𝑤 ’ 14
+𝑎 11
+𝑤 ’ 11
+q 1
+k 1
+v 2
+v 3
+v 3
+x
+x
+x
+x
+Self-attention vector   =    
+ 
+sum
+Three projections   of the embedding
+
+SLIDE 95
+19/10/2026
+95
+v 1
+a 1
+q 1
+k 1
+v 2
+a 2
+q 2
+k 2
+v 3
+a 3
+q 3
+k 3
+v 4
+a 4
+q 4
+k 4
+𝑎 12
+𝑎 13
+𝑎 14
+𝑎 11
+x
+x
+x
+x
+𝑤 ’ 12
+𝑤 ’ 13
+𝑤 ’ 14
+𝑤 ’ 11
+Softmax
+Attention   weight
++
+Self-attention vector
+o 1  =    
+ 
+
+SLIDE 96
+19/10/2026
+96
+v 1
+a 1
+q 1
+k 1
+v 2
+a 2
+q 2
+k 2
+v 3
+a 3
+q 3
+k 3
+v 4
+a 4
+q 4
+k 4
+𝑎 22
+𝑎 23
+𝑎 24
+𝑎 21
+x
+x
+x
+x
+𝑤 ’ 22
+𝑤 ’ 23
+𝑤 ’ 24
+𝑤 ’ 21
+Softmax
+Attention   weight
++
+Self-attention vector
+o 2  =    
+ 
+Attention   score
+
+SLIDE 97
+19/10/2026
+97
+v 1
+a 1
+q 1
+k 1
+v 2
+a 2
+q 2
+k 2
+v 3
+a 3
+q 3
+k 3
+v 4
+a 4
+q 4
+k 4
+𝑎 32
+𝑎 33
+𝑎 34
+𝑎 31
+x
+x
+x
+x
+𝑤 ’ 32
+𝑤 ’ 33
+𝑤 ’ 34
+𝑤 ’ 31
+Softmax
+Attention   weight
++
+Self-attention vector
+o 3  =    
+ 
+Attention   score
+
+SLIDE 98
+19/10/2026
+98
+v 1
+a 1
+q 1
+k 1
+v 2
+a 2
+q 2
+k 2
+v 3
+a 3
+q 3
+k 3
+v 4
+a 4
+q 4
+k 4
+𝑎 42
+𝑎 43
+𝑎 44
+𝑎 41
+x
+x
+x
+x
+𝑤 ’ 42
+𝑤 ’ 43
+𝑤 ’ 44
+𝑤 ’ 41
+Softmax
+Attention   weight
++
+Self-attention vector
+o 4  =    
+ 
+Attention   score
+
+SLIDE 99
+Transformer
+19/10/2026
+99
+The formula for attention output :
+
+SLIDE 100
+Transformer
+19/10/2026
+100
+The formula for attention output :
+This   three representations are used both in self-attention and other models, e.g., seq2seq, LM, ...
+
+SLIDE 101
+Self-attention in Practice
+19/10/2026
+101
+Self-attention doesn’t know the order of its inputs.
+We need to encode the order of the sentence in our keys, queries, and values.
+I         saw     a      cat      on   mat
+I         saw     a      cat      on   mat
+
+SLIDE 102
+Self-attention in Practice
+19/10/2026
+102
+Self-attention doesn’t know the order of its inputs.
+We need to encode the order of the sentence in our keys, queries, and values.
+Let 𝑝 𝑖  be learnable parameters!
+You could concatenate them or just add it.
+In deep self-attention networks, we do this at the first layer.
+Add the vector of sequence index 𝑝 𝑖  (position) to our inputs:
+
+SLIDE 103
+I         saw     a      cat      on   mat
+Self-attention in Practice
+19/10/2026
+103
+It’s all just weighted averages.
+No nonlinearities for deep learning!
+Add a feed-forward network to post-process each output vector.
+
+SLIDE 104
+Self-attention in Practice
+19/10/2026
+104
+Add a feed-forward neural network (FNN) to post-process each output vector.
+
+SLIDE 105
+19/10/2026
+105
+Attention Used in 
+Cross Modality   Applications
+
+SLIDE 106
+Transfer learning
+19/10/2026
+106
+Traditionally, we would simply train a supervised model on labeled data
+Typical   example:  sentiment analysis (i.e., review text / score pairs from IMDB)
+The data is not always sufficient for the training task
+
+SLIDE 107
+Transfer learning
+19/10/2026
+107
+ Nowadays, we use transfer learning
+
+SLIDE 108
+Transfer learning
+19/10/2026
+108
+ Nowadays, we use transfer learning
+Learning representations of language 
+from unlabeled data or easily labeled data
+
+SLIDE 109
+Transfer learning
+19/10/2026
+109
+ Nowadays, we use transfer learning
+Applying the pretrained model for a specific task on a small amount of labeled data
+
+SLIDE 110
+Transfer learning
+19/10/2026
+110
+Take a network trained on a task for which it is easy to generate labels and adapt it to a different task for which it is harder
+In NLP: train a really big language model on billions of words, transfer to every NLP task!
+In computer vision: train a CNN on ImageNet, transfer its representations to every other CV task
+
+SLIDE 111
+Transfer learning
+19/10/2026
+111
+When to use transfer learning
+Pretrained model has the same input as the fine-tuning model
+Having a lot more data for pretrained model 
+Having less but valuable data for fine-tuning model
+Low level features from pretrained model could be helpful for learning the fine-tuning model

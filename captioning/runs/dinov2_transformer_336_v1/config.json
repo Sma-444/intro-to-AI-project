@@ -1,0 +1,89 @@
+{
+  "args": {
+    "output_dir": "captioning/runs/dinov2_transformer_336_v1",
+    "epochs": 16,
+    "patience": 4,
+    "batch_size": 24,
+    "workers": 4,
+    "seed": 2205,
+    "image_size": 336,
+    "backbone": "dinov2_small",
+    "encoder_lr": 1e-05,
+    "visual_tail_blocks": 2,
+    "extra_encoder_lr_scale": 0.5,
+    "resume": false
+  },
+  "model": {
+    "architecture": "dinov2_small_spatial_transformer",
+    "version": 1,
+    "backbone_name": "dinov2_small",
+    "d_model": 256,
+    "nhead": 4,
+    "visual_layers": 1,
+    "decoder_layers": 2,
+    "dim_feedforward": 1024,
+    "dropout": 0.2,
+    "max_caption_length": 34,
+    "preprocessing": "scaled_centercrop",
+    "image_size": 336,
+    "decode_policy": "beam3",
+    "length_alpha": 0.6,
+    "max_words": 24,
+    "vision_provenance": {
+      "repository": "facebook/dinov2-small",
+      "revision": "ed25f3a31f01632728cabb09d1542f84ab7b0056",
+      "files": [
+        {
+          "file": "config.json",
+          "url": "https://huggingface.co/facebook/dinov2-small/resolve/ed25f3a31f01632728cabb09d1542f84ab7b0056/config.json",
+          "bytes": 547,
+          "sha256": "1809f83e3bdb1609a501a610ad4a742f4fd8ae44d72ca4aa0df52d1f2ac8628d"
+        },
+        {
+          "file": "preprocessor_config.json",
+          "url": "https://huggingface.co/facebook/dinov2-small/resolve/ed25f3a31f01632728cabb09d1542f84ab7b0056/preprocessor_config.json",
+          "bytes": 436,
+          "sha256": "14e780d86fa1861f8751f868d7f45425b5feb55c38ca26f152ca5097ab30f828"
+        },
+        {
+          "file": "model.safetensors",
+          "url": "https://huggingface.co/facebook/dinov2-small/resolve/ed25f3a31f01632728cabb09d1542f84ab7b0056/model.safetensors",
+          "bytes": 88249960,
+          "sha256": "ae1e99fcefd534ed978cdeb8326f08030c96e28b7a81ffcbc98a857c84d14be1"
+        }
+      ]
+    },
+    "vision_config": {
+      "architectures": [
+        "Dinov2Model"
+      ],
+      "attention_probs_dropout_prob": 0.0,
+      "drop_path_rate": 0.0,
+      "hidden_act": "gelu",
+      "hidden_dropout_prob": 0.0,
+      "hidden_size": 384,
+      "image_size": 518,
+      "initializer_range": 0.02,
+      "layer_norm_eps": 1e-06,
+      "layerscale_value": 1.0,
+      "mlp_ratio": 4,
+      "model_type": "dinov2",
+      "num_attention_heads": 6,
+      "num_channels": 3,
+      "num_hidden_layers": 12,
+      "patch_size": 14,
+      "qkv_bias": true,
+      "torch_dtype": "float32",
+      "transformers_version": "4.32.0.dev0",
+      "use_swiglu_ffn": false
+    }
+  },
+  "train_rows": 12000,
+  "validation_rows": 2500,
+  "vocab_size": 1417,
+  "torch_version": "2.11.0+cu128",
+  "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+  "parameters": 25788937,
+  "recipe": "AMP; visual eval mode; visual tail unfrozen epoch3; warmup1epoch+cosine; beam3 selection",
+  "visual_tail": "DINO final 2 blocks and output LayerNorm"
+}

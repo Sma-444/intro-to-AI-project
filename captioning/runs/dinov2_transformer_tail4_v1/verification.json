@@ -1,0 +1,19 @@
+{
+  "epoch": 14,
+  "architecture": "dinov2_small_spatial_transformer",
+  "decode_policy": "beam3",
+  "preprocessing": "resize256_centercrop224",
+  "image_size": 224,
+  "checkpoint_bytes": 103290761,
+  "validation_rows": 2500,
+  "score_on_reload": 0.6743442416191101,
+  "score_recorded": 0.6743442416191101,
+  "baseline_resnet18_score": 0.528876,
+  "difference_vs_baseline": 0.1454682416191101,
+  "baseline_resnet50_score": 0.5779770612716675,
+  "difference_vs_resnet50": 0.09636718034744263,
+  "baseline_aoa_score": 0.5824428796768188,
+  "difference_vs_aoa": 0.09190136194229126,
+  "best_aoa_beam_score": 0.5869023203849792,
+  "difference_vs_aoa_beam": 0.08744192123413086
+}

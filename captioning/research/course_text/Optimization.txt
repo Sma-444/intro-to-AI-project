@@ -1,0 +1,260 @@
+SLIDE 1
+AIAA   2205: Introduction   to   AI 
+Optimization - The Algorithm
+Chen XU
+The   Hong Kong University of Science and Technology (Guangzhou)
+cx@hkust-gz.edu.cn
+
+SLIDE 2
+Steps of the Gradient Descent (GD) algorithm (p12).
+Back-propagation is a method for finding derivative of the loss function with respect to its parameters.
+2026/9/18
+2
+`
+Contents to be fully mastered in this  PPT  
+
+SLIDE 3
+Goal: Find   to approximate   in the assumed relation
+Model Selection (i.e., select the computational rule of  ).
+Model Training: Find value of the parameters   such that, for each  , the model prediction   is close to the target value  , where   is the training sample set. 
+ 
+`
+Model Training in Supervised Learning
+
+SLIDE 4
+Goal of Model Training: Find value of the parameters   such that, for each  , the model prediction   is close to the target value  , where   is the training sample set. 
+Set the functional form of the loss function  .  For example, for regression, the MSE loss is popular:  .
+Solve the minimization problem of  .
+ 
+`
+Settings for Model Training
+
+SLIDE 5
+The process for solving the minimization problem   is called  optimization  . 
+One of the most popular kind optimization algorithms in machine/deep learning uses the gradient of  , and hence are called the  gradient-based  algorithms. 
+ 
+`
+Optimization
+
+SLIDE 6
+`
+Gradient Descent
+Gradient Descent (GD)​ ​ is an ​ ​iterative optimization algorithm​ ​ used to minimize a loss function   by adjusting parameters     ( e.g. , weights in a neural network). 
+It starts from a random value of  , and iteratively updates its value.
+In each step,  i t moves the current   value  in the direction of the ​ ​steepest descent​  in  ​ to find the minimum of the function.
+ 
+See   a   video   (1.10s):  https://www.youtube.com/watch?v=qg4PchTECck
+
+SLIDE 7
+Graph of 
+ 
+w
+Iteratively update  :  .
+ 
+Find  network parameters  w ∗  that  minimize  the  loss  
+Pick  an  initial  value    for   .
+ 
+`
+Intuitive Illustration of GD (1D Example)
+ 
+ 
+ 
+
+SLIDE 8
+Gradient Descent (GD) is a basic algorithm for solving  . 
+Key steps: Repetitively update  : 
+  is the gradient.
+  is selected by user (e.g.,  ).
+ 
+`
+Key Step of Gradient Descent (GD)
+
+SLIDE 9
+Graph of 
+ 
+w
+Repeat  .
+ 
+Until    is  approximately   small
+(when  update  is   little)
+ 
+Find  network parameters  w ∗  that  minimize  the  loss  
+Pick  an  initial  value    for   .
+ 
+`
+More Detailed 1D Illustration
+ 
+ 
+ 
+
+SLIDE 10
+Settings
+Input:   .  Output:  .
+.
+.
+Two samples  .
+MSE Loss 
+ 
+`
+Illustration of Training FNN with GD
+
+SLIDE 11
+First Iteration ( ). 
+;  .
+Update 
+Second Iteration ( ).
+;  .
+…
+ 
+Gradient Formulae
+Initial values (set by user): 
+Set the learning rate 
+ 
+`
+Illustration of Training FNN with GD (continue)
+
+SLIDE 12
+Set initial  -values:  . For example, set  .
+Iteratively perform:   for  .
+Stop updating    if some criteria is met (e.g.,  ).
+ 
+`
+Complete GD Algorithm
+
+SLIDE 13
+ points to the moving direction of   that causes   to decrease the fastest.
+If    moves along the direction of    a little bit to  .  Then,
+According to properties of vector addition ，   can be expressed as
+for some  .
+ 
+`
+Intuition on Why the Gradient Descent Works
+
+SLIDE 14
+
+
+SLIDE 15
+For example, suppose  and we select the learning rate  . Then,  .
+Initialize  . Then,  .
+. Then,  .
+. Then,  .
+Mathematical Perspectives: 
+If  , then    is increasing in some neighborhood of  .
+If  , then    is decreasing in some neighborhood of  .  
+ 
+`
+Verification example that a GD step decreases the loss
+
+SLIDE 16
+Backpropagation: The Algorithm by NN for Gradient Descent
+
+SLIDE 17
+Backpropagation is an algorithm used by the neural network to compute  .
+Forward (bottom to top)
+Goal: Get   from the input  .
+Backward (top to bottom)
+Goal: Get   the   gradients   and  .
+ 
+2026/9/18
+17
+Loss: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+`
+Example of Backpropagation
+
+SLIDE 18
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Forward
+Backward
+Loss: 
+ 
+2026/9/18
+18
+ 
+ 
+ 
+ 
+ 
+ 
+`
+Step 1
+
+SLIDE 19
+ 
+ 
+ 
+ 
+ 
+ 
+,    
+ 
+ 
+Forward
+Backward
+Loss: 
+ 
+2026/9/18
+19
+ 
+ 
+ 
+ 
+ 
+ 
+`
+Step 2
+
+SLIDE 20
+ 
+ 
+ 
+ 
+ 
+ 
+,    
+ 
+, 
+ 
+ 
+Forward
+Backward
+Loss: 
+ 
+2026/9/18
+20
+ 
+ 
+ 
+ 
+ 
+ 
+`
+Step 3
+
+SLIDE 21
+The Gradients Computation Flows Backward (from output to input), and hence is called the  backpropagation .
+2026/9/18
+21
+`
+Back Propagation
+
+SLIDE 22
+GD-Illustrate-2D.ipynb
+2026/9/18
+22
+`
+Code Example of Gradient Descent with  PyTorch

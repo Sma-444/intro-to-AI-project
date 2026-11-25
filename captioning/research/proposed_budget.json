@@ -1,0 +1,17 @@
+{
+  "description": "ResNet50, 256 dimensions, 1 visual relation layer, 2 decoder layers, 4 heads, FFN1024; fixed 2D spatial positions assumed",
+  "parameters_by_component": {
+    "encoder": 23508032,
+    "projection": 524544,
+    "visual_norm": 512,
+    "visual_relation": 789760,
+    "decoder": 2106880,
+    "embedding": 362752,
+    "text_position": 8192,
+    "output": 364169,
+    "final_norm": 512
+  },
+  "total_parameters": 27665353,
+  "state_dict_tensor_bytes": 110874316,
+  "notes": "CPU tensor count only. Serialized metadata overhead, training VRAM, speed and accuracy are not measured. No end-to-end captioner implemented here."
+}

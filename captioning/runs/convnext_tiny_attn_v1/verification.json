@@ -1,0 +1,12 @@
+{
+  "epoch": 11,
+  "architecture": "convnext_tiny_spatial_additive_attention_lstm",
+  "checkpoint_bytes": 134909179,
+  "validation_rows": 2500,
+  "score_on_reload": 0.5708013772964478,
+  "score_recorded": 0.5708175301551819,
+  "baseline_resnet18_score": 0.528876,
+  "difference_vs_baseline": 0.04192537729644774,
+  "baseline_resnet50_score": 0.5779770612716675,
+  "difference_vs_resnet50": -0.0071756839752197266
+}

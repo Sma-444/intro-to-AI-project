@@ -1,0 +1,10 @@
+{
+  "validation_rows": 2500,
+  "exact_caption_matches": 2500,
+  "checkpoint_sha256": "6c736438b76ff065375372bd13dcdc0a49bbf35ae142ac500c2a82d9cbe8ccc9",
+  "checkpoint_bytes": 111032331,
+  "compared_files": [
+    "validation_predictions_reloaded.csv",
+    "inference_verified.csv"
+  ]
+}

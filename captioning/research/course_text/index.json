@@ -1,0 +1,92 @@
+[
+  {
+    "path": "课件\\Lecture 1. AIAA2205 Section 1-Introduction to AI.pptx",
+    "slides": 59,
+    "extracted_text": "course_text\\Lecture 1. AIAA2205 Section 1-Introduction to AI.txt"
+  },
+  {
+    "path": "课件\\Lecture 10 RNN.pptx",
+    "slides": 91,
+    "extracted_text": "course_text\\Lecture 10 RNN.txt"
+  },
+  {
+    "path": "课件\\Lecture 11-12 LLM.pptx",
+    "slides": 67,
+    "extracted_text": "course_text\\Lecture 11-12 LLM.txt"
+  },
+  {
+    "path": "课件\\Lecture 11-12 NLP with RNN and Attention.pptx",
+    "slides": 111,
+    "extracted_text": "course_text\\Lecture 11-12 NLP with RNN and Attention.txt"
+  },
+  {
+    "path": "课件\\Lecture 11-12 Transformer - Attention is all you need.pptx",
+    "slides": 35,
+    "extracted_text": "course_text\\Lecture 11-12 Transformer - Attention is all you need.txt"
+  },
+  {
+    "path": "课件\\Lecture 13-14 VAE and GAN (26Fall)\\AIAA2205 Section 7 VAE and GAN (26Fall).pptx",
+    "slides": 33,
+    "extracted_text": "course_text\\AIAA2205 Section 7 VAE and GAN (26Fall).txt"
+  },
+  {
+    "path": "课件\\Lecture 15-16 Diffusion Model.pptx",
+    "slides": 52,
+    "extracted_text": "course_text\\Lecture 15-16 Diffusion Model.txt"
+  },
+  {
+    "path": "课件\\Lecture 2 - Regression.pptx",
+    "slides": 23,
+    "extracted_text": "course_text\\Lecture 2 - Regression.txt"
+  },
+  {
+    "path": "课件\\Lecture 3 - Specific Models - Neural Net.pptx",
+    "slides": 30,
+    "extracted_text": "course_text\\Lecture 3 - Specific Models - Neural Net.txt"
+  },
+  {
+    "path": "课件\\Lecture 3. Dataset - Reg WorkFlow - Code Examples.pptx",
+    "slides": 22,
+    "extracted_text": "course_text\\Lecture 3. Dataset - Reg WorkFlow - Code Examples.txt"
+  },
+  {
+    "path": "课件\\Lecture 4 - Classification and the Neural Net Classifier.pptx",
+    "slides": 28,
+    "extracted_text": "course_text\\Lecture 4 - Classification and the Neural Net Classifier.txt"
+  },
+  {
+    "path": "课件\\Lecture 5 - Overfitting and Model Metrics.pptx",
+    "slides": 37,
+    "extracted_text": "course_text\\Lecture 5 - Overfitting and Model Metrics.txt"
+  },
+  {
+    "path": "课件\\Lecture 6-7 Optimization\\Optimization in Practice.pptx",
+    "slides": 29,
+    "extracted_text": "course_text\\Optimization in Practice.txt"
+  },
+  {
+    "path": "课件\\Lecture 6-7 Optimization\\Optimization.pptx",
+    "slides": 22,
+    "extracted_text": "course_text\\Optimization.txt"
+  },
+  {
+    "path": "课件\\Lecture 8-9 CNN and Object Detection\\CNN.pptx",
+    "slides": 110,
+    "extracted_text": "course_text\\CNN.txt"
+  },
+  {
+    "path": "课件\\Lecture 8-9 CNN and Object Detection\\Object Detection.pptx",
+    "slides": 79,
+    "extracted_text": "course_text\\Object Detection.txt"
+  },
+  {
+    "path": "L02\\Section 2b - Specific Models - Neural Net.pptx",
+    "slides": 30,
+    "extracted_text": "course_text\\Section 2b - Specific Models - Neural Net.txt"
+  },
+  {
+    "path": "L02\\Sectoin 2a - Regression.pptx",
+    "slides": 23,
+    "extracted_text": "course_text\\Sectoin 2a - Regression.txt"
+  }
+]

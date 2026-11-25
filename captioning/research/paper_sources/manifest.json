@@ -1,0 +1,52 @@
+{
+  "papers": [
+    {
+      "id": "1502.03044",
+      "url": "https://arxiv.org/abs/1502.03044",
+      "status": "abstract page downloaded, not full paper"
+    },
+    {
+      "id": "1908.06954",
+      "url": "https://arxiv.org/abs/1908.06954",
+      "status": "abstract page downloaded, not full paper"
+    },
+    {
+      "id": "1912.08226",
+      "url": "https://arxiv.org/abs/1912.08226",
+      "status": "abstract page downloaded, not full paper"
+    },
+    {
+      "id": "2001.03615",
+      "url": "https://arxiv.org/abs/2001.03615",
+      "status": "abstract page downloaded, not full paper"
+    }
+  ],
+  "additional_repository_files": {
+    "repo": "husthuaan/AoANet",
+    "files": [
+      {
+        "path": "data/README.md",
+        "url": "https://raw.githubusercontent.com/husthuaan/AoANet/94ffe176c3777bc54e53e9dd7b305b4046d91a70/data/README.md",
+        "permalink": "https://github.com/husthuaan/AoANet/blob/94ffe176c3777bc54e53e9dd7b305b4046d91a70/data/README.md",
+        "bytes": 3802,
+        "sha256": "ed4d685fb566ed841f3cb8e171fc7d7549959dd13727ce2ec0d17cf97b17c380"
+      },
+      {
+        "path": "train.sh",
+        "url": "https://raw.githubusercontent.com/husthuaan/AoANet/94ffe176c3777bc54e53e9dd7b305b4046d91a70/train.sh",
+        "permalink": "https://github.com/husthuaan/AoANet/blob/94ffe176c3777bc54e53e9dd7b305b4046d91a70/train.sh",
+        "bytes": 2074,
+        "sha256": "1f659ccd10b8b4cba55dd7f6fc1d6e799351b153c12522fd2d5611020c4c5965"
+      }
+    ],
+    "commit": "94ffe176c3777bc54e53e9dd7b305b4046d91a70",
+    "license": {
+      "key": "mit",
+      "name": "MIT License",
+      "spdx_id": "MIT",
+      "url": "https://api.github.com/licenses/mit",
+      "node_id": "MDc6TGljZW5zZTEz"
+    },
+    "url": "https://github.com/husthuaan/AoANet"
+  }
+}

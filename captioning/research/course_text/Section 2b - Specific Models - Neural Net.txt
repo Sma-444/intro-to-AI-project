@@ -1,0 +1,276 @@
+SLIDE 1
+AIAA 2205: Introduction to AI  Popular  Regression  Models for Learning
+Dr. Chen Xu
+Senior  Lecturer  @ AI  Thrust
+cx@hkust-gz.edu.cn   
+
+SLIDE 2
+Goal of Regression
+The goal for regression learning: to predict   from the input variables  .
+The Method
+We achieve this by looking for a function   that fits the observed data  , where   and    are the    observation of  .
+Factors that Identify 
+(1) Functional Form.  (2) The values of parameters  .
+ 
+`
+Recall the Regression Task
+
+SLIDE 3
+Different models assume different functional forms of  .  
+Common Regression Models
+Linear regression
+K-Nearest Neighbors (KNN)
+Decision Tree.
+Neural Network .
+ 
+Random Forest .
+XGBoost .
+Support  Vector Machine.
+`
+Regression Models
+
+SLIDE 4
+Functional form: 
+Parameters: 
+The parameters will be determined by minimizing the loss  :
+where 
+  denotes the   observed data  sample.
+ 
+`
+Linear Regression Models
+
+SLIDE 5
+For any new value  ， KNN sets
+where  are  the    closest  observed data  to   , and   are the corresponding  -values.
+ 
+`
+The  𝐾 -Nearest Neighbors Algorithm (KNN)
+
+SLIDE 6
+`
+How does  K- NN Make a Prediction
+
+SLIDE 7
+The functional form   of an example decision tree is represented by the right figure.
+An Example Problem
+Predict the salary   of a baseball player based on
+: the number of years he played in the major leagues.
+: the number of hits he made in the previous year. 
+The functional form   of an example decision tree is represented by the right figure.
+ 
+Graph representation of a Decision Tree
+`
+Decision Trees
+
+SLIDE 8
+This tree has two splits.
+The first split is based on  : years
+The second split is based on  : number of hits.
+The tree has three leafs.
+The predictions are
+If  , 
+If  , 
+If  ,  
+ 
+`
+Which  does the  Example Tree  Diagram Represent?
+ 
+
+SLIDE 9
+What is   in Decision Tree?
+ 
+The parameters    to be learnt from the dataset   contains
+The split feature : Which  feature  to split on (e.g.,  “Years"  or  “Hits").
+The split threshold : The exact value to split at (e.g.,  “Hits  <  117.5").
+The leaf values  (e.g., 6.74).
+Usually, we call these as the tree’s structure rather than parameters.
+ 
+`
+Which  does the  Example Tree  Diagram Represent?
+ 
+
+SLIDE 10
+In general, the functional form (computation rule)    assumed by a neural network is too complicated to be expressed algebraically. Hence, NN is usually expressed with a graph.
+ 
+Example:
+ 
+`
+Neural  Network (NN)
+
+SLIDE 11
+The first (left-most) layer is called the  input layer .   are  input variables.
+The last (right-most) layer is called the  output layer ，   is the  output variable 。
+The middle layers are called the  hidden layers .
+Each circle in the graph is called a  neuron/node.
+ 
+Feed-forward Neural Network (FNN) is a basic type of NN. Other types of NN include Convolutional NN, Recurrent NN, and so on. The following is an example of FNN  .
+ 
+`
+A Simple Example of Feed-forward Neural  Network (FNN)
+
+SLIDE 12
+There are two kinds of parameters:
+Bias terms    and weights  .
+Given the values of   and  , for each value of the input    we can compute the output value    (i.e.,  ).
+ 
+`
+Parameters
+
+SLIDE 13
+Given the values of parameters   and the values of the input 
+The value of each node is computed using node values in the previous (left) layer and parameters. E.g., 
+Here,    is selected by the user and called the  activation function. 
+E.g. ,  .
+ 
+`
+How to compute the output
+
+SLIDE 14
+The activation function output determine whether the input signal will affect the final output  . 
+If  , then the input places little effects on the output  .
+ 
+`
+Activation Function
+
+SLIDE 15
+`
+Common Activation Functions
+
+SLIDE 16
+ReLU
+Advantages :  It is computationally simple. Compared to other activation functions,  ReLU  requires relatively less computation, and the model training process takes relatively less time.
+Disadvantages:  
+Dead  ReLU  problem: A  ReLU  neuron may become inactive for essentially all training inputs. Because the  ReLU  gradient is zero for negative inputs, such a neuron may then receive little or no gradient and stop learning .
+The derivative does not exist at  x=0.
+Sigmoid and  tanh
+Advantages:  They  do not suffer from the dead neuron problem and can better control the output range.
+Disadvantage:  They may cause the vanishing gradient problem (i.e., during model training, the weight updates become too small, leading to low training efficiency).
+`
+Advantages and Disadvantages of Each Activation Function
+
+SLIDE 17
+Feed-forward Neural Network (FNN) –  a basic neural-network architecture .
+Convolutional Neural Network (CNN)  –  especially effective for image and spatial data .
+Recurrent  Neural Network (RNN ) –  designed for sequential data such as time series, text, and speech; historically important for language modeling .
+Transformer – the dominant architecture underlying modern large language models (LLMs).
+`
+Types of Neural Networks
+
+SLIDE 18
+For  models such as linear regression and neural networks,   is represented by a fixed number of parameters. The number of parameters does not grow with the number of training samples. Such models are called  parametric  models .
+There  are also models for which the number of parameters, or more generally the model  complexity , may grow as the number of training samples increases. Examples include KNN and decision trees. Such models are  called  non-parametric models .
+ 
+`
+Parametric and  Non-parametric Models
+
+SLIDE 19
+Theoretical Explanations on the Excellence of Neural Networks.
+
+SLIDE 20
+Since we do not know the structure of the true function   in the relation  , how do we know which  approximator    (i.e., model) to choose?
+If we know that    is a linear function, then we can use a linear model to approximate  .
+If we know that    assumes a value in each box area, then we can use a tree model to approximate  .
+However, in general, we do not know the structure of  . Therefore, model selection can be difficult. 
+ 
+`
+A key question regarding model selections
+
+SLIDE 21
+Universal Approximation Theorem:   Under  suitable conditions, a feed-forward neural network with one sufficiently large hidden layer and a nonlinear activation function can approximate any continuous  function    arbitrarily well over a bounded input region .
+This  does  not  mean that one hidden layer is always the best architecture or that training will necessarily find the desired approximation.
+*  This is required to know.
+ 
+`
+A Potential Solution to Difficulty in Model Selection
+
+SLIDE 22
+  
+22
+`
+Universal Approximation Theorem
+It  states that a feedforward neural network with a  single hidden layer  containing a finite number of neurons can approximate  any continuous function  on compact subsets of  arbitrarily well, provided the activation function is  non-linear, bounded, and continuous  ( e.g ., sigmoid, ReLU).
+ 
+*  This  is not  required to  memorize.
+
+SLIDE 23
+  
+23
+`
+Universal Approximation Theorem
+The theorem states that a neural   network   with   a   single   hidden   layer    ( with enough neurons and appropriate activation functions ) can approximate any well-behaved function   . 
+ 
+
+SLIDE 24
+The function   in the universal approximation theorem can be expressed as an FNN.
+ 
+
+SLIDE 25
+ x 1
+ x 2
+ x 3
+ x 4
+   Input
+1   Hidden Layer
+Y
+   Output
+a1 ( 1 )
+a2 ( 1 )
+a3 ( 1 )
+a4 ( 1 )
+a1 (2)
+25
+The following plots an example neural network, with a non-linear activation  . 
+ 
+`
+An Example FNN Satisfying the Universal Approximation Theorem
+
+SLIDE 26
+x 1
+x 2
+x 3
+x 4
+   Input
+Hidden Layers
+Y
+   Output
+a1 (1)
+a2 (1)
+a3 (1)
+a4 (1)
+a1 ( n+1 )
+a1 ( n )
+a2 ( n )
+a3 ( n )
+a4 ( n )
+DNN   with     hidden   layers
+ 
+26
+`
+Deep   Neural Network
+
+SLIDE 27
+Why  the activation  function   is   needed from the perspective of the universal approximation theorem?  
+
+SLIDE 28
+28
+ReLU  is a good default choice for most problems !
+Activation   f unctions
+Non - 0   center
+
+SLIDE 29
+The simple reason is, the activation function is needed for the NN to approximate any function!
+Without  activation functions, a DNN would simply be a ​ ​linear regression model​ ​, no matter how many layers it has.
+Example: A stack of linear layers   can be reduced to a single linear transformation.
+Activation functions ( e.g. ,  ReLU , Sigmoid, Tanh)​ ​ enable the network to learn ​ ​complex, non-linear relationships​ ​ in data.
+ 
+`
+Activation function:  i ntroducing   nonlinearity of NN
+
+SLIDE 30
+30
+Nonlinearity :  enables neural networks to represent nonlinear relationships. 
+Efficient computation:  important for large neural networks. 
+Useful gradients:  gradients should not vanish or explode too easily during training. 
+Different activation functions have different advantages; there is no single activation function that is best for every problem.
+`
+Useful properties of activation functions

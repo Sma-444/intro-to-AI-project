@@ -1,0 +1,10 @@
+{
+  "control_score": 0.6759673357009888,
+  "candidate_score": 0.6743442416191101,
+  "difference": -0.0016230940818786621,
+  "training_reload_exact_matches": 2500,
+  "selected_for_use": "dinov2_transformer_v1",
+  "additional_seed_gate": 0.003,
+  "gate_passed": false,
+  "checkpoint_sha256": "7262512ca9034b62b7594277830fe389c6a879ae47c656de47b2fcbae53b3966"
+}

@@ -1,0 +1,120 @@
+Device: cuda; images: 12000 train / 2500 validation
+Backbone: resnet50; parameters: 31,097,545
+Vocabulary: 1417; batch size: 24; checkpoint dir: E:\HKUST课程\AI\Introduction to AI\AIAA2205Project\captioning\runs\resnet50_aoa_v1
+Attention: aoa; encoder frozen for 2 epochs, then fine-tune final stage
+epoch 01/16 step 0100/500 token_loss=4.2682
+epoch 01/16 step 0200/500 token_loss=3.6280
+epoch 01/16 step 0300/500 token_loss=3.2905
+epoch 01/16 step 0400/500 token_loss=3.0832
+epoch 01/16 step 0500/500 token_loss=2.9333
+W1118 16:05:54.044000 8376 .env\site-packages\torch\distributed\elastic\multiprocessing\redirects.py:29] NOTE: Redirects are currently not supported in Windows or MacOs.
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 1839.90it/s]
+epoch 01: loss=2.9333, validation_similarity=0.466511, time=1.8 min, predictions=E:\HKUST课程\AI\Introduction to AI\AIAA2205Project\captioning\runs\resnet50_aoa_v1\validation_predictions.csv
+Saved new best checkpoint: 0.466511 (124.7 MB)
+epoch 02/16 step 0100/500 token_loss=2.1571
+epoch 02/16 step 0200/500 token_loss=2.1187
+epoch 02/16 step 0300/500 token_loss=2.1006
+epoch 02/16 step 0400/500 token_loss=2.0783
+epoch 02/16 step 0500/500 token_loss=2.0665
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 2924.36it/s]
+epoch 02: loss=2.0665, validation_similarity=0.532601, time=1.3 min, predictions=E:\HKUST课程\AI\Introduction to AI\AIAA2205Project\captioning\runs\resnet50_aoa_v1\validation_predictions.csv
+Saved new best checkpoint: 0.532601 (124.7 MB)
+Unfroze final encoder stage for low-rate fine-tuning
+epoch 03/16 step 0100/500 token_loss=1.8471
+epoch 03/16 step 0200/500 token_loss=1.8422
+epoch 03/16 step 0300/500 token_loss=1.8329
+epoch 03/16 step 0400/500 token_loss=1.8304
+epoch 03/16 step 0500/500 token_loss=1.8233
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 2852.10it/s]
+epoch 03: loss=1.8233, validation_similarity=0.557070, time=1.8 min, predictions=E:\HKUST课程\AI\Introduction to AI\AIAA2205Project\captioning\runs\resnet50_aoa_v1\validation_predictions.csv
+Saved new best checkpoint: 0.557070 (124.7 MB)
+epoch 04/16 step 0100/500 token_loss=1.6138
+epoch 04/16 step 0200/500 token_loss=1.6256
+epoch 04/16 step 0300/500 token_loss=1.6233
+epoch 04/16 step 0400/500 token_loss=1.6259
+epoch 04/16 step 0500/500 token_loss=1.6289
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 3211.83it/s]
+epoch 04: loss=1.6289, validation_similarity=0.561115, time=2.0 min, predictions=E:\HKUST课程\AI\Introduction to AI\AIAA2205Project\captioning\runs\resnet50_aoa_v1\validation_predictions.csv
+Saved new best checkpoint: 0.561115 (124.7 MB)
+epoch 05/16 step 0100/500 token_loss=1.4851
+epoch 05/16 step 0200/500 token_loss=1.4816
+epoch 05/16 step 0300/500 token_loss=1.4799
+epoch 05/16 step 0400/500 token_loss=1.4774
+epoch 05/16 step 0500/500 token_loss=1.4796
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 3051.16it/s]
+epoch 05: loss=1.4796, validation_similarity=0.574104, time=2.0 min, predictions=E:\HKUST课程\AI\Introduction to AI\AIAA2205Project\captioning\runs\resnet50_aoa_v1\validation_predictions.csv
+Saved new best checkpoint: 0.574104 (124.7 MB)
+epoch 06/16 step 0100/500 token_loss=1.3487
+epoch 06/16 step 0200/500 token_loss=1.3587
+epoch 06/16 step 0300/500 token_loss=1.3628
+epoch 06/16 step 0400/500 token_loss=1.3626
+epoch 06/16 step 0500/500 token_loss=1.3656
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 2554.83it/s]
+epoch 06: loss=1.3656, validation_similarity=0.580595, time=1.6 min, predictions=E:\HKUST课程\AI\Introduction to AI\AIAA2205Project\captioning\runs\resnet50_aoa_v1\validation_predictions.csv
+Saved new best checkpoint: 0.580595 (124.7 MB)
+epoch 07/16 step 0100/500 token_loss=1.2695
+epoch 07/16 step 0200/500 token_loss=1.2663
+epoch 07/16 step 0300/500 token_loss=1.2677
+epoch 07/16 step 0400/500 token_loss=1.2705
+epoch 07/16 step 0500/500 token_loss=1.2731
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 2898.56it/s]
+epoch 07: loss=1.2731, validation_similarity=0.577791, time=2.0 min, predictions=E:\HKUST课程\AI\Introduction to AI\AIAA2205Project\captioning\runs\resnet50_aoa_v1\validation_predictions.csv
+epoch 08/16 step 0100/500 token_loss=1.2007
+epoch 08/16 step 0200/500 token_loss=1.2022
+epoch 08/16 step 0300/500 token_loss=1.2044
+epoch 08/16 step 0400/500 token_loss=1.2026
+epoch 08/16 step 0500/500 token_loss=1.2041
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 2580.02it/s]
+epoch 08: loss=1.2041, validation_similarity=0.579342, time=1.5 min, predictions=E:\HKUST课程\AI\Introduction to AI\AIAA2205Project\captioning\runs\resnet50_aoa_v1\validation_predictions.csv
+epoch 09/16 step 0100/500 token_loss=1.1410
+epoch 09/16 step 0200/500 token_loss=1.1450
+epoch 09/16 step 0300/500 token_loss=1.1485
+epoch 09/16 step 0400/500 token_loss=1.1483
+epoch 09/16 step 0500/500 token_loss=1.1502
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 2959.16it/s]
+epoch 09: loss=1.1502, validation_similarity=0.581954, time=1.6 min, predictions=E:\HKUST课程\AI\Introduction to AI\AIAA2205Project\captioning\runs\resnet50_aoa_v1\validation_predictions.csv
+Saved new best checkpoint: 0.581954 (124.7 MB)
+epoch 10/16 step 0100/500 token_loss=1.0902
+epoch 10/16 step 0200/500 token_loss=1.1001
+epoch 10/16 step 0300/500 token_loss=1.1042
+epoch 10/16 step 0400/500 token_loss=1.1040
+epoch 10/16 step 0500/500 token_loss=1.1057
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 2904.72it/s]
+epoch 10: loss=1.1057, validation_similarity=0.579997, time=1.6 min, predictions=E:\HKUST课程\AI\Introduction to AI\AIAA2205Project\captioning\runs\resnet50_aoa_v1\validation_predictions.csv
+epoch 11/16 step 0100/500 token_loss=1.0685
+epoch 11/16 step 0200/500 token_loss=1.0661
+epoch 11/16 step 0300/500 token_loss=1.0705
+epoch 11/16 step 0400/500 token_loss=1.0704
+epoch 11/16 step 0500/500 token_loss=1.0716
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 3304.19it/s]
+epoch 11: loss=1.0716, validation_similarity=0.582326, time=1.6 min, predictions=E:\HKUST课程\AI\Introduction to AI\AIAA2205Project\captioning\runs\resnet50_aoa_v1\validation_predictions.csv
+Saved new best checkpoint: 0.582326 (124.7 MB)
+epoch 12/16 step 0100/500 token_loss=1.0293
+epoch 12/16 step 0200/500 token_loss=1.0371
+epoch 12/16 step 0300/500 token_loss=1.0390
+epoch 12/16 step 0400/500 token_loss=1.0418
+epoch 12/16 step 0500/500 token_loss=1.0444
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 3260.60it/s]
+epoch 12: loss=1.0444, validation_similarity=0.579498, time=1.5 min, predictions=E:\HKUST课程\AI\Introduction to AI\AIAA2205Project\captioning\runs\resnet50_aoa_v1\validation_predictions.csv
+epoch 13/16 step 0100/500 token_loss=1.0240
+epoch 13/16 step 0200/500 token_loss=1.0252
+epoch 13/16 step 0300/500 token_loss=1.0224
+epoch 13/16 step 0400/500 token_loss=1.0243
+epoch 13/16 step 0500/500 token_loss=1.0253
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 3596.22it/s]
+epoch 13: loss=1.0253, validation_similarity=0.577708, time=1.5 min, predictions=E:\HKUST课程\AI\Introduction to AI\AIAA2205Project\captioning\runs\resnet50_aoa_v1\validation_predictions.csv
+epoch 14/16 step 0100/500 token_loss=0.9980
+epoch 14/16 step 0200/500 token_loss=1.0024
+epoch 14/16 step 0300/500 token_loss=1.0035
+epoch 14/16 step 0400/500 token_loss=1.0058
+epoch 14/16 step 0500/500 token_loss=1.0068
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 2970.25it/s]
+epoch 14: loss=1.0068, validation_similarity=0.580642, time=1.7 min, predictions=E:\HKUST课程\AI\Introduction to AI\AIAA2205Project\captioning\runs\resnet50_aoa_v1\validation_predictions.csv
+epoch 15/16 step 0100/500 token_loss=0.9944
+epoch 15/16 step 0200/500 token_loss=0.9934
+epoch 15/16 step 0300/500 token_loss=0.9928
+epoch 15/16 step 0400/500 token_loss=0.9934
+epoch 15/16 step 0500/500 token_loss=0.9948
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 2810.88it/s]
+epoch 15: loss=0.9948, validation_similarity=0.580890, time=2.1 min, predictions=E:\HKUST课程\AI\Introduction to AI\AIAA2205Project\captioning\runs\resnet50_aoa_v1\validation_predictions.csv
+Early stopping after 4 stale validation epochs

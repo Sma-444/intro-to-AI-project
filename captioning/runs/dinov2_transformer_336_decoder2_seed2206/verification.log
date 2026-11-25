@@ -1,0 +1,25 @@
+W1122 20:41:50.994000 2604 .env\site-packages\torch\distributed\elastic\multiprocessing\redirects.py:29] NOTE: Redirects are currently not supported in Windows or MacOs.
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 103/103 [00:00<00:00, 3301.01it/s]
+{
+  "epoch": 12,
+  "architecture": "dinov2_small_spatial_transformer",
+  "decoder_layers": 2,
+  "cudnn_benchmark": true,
+  "decode_policy": "beam3",
+  "preprocessing": "scaled_centercrop",
+  "image_size": 336,
+  "checkpoint_bytes": 103290825,
+  "validation_rows": 2500,
+  "score_on_reload": 0.6859897971153259,
+  "score_recorded": 0.6859897971153259,
+  "baseline_resnet18_score": 0.528876,
+  "difference_vs_baseline": 0.15711379711532591,
+  "baseline_resnet50_score": 0.5779770612716675,
+  "difference_vs_resnet50": 0.10801273584365845,
+  "baseline_aoa_score": 0.5824428796768188,
+  "difference_vs_aoa": 0.10354691743850708,
+  "best_aoa_beam_score": 0.5869023203849792,
+  "difference_vs_aoa_beam": 0.09908747673034668
+}

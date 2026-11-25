@@ -1,0 +1,80 @@
+{
+  "fetched_at": "2026-11-20T02:16:21.217726+00:00",
+  "repositories": [
+    {
+      "repo": "salesforce/LAVIS",
+      "files": [
+        {
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/salesforce/LAVIS/05cb670f47296522e24e7727e366b4a997d28582/README.md",
+          "permalink": "https://github.com/salesforce/LAVIS/blob/05cb670f47296522e24e7727e366b4a997d28582/README.md",
+          "bytes": 20118,
+          "sha256": "562f60eadefd1a9c799289c68f20d0d2a9fbdab0eb3337cb0ef7bc4e1ab88aeb"
+        },
+        {
+          "path": "projects/blip2/README.md",
+          "url": "https://raw.githubusercontent.com/salesforce/LAVIS/05cb670f47296522e24e7727e366b4a997d28582/projects/blip2/README.md",
+          "permalink": "https://github.com/salesforce/LAVIS/blob/05cb670f47296522e24e7727e366b4a997d28582/projects/blip2/README.md",
+          "bytes": 7629,
+          "sha256": "d96faf17d11ea7a3cb84089a885342f178b5ee7af10e2e7ed93a2688b2f0ec77"
+        }
+      ],
+      "commit": "05cb670f47296522e24e7727e366b4a997d28582",
+      "license": {
+        "key": "bsd-3-clause",
+        "name": "BSD 3-Clause \"New\" or \"Revised\" License",
+        "spdx_id": "BSD-3-Clause",
+        "url": "https://api.github.com/licenses/bsd-3-clause",
+        "node_id": "MDc6TGljZW5zZTU="
+      },
+      "url": "https://github.com/salesforce/LAVIS"
+    },
+    {
+      "repo": "QwenLM/Qwen3-VL",
+      "files": [
+        {
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/QwenLM/Qwen3-VL/96588727e44c78b25ba03ea03b8e12f7e64fd0da/README.md",
+          "permalink": "https://github.com/QwenLM/Qwen3-VL/blob/96588727e44c78b25ba03ea03b8e12f7e64fd0da/README.md",
+          "bytes": 52828,
+          "sha256": "fc21106258c51e0b91a652eef12f5925becb146ea8b8c79a4251ac2e89a2f1ac"
+        }
+      ],
+      "commit": "96588727e44c78b25ba03ea03b8e12f7e64fd0da",
+      "license": {
+        "key": "apache-2.0",
+        "name": "Apache License 2.0",
+        "spdx_id": "Apache-2.0",
+        "url": "https://api.github.com/licenses/apache-2.0",
+        "node_id": "MDc6TGljZW5zZTI="
+      },
+      "url": "https://github.com/QwenLM/Qwen3-VL"
+    },
+    {
+      "repo": "microsoft/Florence-2",
+      "files": [],
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "repo": "huggingface/smollm",
+      "files": [
+        {
+          "path": "vision/README.md",
+          "url": "https://raw.githubusercontent.com/huggingface/smollm/438be18dae658a638f3a6976fdf5190bb6d68619/vision/README.md",
+          "permalink": "https://github.com/huggingface/smollm/blob/438be18dae658a638f3a6976fdf5190bb6d68619/vision/README.md",
+          "bytes": 5213,
+          "sha256": "8c090d18d337537df5211fdb00d999a915abef7361086d25b46f255344926da2"
+        }
+      ],
+      "commit": "438be18dae658a638f3a6976fdf5190bb6d68619",
+      "license": {
+        "key": "apache-2.0",
+        "name": "Apache License 2.0",
+        "spdx_id": "Apache-2.0",
+        "url": "https://api.github.com/licenses/apache-2.0",
+        "node_id": "MDc6TGljZW5zZTI="
+      },
+      "url": "https://github.com/huggingface/smollm"
+    }
+  ]
+}

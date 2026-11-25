@@ -1,0 +1,122 @@
+[
+  {
+    "image_id": "validation_00666",
+    "reference": "a man on a motorbike with a cardboard box on the back.",
+    "resnet_prediction": "a man is sitting on a motorcycle in a parking lot",
+    "dino_prediction": "a man riding a scooter",
+    "resnet_cosine": "0.48938465118408203",
+    "dino_cosine": "0.3819372057914734",
+    "difference": "-0.10744744539260864",
+    "stratum": "low"
+  },
+  {
+    "image_id": "validation_02471",
+    "reference": "a woman is taking a picture of a picture of a woman on a billboard.",
+    "resnet_prediction": "a woman in a black shirt is talking on a cellphone",
+    "dino_prediction": "a woman in a red shirt is talking on a cellphone",
+    "resnet_cosine": "0.29397284984588623",
+    "dino_cosine": "0.26343846321105957",
+    "difference": "-0.03053438663482666",
+    "stratum": "low"
+  },
+  {
+    "image_id": "validation_01568",
+    "reference": "a group of people are sitting on a bus.",
+    "resnet_prediction": "a group of people are sitting in a chair and laughing",
+    "dino_prediction": "a group of people are posing for a picture",
+    "resnet_cosine": "0.40968653559684753",
+    "dino_cosine": "0.3635612726211548",
+    "difference": "-0.04612526297569275",
+    "stratum": "low"
+  },
+  {
+    "image_id": "validation_00694",
+    "reference": "a group of people are watching a man falling off a bridge.",
+    "resnet_prediction": "two children are jumping over a bridge",
+    "dino_prediction": "a man is taking a picture of a boat",
+    "resnet_cosine": "0.27855184674263",
+    "dino_cosine": "0.22027578949928284",
+    "difference": "-0.05827605724334717",
+    "stratum": "low"
+  },
+  {
+    "image_id": "validation_02232",
+    "reference": "a woman with dreadlocks is leaning against a wall.",
+    "resnet_prediction": "a woman in a black shirt is reading a book",
+    "dino_prediction": "a woman in a brown shirt is sitting in a chair",
+    "resnet_cosine": "0.2651073634624481",
+    "dino_cosine": "0.2642058730125427",
+    "difference": "-0.0009014904499053955",
+    "stratum": "low"
+  },
+  {
+    "image_id": "validation_01058",
+    "reference": "three men are standing around a camera.",
+    "resnet_prediction": "a group of men are sitting in a kitchen",
+    "dino_prediction": "a man in a black shirt is riding a bicycle",
+    "resnet_cosine": "0.2996256947517395",
+    "dino_cosine": "0.011254433542490005",
+    "difference": "-0.2883712649345398",
+    "stratum": "low"
+  },
+  {
+    "image_id": "validation_01835",
+    "reference": "a boy splashes in the water.",
+    "resnet_prediction": "a man jumping off a cliff into the water",
+    "dino_prediction": "a man running through the water",
+    "resnet_cosine": "0.3461731970310211",
+    "dino_cosine": "0.378766268491745",
+    "difference": "0.03259307146072388",
+    "stratum": "low"
+  },
+  {
+    "image_id": "validation_00570",
+    "reference": "a dog is looking at a person's feet in the kitchen.",
+    "resnet_prediction": "a dog is laying on the floor in a kitchen",
+    "dino_prediction": "a dog is standing on a tiled floor",
+    "resnet_cosine": "0.6002832651138306",
+    "dino_cosine": "0.3982269763946533",
+    "difference": "-0.20205628871917725",
+    "stratum": "low"
+  },
+  {
+    "image_id": "validation_01674",
+    "reference": "a man is playing a computer game.",
+    "resnet_prediction": "a man is sitting in front of a laptop computer",
+    "dino_prediction": "a man is sitting in front of a computer",
+    "resnet_cosine": "0.4946057200431824",
+    "dino_cosine": "0.5578071475028992",
+    "difference": "0.0632014274597168",
+    "stratum": "middle"
+  },
+  {
+    "image_id": "validation_00873",
+    "reference": "a man in a blue tank top is taking a picture of a tree.",
+    "resnet_prediction": "a man in a purple tank top is taking a picture",
+    "dino_prediction": "a man takes a picture of a man in a park",
+    "resnet_cosine": "0.6428609490394592",
+    "dino_cosine": "0.4415104389190674",
+    "difference": "-0.20135051012039185",
+    "stratum": "middle"
+  },
+  {
+    "image_id": "validation_01634",
+    "reference": "a girl in a white dress is holding a bunch of flowers in front of her face.",
+    "resnet_prediction": "a girl in a pink dress is holding a pink flowers",
+    "dino_prediction": "a woman in a white dress is holding flowers",
+    "resnet_cosine": "0.7697234749794006",
+    "dino_cosine": "0.7963897585868835",
+    "difference": "0.02666628360748291",
+    "stratum": "high"
+  },
+  {
+    "image_id": "validation_01601",
+    "reference": "a man in a red jacket is riding a motorcycle.",
+    "resnet_prediction": "a man in a red jacket is riding a motorcycle",
+    "dino_prediction": "a man in a red jacket is riding a motorcycle",
+    "resnet_cosine": "0.9978592991828918",
+    "dino_cosine": "0.9978592991828918",
+    "difference": "0.0",
+    "stratum": "high"
+  }
+]

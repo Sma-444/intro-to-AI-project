@@ -1,0 +1,13 @@
+{
+  "python": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "packages": {
+    "torch": "2.11.0+cu128",
+    "torchvision": "0.26.0+cu128",
+    "transformers": "5.23.0",
+    "numpy": "2.5.5",
+    "Pillow": "13.0.0",
+    "safetensors": "0.8.0",
+    "tokenizers": "0.23.3"
+  }
+}

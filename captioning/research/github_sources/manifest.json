@@ -1,0 +1,237 @@
+{
+  "fetched_at": "2026-11-20T02:04:07.533427+00:00",
+  "search_url": "https://api.github.com/search/repositories?q=image+captioning+flickr8k+transformer+language%3APython&per_page=8",
+  "search_results": [
+    {
+      "full_name": "rifqimulyawan/Pre-Trained-CNN-Architecture-for-Indonesian-Image-Captioning-using-Transformer",
+      "html_url": "https://github.com/rifqimulyawan/Pre-Trained-CNN-Architecture-for-Indonesian-Image-Captioning-using-Transformer",
+      "description": "Pre-Trained CNN Architecture for Indonesian Image Captioning using Transformer model with Flickr8k dataset",
+      "stargazers_count": 1
+    },
+    {
+      "full_name": "therrshan/image-captioning",
+      "html_url": "https://github.com/therrshan/image-captioning",
+      "description": "Comparitive analysis of image captioning model using RNN, BiLSTM and Transformer model architectures on the Flickr8K dataset and InceptionV3 for image feature extraction.",
+      "stargazers_count": 4
+    },
+    {
+      "full_name": "shiqingw/image-captioning-codebase",
+      "html_url": "https://github.com/shiqingw/image-captioning-codebase",
+      "description": "Bahdanau and Transformer attention mechanisms on Flickr8k",
+      "stargazers_count": 0
+    },
+    {
+      "full_name": "doduyquy/image-captioning-flickr8k-iu",
+      "html_url": "https://github.com/doduyquy/image-captioning-flickr8k-iu",
+      "description": "Project image captioning from scratch, baseline LSTM -> Transformer ",
+      "stargazers_count": 0
+    },
+    {
+      "full_name": "xyltius/Classification-and-Image-Captioning-with-Transformers",
+      "html_url": "https://github.com/xyltius/Classification-and-Image-Captioning-with-Transformers",
+      "description": "Classification of CIFAR-10 dataset using a Vision Transformer (ViT) model and implementing image captioning on Flickr8k dataset with Google's ViT-Base as vision encoder and OpenAI's GPT-2 as text decoder.",
+      "stargazers_count": 0
+    },
+    {
+      "full_name": "dahalbishu/Image-Captioning",
+      "html_url": "https://github.com/dahalbishu/Image-Captioning",
+      "description": "This project implements an image captioning model using the Flickr8K dataset. It utilizes a Vision Transformer model and a GPT-2  model for generating captions based on the image content.",
+      "stargazers_count": 1
+    },
+    {
+      "full_name": "ibrahimceceli/image-captioning",
+      "html_url": "https://github.com/ibrahimceceli/image-captioning",
+      "description": "Comparing four image captioning approaches on Flickr8k: CNN-LSTM, attention LSTM, Transformer decoder and pretrained BLIP, with a shared data pipeline, BLEU/METEOR/ROUGE-L/CIDEr evaluation and a Gradio demo.",
+      "stargazers_count": 0
+    },
+    {
+      "full_name": "ashutoshd649/image-captioning-codsoft",
+      "html_url": "https://github.com/ashutoshd649/image-captioning-codsoft",
+      "description": "Image Captioning AI using CNN (ResNet50/VGG16) + LSTM & Transformer decoder trained on Flickr8k dataset. Combines Computer Vision & NLP to auto-generate captions. Includes Flask web app, beam search, BLEU evaluation & 4 weekly Jupyter notebooks. Built with PyTorch.",
+      "stargazers_count": 0
+    }
+  ],
+  "repositories": [
+    {
+      "repo": "sgrvinod/a-PyTorch-Tutorial-to-Image-Captioning",
+      "files": [
+        {
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/sgrvinod/a-PyTorch-Tutorial-to-Image-Captioning/cc9c7e2f4017938d414178d3781fed8dbe442852/README.md",
+          "permalink": "https://github.com/sgrvinod/a-PyTorch-Tutorial-to-Image-Captioning/blob/cc9c7e2f4017938d414178d3781fed8dbe442852/README.md",
+          "bytes": 34310,
+          "sha256": "b4b7e76eeb2faa73571f049798a1935952f05ce21438b28e8ea0d208dca971ba"
+        },
+        {
+          "path": "models.py",
+          "url": "https://raw.githubusercontent.com/sgrvinod/a-PyTorch-Tutorial-to-Image-Captioning/cc9c7e2f4017938d414178d3781fed8dbe442852/models.py",
+          "permalink": "https://github.com/sgrvinod/a-PyTorch-Tutorial-to-Image-Captioning/blob/cc9c7e2f4017938d414178d3781fed8dbe442852/models.py",
+          "bytes": 9470,
+          "sha256": "1f4e922dd70490a164e822fcaa9c2a0982e7581631f6e9e577d080ecd020f3af"
+        },
+        {
+          "path": "train.py",
+          "url": "https://raw.githubusercontent.com/sgrvinod/a-PyTorch-Tutorial-to-Image-Captioning/cc9c7e2f4017938d414178d3781fed8dbe442852/train.py",
+          "permalink": "https://github.com/sgrvinod/a-PyTorch-Tutorial-to-Image-Captioning/blob/cc9c7e2f4017938d414178d3781fed8dbe442852/train.py",
+          "bytes": 13500,
+          "sha256": "1f89c9a5542bd024f0ab605106dbc9f7778e53372da5abe6d6a0c0a3fade82de"
+        }
+      ],
+      "commit": "cc9c7e2f4017938d414178d3781fed8dbe442852",
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "url": "https://github.com/sgrvinod/a-PyTorch-Tutorial-to-Image-Captioning"
+    },
+    {
+      "repo": "husthuaan/AoANet",
+      "files": [
+        {
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/husthuaan/AoANet/94ffe176c3777bc54e53e9dd7b305b4046d91a70/README.md",
+          "permalink": "https://github.com/husthuaan/AoANet/blob/94ffe176c3777bc54e53e9dd7b305b4046d91a70/README.md",
+          "bytes": 2629,
+          "sha256": "20a8c263db29a61226a2e8452a8d9087e83b10a2d661910dd1802d664290acbe"
+        },
+        {
+          "path": "models/AoAModel.py",
+          "url": "https://raw.githubusercontent.com/husthuaan/AoANet/94ffe176c3777bc54e53e9dd7b305b4046d91a70/models/AoAModel.py",
+          "permalink": "https://github.com/husthuaan/AoANet/blob/94ffe176c3777bc54e53e9dd7b305b4046d91a70/models/AoAModel.py",
+          "bytes": 9281,
+          "sha256": "7c47e3190e4d85aabdeecaf57df2ae33d16e4f0425d2bb0522f1346eaf686dc7"
+        },
+        {
+          "path": "opts.py",
+          "url": "https://raw.githubusercontent.com/husthuaan/AoANet/94ffe176c3777bc54e53e9dd7b305b4046d91a70/opts.py",
+          "permalink": "https://github.com/husthuaan/AoANet/blob/94ffe176c3777bc54e53e9dd7b305b4046d91a70/opts.py",
+          "bytes": 16856,
+          "sha256": "8a6efcbeaa82f49de8d3c0f58b4379eaa0e61c0e5ad96de2c4d297f9ee89fef3"
+        }
+      ],
+      "commit": "94ffe176c3777bc54e53e9dd7b305b4046d91a70",
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "url": "https://github.com/husthuaan/AoANet"
+    },
+    {
+      "repo": "ruotianluo/ImageCaptioning.pytorch",
+      "files": [
+        {
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/ruotianluo/ImageCaptioning.pytorch/4c48a3304932d58c5349434e7b0085f48dcb4be4/README.md",
+          "permalink": "https://github.com/ruotianluo/ImageCaptioning.pytorch/blob/4c48a3304932d58c5349434e7b0085f48dcb4be4/README.md",
+          "bytes": 7894,
+          "sha256": "f3224f1600c89597f02b8359ea73c8f7c83d2a8e79f6459fe252a0c09c00cb23"
+        },
+        {
+          "path": "captioning/models/AttModel.py",
+          "url": "https://raw.githubusercontent.com/ruotianluo/ImageCaptioning.pytorch/4c48a3304932d58c5349434e7b0085f48dcb4be4/captioning/models/AttModel.py",
+          "permalink": "https://github.com/ruotianluo/ImageCaptioning.pytorch/blob/4c48a3304932d58c5349434e7b0085f48dcb4be4/captioning/models/AttModel.py",
+          "bytes": 45233,
+          "sha256": "2b9c0773e84bb64d8dcc665c8362c2ca8d50de62db8f98a25b826c1d6e27e6d9"
+        },
+        {
+          "path": "captioning/models/TransformerModel.py",
+          "url": "https://raw.githubusercontent.com/ruotianluo/ImageCaptioning.pytorch/4c48a3304932d58c5349434e7b0085f48dcb4be4/captioning/models/TransformerModel.py",
+          "permalink": "https://github.com/ruotianluo/ImageCaptioning.pytorch/blob/4c48a3304932d58c5349434e7b0085f48dcb4be4/captioning/models/TransformerModel.py",
+          "bytes": 13590,
+          "sha256": "7f68ad67477f39d2fecaea73ee961bba5721b9ac10e46a883abad6079a39ba3c"
+        },
+        {
+          "path": "tools/train.py",
+          "url": "https://raw.githubusercontent.com/ruotianluo/ImageCaptioning.pytorch/4c48a3304932d58c5349434e7b0085f48dcb4be4/tools/train.py",
+          "permalink": "https://github.com/ruotianluo/ImageCaptioning.pytorch/blob/4c48a3304932d58c5349434e7b0085f48dcb4be4/tools/train.py",
+          "bytes": 13311,
+          "sha256": "d37a2f7f935ef207e563df988630d6c24b8fefa73730ad4c174df49c711dcdf6"
+        },
+        {
+          "path": "configs/transformer.yml",
+          "url": "https://raw.githubusercontent.com/ruotianluo/ImageCaptioning.pytorch/4c48a3304932d58c5349434e7b0085f48dcb4be4/configs/transformer.yml",
+          "permalink": "https://github.com/ruotianluo/ImageCaptioning.pytorch/blob/4c48a3304932d58c5349434e7b0085f48dcb4be4/configs/transformer.yml",
+          "error": "HTTP Error 404: Not Found"
+        }
+      ],
+      "commit": "4c48a3304932d58c5349434e7b0085f48dcb4be4",
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "url": "https://github.com/ruotianluo/ImageCaptioning.pytorch"
+    },
+    {
+      "repo": "aimagelab/meshed-memory-transformer",
+      "files": [
+        {
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/aimagelab/meshed-memory-transformer/239100befa61d1e77ddf3b538810c83703d1e3a7/README.md",
+          "permalink": "https://github.com/aimagelab/meshed-memory-transformer/blob/239100befa61d1e77ddf3b538810c83703d1e3a7/README.md",
+          "bytes": 3916,
+          "sha256": "4362bec1da18d06d4f4f50770ac331c57811d39a614698b248ef461d1c63469a"
+        },
+        {
+          "path": "models/transformer/encoders.py",
+          "url": "https://raw.githubusercontent.com/aimagelab/meshed-memory-transformer/239100befa61d1e77ddf3b538810c83703d1e3a7/models/transformer/encoders.py",
+          "permalink": "https://github.com/aimagelab/meshed-memory-transformer/blob/239100befa61d1e77ddf3b538810c83703d1e3a7/models/transformer/encoders.py",
+          "bytes": 3015,
+          "sha256": "1de7eda9ae10f297998740987c0aaf9b3254942625219f4a997fde5df0f0d1c9"
+        },
+        {
+          "path": "models/transformer/decoders.py",
+          "url": "https://raw.githubusercontent.com/aimagelab/meshed-memory-transformer/239100befa61d1e77ddf3b538810c83703d1e3a7/models/transformer/decoders.py",
+          "permalink": "https://github.com/aimagelab/meshed-memory-transformer/blob/239100befa61d1e77ddf3b538810c83703d1e3a7/models/transformer/decoders.py",
+          "bytes": 5334,
+          "sha256": "82799e38f821a4bba5d8ae2d9e26bac108df866c1949b3ae1a295ae25827a21b"
+        },
+        {
+          "path": "train.py",
+          "url": "https://raw.githubusercontent.com/aimagelab/meshed-memory-transformer/239100befa61d1e77ddf3b538810c83703d1e3a7/train.py",
+          "permalink": "https://github.com/aimagelab/meshed-memory-transformer/blob/239100befa61d1e77ddf3b538810c83703d1e3a7/train.py",
+          "bytes": 13775,
+          "sha256": "e4ed18afdff73958b2db4922d86755d2f0a2e3670ee00c0981089a754540b052"
+        }
+      ],
+      "commit": "239100befa61d1e77ddf3b538810c83703d1e3a7",
+      "license": {
+        "key": "bsd-3-clause",
+        "name": "BSD 3-Clause \"New\" or \"Revised\" License",
+        "spdx_id": "BSD-3-Clause",
+        "url": "https://api.github.com/licenses/bsd-3-clause",
+        "node_id": "MDc6TGljZW5zZTU="
+      },
+      "url": "https://github.com/aimagelab/meshed-memory-transformer"
+    },
+    {
+      "repo": "keras-team/keras-io",
+      "files": [
+        {
+          "path": "examples/vision/image_captioning.py",
+          "url": "https://raw.githubusercontent.com/keras-team/keras-io/f5891b3cd4df69f6bd5a3c26ea92310f3a973626/examples/vision/image_captioning.py",
+          "permalink": "https://github.com/keras-team/keras-io/blob/f5891b3cd4df69f6bd5a3c26ea92310f3a973626/examples/vision/image_captioning.py",
+          "bytes": 21525,
+          "sha256": "13dec70d8b7cded4b5fad6f7b8acdb1f97286ea477d2b8cfe8389cb36c6d11f5"
+        }
+      ],
+      "commit": "f5891b3cd4df69f6bd5a3c26ea92310f3a973626",
+      "license": {
+        "key": "apache-2.0",
+        "name": "Apache License 2.0",
+        "spdx_id": "Apache-2.0",
+        "url": "https://api.github.com/licenses/apache-2.0",
+        "node_id": "MDc6TGljZW5zZTI="
+      },
+      "url": "https://github.com/keras-team/keras-io"
+    }
+  ]
+}

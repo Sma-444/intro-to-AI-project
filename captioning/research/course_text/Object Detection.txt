@@ -1,0 +1,1112 @@
+SLIDE 1
+AIAA   2205: Introduction   to   AI 
+Object Detection
+Instructor: Chen   Xu
+
+SLIDE 2
+What are the input and output for object detection?
+R-CNN Structure.
+What are the difference between a Slow R-CNN, Fast R-CNN, and Faster R-CNN?
+2
+`
+Contents to be Mastered in this PPT
+
+SLIDE 3
+Input :   Si n gl e   R GB   Ima g e
+Ou t pu t :   A   s e t   o f   d e t ec t e d   o b j ec t s ;   F o r   e a c h   o b j ec t   p r e d i c t:
+C a t e g or y   la b e l   ( f r o m   f i x e d ,   k no w n   s e t   o f   c a t e g o r i e s )
+Bo und i n g   b o x   ( f o u r   nu m b e r s :   x ,   y ,   w i d t h ,   h e i g h t )
+3
+`
+Object Detection: Task Definition
+
+SLIDE 4
+M u l t i p l e   ou t pu t s :   Nee d   t o   o u t pu t   v a r ia b l e   nu m b e r s   o f   o bj e ct s   p e r   i m a g e
+M u l t i p l e   t yp e s   o f   ou t pu t :   Nee d   t o
+p r e d i ct   ” w h a t ”   ( c a t e g o r y   la b e l )   a s   w e l l   a s   “ w h e r e ”   (b o und i n g   b o x)
+La r g e   i m a g es :   C la ss ifi ca tio n   w or k s   a t
+224 x 224;   n ee d   h i g h e r   r e s ol u t io n   f o r   d e t e ct io n ,   of t e n   ~ 800 x 60 0
+4
+`
+Object Detection: Challenges
+
+SLIDE 5
+Bo und i n g   b o x e s   a r e   ty pi c a ll y   axis - align e d
+5
+`
+Bounding Boxes
+
+SLIDE 6
+Bo und i n g   b o x e s   a r e   ty pi c a ll y   axis - align e d
+O ri e n t e d   b o x e s   a r e   mu c h   l e s s   c o mm o n
+6
+`
+Bounding Boxes
+
+SLIDE 7
+Bo und i n g   b o x e s   (u s ua ll y )   c o v e r   o n l y   t h e   v i s i b l e   p o r t i o n   o f   th e   o b j ec t
+T h is   i m a g e   i s   CC 0   Public   D o m a i n
+Z h u   e t   al,   ” S e m a n t i c   Am o da l   S e gm e n t a t i o n ” ,   C V P R   2017
+7
+`
+Object Detection: Modal vs  Amodal  Boxes
+
+SLIDE 8
+Bo und i n g   b o x e s   (u s ua ll y )   c o v e r   o n l y   t h e   v i s i b l e   p o r t i o n   o f   th e   o b j ec t
+Am o d al   d e t ec t i o n :   b o x   c o v e r s   th e   en t i r e   e x t en t   o f   t h e   o b j ec t,   ev e n   o cc l ud e d   p a r t s
+T h is   i m a g e   i s   CC 0   Public   D o m a i n
+Z h u   e t   al,   ” S e m a n t i c   Am o da l   S e gm e n t a t i o n ” ,   C V P R   2017
+8
+`
+Object Detection: Modal vs  Amodal  Boxes
+
+SLIDE 9
+“ M o d al”  d e t ec t i o n :   Bo und i n g   b o x e s   (u s ua ll y )   c o v e r   o n l y   t h e   v i s i b l e   p o r t i o n   o f   th e   o b j ec t
+Am o d al   d e t ec t i o n :   b o x   c o v e r s   th e   en t i r e   e x t en t   o f   t h e   o b j ec t,   ev e n   o cc l ud e d   p a r t s
+T h is   i m a g e   i s   CC 0   Public   D o m a i n
+Z h u   e t   al,   ” S e m a n t i c   Am o da l   S e gm e n t a t i o n ” ,   C V P R   2017
+9
+`
+Object Detection: Modal vs  Amodal  Boxes
+
+SLIDE 10
+O u r   P r e d i c t ion
+G r o un d   T r u th
+H o w   c an   w e   c o m pa r e   o u r   p r e d i ct io n   t o   the   g r o und- t ru t h   b o x ?
+P u pp y   i m a g e   is   li ce n se d   und er   CC - A   2 .0   G e n e r i c   li c e ns e .   B oundin g   box e s   and   t e x t   add e d   b y   .
+10
+`
+Comparing Boxes: Intersection over Union ( IoU )
+
+SLIDE 11
+O u r   P r e d i c t ion
+G r o un d   T r u th
+H o w   c an   w e   c o m pa r e   o u r   p r e d i ct io n   t o   the   g r o und- t ru t h   b o x ?
+I nt e r s e c t ion   ov e r   U nion   (Io U )   (A lso   c a ll e d   “ Ja c c a r d   si m il ar i t y ”   o r   “ Ja c c a r d   i nd e x ” ) :
+𝑨𝒓𝒆 𝒂   𝒐 𝒇   𝑰 𝒏 𝒕𝒆 𝒓 𝒔 𝒆 𝒄 𝒕 𝒊 𝒐 𝒏
+𝑨𝒓𝒆 𝒂   𝒐 𝒇   𝑼𝒏 𝒊𝒐 𝒏
+P u pp y   i m a g e   is   li ce n se d   und er   CC - A   2 .0   G e n e r i c   li c e ns e .   B oundin g   box e s   and   t e x t   add e d   b y   .
+11
+`
+Comparing Boxes: Intersection over Union ( IoU )
+
+SLIDE 12
+O u r   P r e d i c t ion
+G r o un d   T r u th
+H o w   c an   w e   c o m pa r e   o u r   p r e d i ct io n   t o   the   g r o und- t ru t h   b o x ?
+I nt e r s e c t ion   ov e r   U nion   (Io U )   (A lso   c a ll e d   “ Ja c c a r d   si m il ar i t y ”   o r   “ Ja c c a r d   i nd e x ” ) :
+𝑨𝒓𝒆 𝒂   𝒐 𝒇   𝑰 𝒏 𝒕𝒆 𝒓 𝒔 𝒆 𝒄 𝒕 𝒊 𝒐 𝒏
+𝑨𝒓𝒆 𝒂   𝒐 𝒇   𝑼𝒏 𝒊𝒐 𝒏
+P u pp y   i m a g e   is   li ce n se d   und er   CC - A   2 .0   G e n e r i c   li c e ns e .   B oundin g   box e s   and   t e x t   add e d   b y   .
+12
+`
+Comparing Boxes: Intersection over Union ( IoU )
+
+SLIDE 13
+O u r   P r e d i c t ion
+G r o un d   T r u th
+H o w   c an   w e   c o m pa r e   o u r   p r e d i ct io n   t o   the   g r o und- t ru t h   b o x ?
+I nt e r s e c t ion   ov e r   U nion   (Io U )   (A lso   c a ll e d   “ Ja c c a r d   si m il ar i t y ”   o r   “ Ja c c a r d   i nd e x ” ) :
+𝑨𝒓𝒆 𝒂   𝒐𝒇   𝑰 𝒏 𝒕𝒆 𝒓 𝒔 𝒆 𝒄 𝒕 𝒊 𝒐 𝒏
+𝑨𝒓𝒆 𝒂   𝒐 𝒇   𝑼𝒏 𝒊𝒐 𝒏
+Io U   >   0 . 5   i s   “ d e c e n t ”
+P u pp y   i m a g e   is   li ce n se d   und er   CC - A   2 .0   G e n e r i c   li c e ns e .   B oundin g   box e s   and   t e x t   add e d   b y   .
+13
+IoU   =   0 . 5 1
+`
+Comparing Boxes: Intersection over Union ( IoU )
+
+SLIDE 14
+O u r   P r e d i c t ion
+G r o un d   T r u th
+H o w   c an   w e   c o m pa r e   o u r   p r e d i ct io n   t o   the   g r o und- t ru t h   b o x ?
+I nt e r s e c t ion   ov e r   U nion   (Io U )   (A lso   c a ll e d   “ Ja c c a r d   si m il ar i t y ”   o r   “ Ja c c a r d   i nd e x ” ) :
+𝑨𝒓𝒆 𝒂   𝒐𝒇   𝑰 𝒏 𝒕𝒆 𝒓 𝒔 𝒆 𝒄 𝒕 𝒊 𝒐 𝒏
+𝑨𝒓𝒆 𝒂   𝒐 𝒇   𝑼𝒏 𝒊𝒐 𝒏
+Io U   >   0 . 5   i s   “ d e c e n t ” ,
+Io U   >   0 . 7   i s   “ p r e t ty   g oo d ” ,
+P u pp y   i m a g e   is   li ce n se d   und er   CC - A   2 .0   G e n e r i c   li c e ns e .   B oundin g   box e s   and   t e x t   add e d   b y   .
+14
+IoU   =   0 . 72
+`
+Comparing Boxes: Intersection over Union ( IoU )
+
+SLIDE 15
+O u r   P r e d i c t ion
+G r o un d   T r u th
+H o w   c an   w e   c o m pa r e   o u r   p r e d i ct io n   t o   the   g r o und- t ru t h   b o x ?
+I nt e r s e c t ion   ov e r   U nion   (Io U )   (A lso   c a ll e d   “ Ja c c a r d   si m il ar i t y ”   o r   “ Ja c c a r d   i nd e x ” ) :
+𝑨𝒓𝒆 𝒂   𝒐𝒇   𝑰 𝒏 𝒕𝒆 𝒓 𝒔 𝒆 𝒄 𝒕 𝒊 𝒐 𝒏
+𝑨𝒓𝒆 𝒂   𝒐 𝒇   𝑼𝒏 𝒊𝒐 𝒏
+Io U   >   0 . 5   i s   “ d e c e n t ” ,
+Io U   >   0 . 7   i s   “ p r e t ty   g oo d ” ,   Io U   >   0 . 9   i s   “ a l m o s t   p er f e c t ”
+P u pp y   i m a g e   is   li ce n se d   und er   CC - A   2 .0   G e n e r i c   li c e ns e .   B oundin g   box e s   and   t e x t   add e d   b y   .
+IoU   =   0 . 91
+15
+`
+Comparing Boxes: Intersection over Union ( IoU )
+
+SLIDE 16
+V ec t o r:
+4096
+T his   i m a g e   is   CC 0   publi c   do m a in
+T r ea t   l o c ali z a t i o n   as   a   r e g r e ssio n   p r o b l em !
+16
+`
+Detecting a single object
+
+SLIDE 17
+“ Wh a t ”
+C l as s   Sco r es
+C a t:   0 . 9
+D o g :   0 . 0 5
+Ca r :   0 . 0 1
+...
+V ec t o r:
+4096
+Full y   Conn e c t e d :   4096   t o   1000
+So ft m a x   Los s
+C o r r ect   l a b e l :
+C a t
+T his   i m a g e   is   CC 0   publi c   do m a in
+T r ea t   l o c ali z a t i o n   as   a   r e g r e ssio n   p r o b l em !
+17
+`
+Detecting a single object
+
+SLIDE 18
+V ec t o r:
+4096
+B o x   C oo r din at es   (x,   y ,   w ,   h)
+Full y   Conn e c t e d :   4096   t o   4
+So ft m a x   Los s
+L 2   Los s
+C o r r ect   b o x :   ( x ’ ,   y ’ ,   w ’ ,   h’)
+“ Wh a t ”
+C l as s   Sco r es
+C a t:   0 . 9
+D o g :   0 . 0 5
+Ca r :   0 . 0 1
+...
+Full y   Conn e c t e d :   4096   t o   1000
+C o r r ect   l a b e l :
+C a t
+T his   i m a g e   is   CC 0   publi c   do m a in
+“ Whe r e ”
+T r ea t   l o c ali z a t i o n   as   a   r e g r e ssio n   p r o b l em !
+18
+`
+Detecting a single object
+
+SLIDE 19
+“ Wh a t ”
+C l as s   Sco r es
+C a t:   0 . 9
+D o g :   0 . 0 5
+Ca r :   0 . 0 1
+...
+V ec t o r:
+4096
+Full y   Conn e c t e d :   4096   t o   1000
+B o x   C oo r din at es   (x,   y ,   w ,   h)
+Full y   Conn e c t e d :   4096   t o   4
+So ft m a x   Los s
+L 2   Los s
+M u lti t a s k   L os s
+Los s
+C o r r ect   l a b e l :
+C a t
+C o r r ect   b o x :   ( x ’ ,   y ’ ,   w ’ ,   h’)
+W e i g h t e d   Su m
+T his   i m a g e   is   CC 0   publi c   do m a in
+“ Whe r e ”
+T r ea t   l o c ali z a t i o n   as   a   r e g r e ssio n   p r o b l em !
+𝐿   =   𝐿 c  l s   +   𝜆 𝐿 reg
+19
+`
+Detecting a single object
+
+SLIDE 20
+V ec t o r:
+4096
+Full y   Conn e c t e d :   4096   t o   1000
+B o x   C oo r din at es   (x,   y ,   w ,   h)
+Full y   Conn e c t e d :   4096   t o   4
+So ft m a x   Los s
+L 2   Los s
+C o r r ect   b o x :   ( x ’ ,   y ’ ,   w ’ ,   h’)
+M u lti t a s k   L os s
+Los s
+W e i g h t e d   Su m
+T his   i m a g e   is   CC 0   publi c   do m a in
+“ Wh a t ”
+C l as s   Sco r es
+C a t:   0 . 9
+D o g :   0 . 0 5
+Ca r :   0 . 0 1
+...
+C o r r ect   l a b e l :
+C a t
+O f t e n   p r e t r a i n e d   o n   I m a g e Ne t   ( T r a n s f e r   l e a r n i ng )
+“ Whe r e ”
+T r ea t   l o c ali z a t i o n   as   a   r e g r e ssio n   p r o b l em !
+𝐿   =   𝐿 c  l s   +   𝜆 𝐿 reg
+20
+`
+Detecting a single object
+
+SLIDE 21
+V ec t o r:
+4096
+Full y   Conn e c t e d :   4096   t o   1000
+B o x   C oo r din at es   (x,   y ,   w ,   h)
+Full y   Conn e c t e d :   4096   t o   4
+So ft m a x   Los s
+L 2   Los s
+C o r r ect   b o x :   ( x ’ ,   y ’ ,   w ’ ,   h’)
+M u lti t a s k   L os s
+Los s
+W e i g h t e d   Su m
+T his   i m a g e   is   CC 0   publi c   do m a in
+“ Wh a t ”
+C l as s   Sco r es
+C a t:   0 . 9
+D o g :   0 . 0 5
+Ca r :   0 . 0 1
+...
+C o r r ect   l a b e l :
+C a t
+O f t e n   p r e t r a i n e d   o n   I m a g e Ne t   ( T r a n s f e r   l e a r n i ng )
+“ Whe r e ”
+P r o b l e m :   Ima g e s   c an   h a v e   m o r e   t han   o ne   o b j e c t!
+T r ea t   l o c ali z a t i o n   as   a   r e g r e ssio n   p r o b l em !
+𝐿   =   𝐿 c  l s   +   𝜆 𝐿 reg
+21
+`
+Detecting a single object
+
+SLIDE 22
+C A T :   (x ,   y ,   w ,   h)
+DO G :   (x ,   y ,   w ,   h)
+DO G :   (x ,   y ,   w ,   h)
+C A T :   (x ,   y ,   w ,   h)
+D U C K:   (x ,   y ,   w ,   h)
+D U C K:   (x ,   y ,   w ,   h)
+….
+4   nu m b e r s
+1 2   nu m b e r s
+M a n y   nu m b e r s !
+D u c k   i m ag e   i s   f ree   t o   u s e   under   t he   P i x abay   licen s e
+N ee d   d i f f e r en t   nu m b e r s
+o f   o u t pu t s   p e r   i m a g e
+22
+`
+Detecting a single object
+
+SLIDE 23
+A pp l y   a   C N N   t o   m a n y   d i f f e r en t   c r o p s   o f   the   i m a g e ,   C N N   c l a ss i f i e s   e a c h   c r o p   a s   o b j ec t   or   b a c k g r o und
+23
+Dog?  NO
+Cat?  NO  
+Background?  YES
+`
+Detecting a single object
+
+SLIDE 24
+A pp l y   a   C N N   t o   m a n y   d i f f e r en t   c r o p s   o f   the   i m a g e ,   C N N   c l a ss i f i e s   e a c h   c r o p   a s   o b j ec t   or   b a c k g r o und
+24
+Dog?  YES
+Cat?  NO  
+Background?  NO
+`
+Detecting Multiple Objects: Sliding Window
+
+SLIDE 25
+A pp l y   a   C N N   t o   m a n y   d i f f e r en t   c r o p s   o f   the   i m a g e ,   C N N   c l a ss i f i e s   e a c h   c r o p   a s   o b j ec t   or   b a c k g r o und
+25
+Dog?  YES
+Cat?  NO  
+Background?  NO
+`
+Detecting Multiple Objects: Sliding Window
+
+SLIDE 26
+26
+A pp l y   a   C N N   t o   m a n y   d i f f e r en t   c r o p s   o f   the   i m a g e ,   C N N   c l a ss i f i e s   e a c h   c r o p   a s   o b j ec t   or   b a c k g r o und
+Dog?  NO
+Cat?  YES
+Background?  NO
+`
+Detecting Multiple Objects: Sliding Window
+
+SLIDE 27
+A pp l y   a   C N N   t o   m a n y   d i f f e r en t   c r o p s   o f   the   i m a g e ,   C N N   c l a ss i f i e s   e a c h   c r o p   a s   o b j ec t   or   b a c k g r o und
+Q u e s tio n :   H o w   m a n y   p oss ibl e   b o x e s   a r e   the r e   i n   a n   i m a g e   of   s i z e   H   x   W ?
+27
+`
+Detecting Multiple Objects: Sliding Window
+
+SLIDE 28
+A pp l y   a   C N N   t o   m a n y   d i f f e r en t   c r o p s   o f   the   i m a g e ,   C N N   c l a ss i f i e s   e a c h   c r o p   a s   o b j ec t   or   b a c k g r o und
+Q u e s tio n :   H o w   m a n y   p oss ibl e   b o x e s   a r e   the r e   i n   a n   i m a g e   of   s i z e   H   x   W ?
+Co n s i d er   a   b o x   of   s i z e   h   x   w:   P o ss ibl e   x   p os iti o n s :   W   –   w   +   1   P o ss ibl e   y   p os iti o n s :   H   –   h   +   1   P o ss ibl e   p os iti o n s :
+( W   –   w   +   1 )   *   ( H   –   h   +   1 )
+28
+`
+Detecting Multiple Objects: Sliding Window
+
+SLIDE 29
+A pp l y   a   C N N   t o   m a n y   d i f f e r en t   c r o p s   o f   the   i m a g e ,   C N N   c l a ss i f i e s   e a c h   c r o p   a s   o b j ec t   or   b a c k g r o und
+Q u e s tio n :   H o w   m a n y   p oss ibl e   b o x e s   a r e   the r e   i n   a n   i m a g e   of   s i z e   H   x   W ?
+Co n s i d er   a   b o x   of   s i z e   h   x   w:   P o ss ibl e   x   p os iti o n s :   W   –   w   +   1   P o ss ibl e   y   p os iti o n s :   H   –   h   +   1   P o ss ibl e   p os iti o n s :
+( W   –   w   +   1 )   *   ( H   –   h   +   1 )
+T o t a l   p oss i b l e   b o x e s :
+=
+𝐻 ( 𝐻   +   1 )   𝑊 ( 𝑊   +   1 )
+2 	 2
+ 
+29
+`
+Detecting Multiple Objects: Sliding Window
+
+SLIDE 30
+A pp l y   a   C N N   t o   m a n y   d i f f e r en t   c r o p s   o f   the   i m a g e ,   C N N   c l a ss i f i e s   e a c h   c r o p   a s   o b j ec t   or   b a c k g r o und
+Q u e s tio n :   H o w   m a n y   p oss ibl e   b o x e s   a r e   the r e   i n   a n   i m a g e   of   s i z e   H   x   W ?
+Co n s i d er   a   b o x   of   s i z e   h   x   w:   P o ss ibl e   x   p os iti o n s :   W   –   w   +   1   P o ss ibl e   y   p os iti o n s :   H   –   h   +   1   P o ss ibl e   p os iti o n s :
+( W   –   w   +   1 )   *   ( H   –   h   +   1 )
+T o t a l   p oss i b l e   b o x e s :
+80 0   x   60 0   i m a g e   has   ~ 58 M   b o x e s !   No   w a y   w e   c an   e v a l u a t e   t h e m   a l l
+=
+𝐻 ( 𝐻   +   1 )   𝑊 ( 𝑊   +   1 )
+2 	 2
+ 
+30
+`
+Detecting Multiple Objects: Sliding Window
+
+SLIDE 31
+A l e x e   et   al ,   “ Me a s u r in g   t h e   ob je c t n es s   of   i m a g e   w indo w s ” ,   T PA MI   201 2   U i j li n g s   et   al ,   “ S e l e c t i ve   S e a rc h   f o r   O b je c t   Re c o g ni t ion” ,   IJ C V   201 3
+C h e n g   et   al ,   “ B ING :   Bina r i ze d   no rm e d   gr adi e n t s   f o r   ob je c t n es s   es t i m a t ion   a t   300 f p s ” ,   CV P R   201 4   Zi t n i c k   and   D olla r ,   “ E d g e   box es:   Lo c a t in g   ob je c t   p r opo s als   f r o m   e d g es ” ,   ECC V   201 4
+Fi nd   a   s m a l l   s e t   o f   b o x e s   t h a t   a r e   li k e l y   t o   c o v e r   a l l   o bj e c t s
+O f t e n   ba s e d   o n   h e ur i s t i c s :   e . g .   loo k   f o r   “ b lo b- li k e ”   im a g e   r eg io ns
+R e l a t i v e l y   f a s t   t o   run ;   e . g .   S e l e ct i v e   S e a r c h   g i v e s   200 0   r eg ion   p r o p os a l s   i n   a   f e w   s e c o nds   o n   C PU
+31
+`
+Region Proposals
+
+SLIDE 32
+I nput   i ma g e
+G i r sh i c k   e t   a l,   “ R i c h   f e a t u r e   h i e rar ch i e s   f o r   a ccu rat e   ob j e c t   d e t e c t i o n   a n d   s e m a n t ic   s e g m e n tat i on ” ,   CV P R   2014 .
+F i g u r e   copy r i g h t   R os s   G i r sh i c k ,   2015 ;   sou r c e .   Re p r odu c e d   w i t h   p e r m i ss i on .
+32
+`
+R-CNN: Region-Based CNN
+
+SLIDE 33
+I nput   i ma g e
+G i r sh i c k   e t   a l,   “ R i c h   f e a t u r e   h i e rar ch i e s   f o r   a ccu rat e   ob j e c t   d e t e c t i o n   a n d   s e m a n t ic   s e g m e n tat i on ” ,   CV P R   2014 .
+F i g u r e   copy r i g h t   R os s   G i r sh i c k ,   2015 ;   sou r c e .   Re p r odu c e d   w i t h   p e r m i ss i on .
+33
+`
+R-CNN: Region-Based CNN
+
+SLIDE 34
+W arp e d   i m a g e   r e g io ns   (2 24x224 )
+I nput   i ma g e
+G i r sh i c k   e t   a l,   “ R i c h   f e a t u r e   h i e rar ch i e s   f o r   a ccu rat e   ob j e c t   d e t e c t i o n   a n d   s e m a n t ic   s e g m e n tat i on ” ,   CV P R   2014 .
+F i g u r e   copy r i g h t   R os s   G i r sh i c k ,   2015 ;   sou r c e .   Re p r odu c e d   w i t h   p e r m i ss i on .
+34
+`
+R-CNN: Region-Based CNN
+
+SLIDE 35
+Co n v   N e t
+Co n v   N e t
+Co n v   N e t
+F o r w a r d   e a c h   r e g io n   t h r o u g h   Co n vN e t
+W arp e d   i m a g e   r e g io ns   (2 24x224 )
+I nput   i ma g e
+G i r sh i c k   e t   a l,   “ R i c h   f e a t u r e   h i e rar ch i e s   f o r   a ccu rat e   ob j e c t   d e t e c t i o n   a n d   s e m a n t ic   s e g m e n tat i on ” ,   CV P R   2014 .
+F i g u r e   copy r i g h t   R os s   G i r sh i c k ,   2015 ;   sou r c e .   Re p r odu c e d   w i t h   p e r m i ss i on .
+35
+`
+R-CNN: Region-Based CNN
+
+SLIDE 36
+Co n v   N e t
+Co n v   N e t
+Co n v   N e t
+C l a s s
+C l a s s
+C l a s s
+F o r w a r d   e a c h   r e g io n   t h r o u g h   Co n vN e t
+W arp e d   i m a g e   r e g io ns   (2 24x224 )
+I nput   i ma g e
+G i r sh i c k   e t   a l,   “ R i c h   f e a t u r e   h i e rar ch i e s   f o r   a ccu rat e   ob j e c t   d e t e c t i o n   a n d   s e m a n t ic   s e g m e n tat i on ” ,   CV P R   2014 .
+F i g u r e   copy r i g h t   R os s   G i r sh i c k ,   2015 ;   sou r c e .   Re p r odu c e d   w i t h   p e r m i ss i on .
+Cl a ssi f y   e a c h   r e gio n
+36
+`
+R-CNN: Region-Based CNN
+
+SLIDE 37
+Co n v   N e t
+Co n v   N e t
+Co n v   N e t
+C l a s s
+B b o x 	 C l a s s
+C l a s s
+F o r w a r d   e a c h   r e g io n   t h r o u g h   Co n vN e t
+W arp e d   i m a g e   r e g io ns   (2 24x224 )
+Cl a ssi f y   e a c h   r e gio n
+B b o x
+B o undin g   b o x   r e g r e ss i o n :
+P r e di c t   “ t r an s f o r m ”   t o   c o r r e c t   t h e   R o I :   4   nu m b e r s   ( t x ,   t y ,   t h ,   t w )
+B b o x
+I nput   i ma g e
+G i r sh i c k   e t   a l,   “ R i c h   f e a t u r e   h i e rar ch i e s   f o r   a ccu rat e   ob j e c t   d e t e c t i o n   a n d   s e m a n t ic   s e g m e n tat i on ” ,   CV P R   2014 .
+F i g u r e   copy r i g h t   R os s   G i r sh i c k ,   2015 ;   sou r c e .   Re p r odu c e d   w i t h   p e r m i ss i on .
+37
+`
+R-CNN: Region-Based CNN
+
+SLIDE 38
+38
+`
+R-CNN Workflow
+
+SLIDE 39
+ is a proposed image region (patch) extracted from an image.
+ contains the class label for that region and, for positive regions containing an object, the ground-truth bounding-box coordinates used for bounding-box regression.
+ 
+39
+`
+Explaining a Training Sample ( 𝑥 , 𝑦 ) for R-CNN
+
+SLIDE 40
+( p x ,   p y )
+( b x ,   b y )
+b h
+b
+w
+p w
+Co n si d er   a   r e g io n   p r o p osa l   w i th   c e n t er  ,  width  , height 
+ 
+Mo d e l   p r e d i ct s:
+ 
+ 
+ 
+ 
+40
+Bounding   b o x  coordinates:
+: Center.
+: Box width.
+: Box height.
+ 
+The blue box is a proposed region (patch), while the orange box is the bounding box of the object.
+`
+R-CNN: Box Regression
+
+SLIDE 41
+I npu t   I m a g e
+41
+G r o und- T r ut h   b o x e s
+`
+R-CNN Training
+
+SLIDE 42
+I npu t   I m a g e
+G r o und- T r ut h   b o x e s
+R e g i o n   P r o p o s a ls
+42
+`
+R-CNN Training
+
+SLIDE 43
+I npu t   I m a g e
+C a t e g o r i z e   e a c h   r e g io n   p r o p os al   as   p osi t i v e ,   n e g a t i v e ,   o r   n e u t r al   ba s e d   o n   o v e r l ap   w i t h   g r o und- t ru t h   b o x e s :
+P o s i t i v e:   >   0 . 5   Io U   w i t h   a   G T   b o x   N e g a t i v e:   <   0 . 3   Io U   w i t h   all   G T   b o x e s
+N e u t r al :   b et w ee n   0 . 3   a nd   0 . 5   Io U   w i t h   G T   b o x e s
+G T   B o x e s
+N e ut r a l
+P o s iti v e
+N e g a ti v e
+43
+`
+R-CNN Training
+
+SLIDE 44
+I npu t   I m a g e
+G T   B o x e s
+N e ut r a l
+P o s iti v e
+N e g a ti v e
+C r o p   p i x e l s   f r o m   e a c h   p o s i t i v e   a nd   n e g a t i v e   p r o p o s al ,   r e s i z e   t o   22 4   x   22 4
+44
+`
+R-CNN Training
+
+SLIDE 45
+I npu t   I m a g e
+G T   B o x e s
+N e ut r a l
+P o s iti v e
+N e g a ti v e
+Cl a s s   t a rg e t :   Do g   B o x   t a r g e t :
+Cl a s s   t a rg e t :   C a t   B o x   t a r g e t :
+Cl a s s   t a rg e t :   Do g   B o x   t a r g e t :
+Cl a s s   t a rg e t :   B a ckg r o und   B o x   t a r g e t :   N o n e
+R u n   e a c h   r e g i o n   th r oug h   CN N
+P o s i t i v e   r e g i on s :   p r ed i ct   c la s s   a n d   t r a n s f o rm   N e g a t i v e   r e g i on s :   ju s t   p r ed i ct   c la s s
+45
+`
+R-CNN Training
+
+SLIDE 46
+I npu t   I m a g e
+R e g i o n   P r o p o s a ls
+Run   p r o p o s a l   m e t h o d
+Run   C NN   o n   e a c h   p r o p o s a l   t o   g e t   c la s s   s c o r e s
+T h r e sh o l d   c la s s   s c o r e s   t o   g e t   a   s e t   of   d e t e ct io ns
+Two   p r o b l e m s:
+C NN   o f t e n   o u t pu t s   o v e r la pp i n g   b o x e s
+H o w   t o   s e t   t h r e sh ol ds?
+46
+`
+R-CNN Test-Time
+
+SLIDE 47
+P r obl e m :   O bj e c t   d e t e c t o r s   o f t e n   o u t pu t   m a n y   o v e r l app i n g   d e t e ct io n s :
+P ( d o g)   =   0 . 9
+P ( d o g)   =   0 . 7
+P u pp y   i ma g e   is   CC0  P u bli c   D o m a in
+P ( d o g)   =   0 . 75
+47
+P ( d o g)   =   0 . 8
+`
+Overlapping Boxes
+
+SLIDE 48
+P ( d o g)   =   0 . 9
+P r obl e m :   O bj e c t   d e t e c t o r s   o f t e n   o u t pu t   m a n y   o v e r l app i n g   d e t e ct io n s :
+S olu t ion :   P o s t -p r o c e s s   r aw   d e t e ct io ns   u si ng   N o n - M a x   S upp r e ss ion   ( N M S)
+S e l e c t   n e x t   h i g h e s t - s c o r i n g   b o x
+Eli m in a t e   l o w e r - s c o r i n g   b o x e s   w i t h   Io U   >   t h r e s h ol d   ( e . g .   0.7)
+I f   a n y   b o x e s   r e m a i n ,   G O - T O   1
+P ( d o g)   =   0 . 8
+P ( d o g)   =   0 . 75
+P ( d o g)   =   0 . 7
+P u pp y   i ma g e   is   CC0  P u bli c   D o m a in
+48
+`
+Overlapping Boxes: Non-Max Suppression (NMS)
+
+SLIDE 49
+P (d o g)   =   0 .9
+P r obl e m :   O bj e c t   d e t e c t o r s   o f t e n   o u t pu t   m a n y   o v e r l app i n g   d e t e ct io n s :
+S olu t ion :   P o s t -p r o c e s s   r aw   d e t e ct io ns   u si ng   N o n - M a x   S upp r e ss ion   ( N M S)
+P ( d o g)   =   0 . 8
+S e l e c t   n e x t   h i g h e s t - s c o r i n g   b o x
+Eli m in a t e   l o w e r - s c o r i n g   b o x e s   w i t h   Io U   >   t h r e s h ol d   ( e . g .   0.7)
+I f   a n y   b o x e s   r e m a i n ,   G O T O   1
+Io U ( ■ ,   ■ )   =   0.78
+Io U ( ■ ,   ■ )   =   0 . 0 5
+Io U ( ■ ,   ■ )   =   0 . 0 7
+P ( d o g)   =   0 . 75
+P ( d o g)   =   0 . 7
+P u pp y   i ma g e   is   CC 0   P u bli c   D o m a in
+49
+`
+Overlapping Boxes: Non-Max Suppression (NMS)
+
+SLIDE 50
+P r obl e m :   O bj e c t   d e t e c t o r s   o f t e n   o u t pu t   m a n y   o v e r l app i n g   d e t e ct io n s :
+S olu t ion :   P o s t -p r o c e s s   r aw   d e t e ct io ns   u si ng   N o n - M a x   S upp r e ss ion   ( N M S)
+S e l e c t   n e x t   h i g h e s t - s c o r i n g   b o x
+Eli m in a t e   l o w e r - s c o r i n g   b o x e s   w i t h   Io U   >   t h r e s h ol d   ( e . g .   0.7)
+I f   a n y   b o x e s   r e m a i n ,   G O T O   1
+P (d o g)   =   0 . 75
+P ( d o g)   =   0 . 7
+Io U ( ■ ,   ■ )   =   0.74
+P ( d o g)   =   0 . 9
+P u pp y   i ma g e   is   CC0  P u bli c   D o m a in
+50
+`
+Overlapping Boxes: Non-Max Suppression (NMS)
+
+SLIDE 51
+P r obl e m :   O bj e c t   d e t e c t o r s   o f t e n   o u t pu t   m a n y   o v e r l app i n g   d e t e ct io n s :
+S olu t ion :   P o s t -p r o c e s s   r aw   d e t e ct io ns   u si ng   N o n - M a x   S upp r e ss ion   ( N M S)
+S e l e c t   n e x t   h i g h e s t - s c o r i n g   b o x
+Eli m in a t e   l o w e r - s c o r i n g   b o x e s   w i t h   Io U   >   t h r e s h ol d   ( e . g .   0.7)
+I f   a n y   b o x e s   r e m a i n ,   G O T O   1
+P ( d o g)   =   0 . 75
+P ( d o g)   =   0 . 9
+P u pp y   i ma g e   is   CC0  P u bli c   D o m a in
+51
+`
+Overlapping Boxes: Non-Max Suppression (NMS)
+
+SLIDE 52
+P r obl e m :   O bj e c t   d e t e c t o r s   o f t e n   o u t pu t   m a n y   o v e r l app i n g   d e t e ct io n s :
+Cr o w d   i m a g e   is   f r ee   f o r   c o mm e rc ial   u se   und er   t h e   P ixa b a y   li ce n se
+S olu t ion :   P o s t -p r o c e s s   r aw   d e t e ct io ns   u si ng   N o n - M a x   S upp r e ss ion   ( N M S)
+S e l e c t   n e x t   h i g h e s t - s c o r i n g   b o x
+Eli m in a t e   l o w e r - s c o r i n g   b o x e s   w i t h   Io U   >   t h r e s h ol d   ( e . g .   0.7)
+I f   a n y   b o x e s   r e m a i n ,   G O - T O   1
+P r o b l e m :   N M S   m a y   eli m in a t e   ” g oo d ”   b o x e s   w h e n   o b j ec t s   a r e   h i g h l y   o v e r l app i n g …   n o   g ood   so l u t i on   =(
+52
+`
+Overlapping Boxes: Non-Max Suppression (NMS)
+
+SLIDE 53
+Co n v   N e t
+Co n v   N e t
+Co n v   N e t
+C l a s s
+B b o x 	 C l a s s
+C l a s s
+F o r w a r d   e a c h   r e g io n   t h r o u g h   Co n vN e t
+W arp e d   i m a g e   r e g io ns   (2 24x224 )
+Cl a ssi f y   e a c h   r e gio n
+B b o x
+B o undin g   b o x   r e g r e ss i o n :
+P r e di c t   “ t r an s f o r m ”   t o   c o r r e c t   t h e   R o I :   4   nu m b e r s   ( t x ,   t y ,   t h ,   t w )
+B b o x
+I nput   i ma g e
+G i r sh i c k   e t   a l,   “ R i c h   f e a t u r e   h i e rar ch i e s   f o r   a ccu rat e   ob j e c t   d e t e c t i o n   a n d   s e m a n t ic   s e g m e n tat i on ” ,   CV P R   2014 .
+F i g u r e   copy r i g h t   R os s   G i r sh i c k ,   2015 ;   sou r c e .   Re p r odu c e d   w i t h   p e r m i ss i on .
+53
+`
+R-CNN
+
+SLIDE 54
+Co n v   N e t
+Co n v   N e t
+Co n v   N e t
+C l a s s
+B b o x 	 C l a s s
+C l a s s
+F o r w a r d   e a c h   r e g io n   t h r o u g h   Co n vN e t
+W arp e d   i m a g e   r e g io ns   (2 24x224 )
+Cl a ssi f y   e a c h   r e gio n
+B b o x
+B o undin g   b o x   r e g r e ss i o n :
+P r e di c t   “ t r an s f o r m ”   t o   c o r r e c t   t h e   R o I :   4   nu m b e r s   ( t x ,   t y ,   t h ,   t w )
+B b o x
+P r o bl e m :   V e r y   s l o w !   N ee d   t o   do   200 0   f o r w a r d   pa ss e s   t h r o u g h   C NN   p er   i m a g e
+I nput   i ma g e
+G i r sh i c k   e t   a l,   “ R i c h   f e a t u r e   h i e rar ch i e s   f o r   a ccu rat e   ob j e c t   d e t e c t i o n   a n d   s e m a n t ic   s e g m e n tat i on ” ,   CV P R   2014 .
+F i g u r e   copy r i g h t   R os s   G i r sh i c k ,   2015 ;   sou r c e .   Re p r odu c e d   w i t h   p e r m i ss i on .
+54
+`
+R-CNN
+
+SLIDE 55
+I nput   i ma g e
+Co n v   N e t
+Co n v   N e t
+Co n v   N e t
+C l a s s
+B b o x 	 C l a s s
+C l a s s
+F o r w a r d   e a c h   r e g io n   t h r o u g h   Co n vN e t
+W arp e d   i m a g e   r e g io ns   (2 24x224 )
+G i r sh i c k   e t   a l,   “ R i c h   f e a t u r e   h i e rar ch i e s   f o r   a ccu rat e   ob j e c t   d e t e c t i o n   a n d   s e m a n t ic   s e g m e n tat i on ” ,   CV P R   2014 .
+F i g u r e   copy r i g h t   R os s   G i r sh i c k ,   2015 ;   sou r c e .   Re p r odu c e d   w i t h   p e r m i ss i on .
+Cl a ssi f y   e a c h   r e gio n
+B b o x
+B o undin g   b o x   r e g r e ss i o n :
+P r e di c t   “ t r an s f o r m ”   t o   c o r r e c t   t h e   R o I :   4   nu m b e r s   ( t x ,   t y ,   t h ,   t w )
+B b o x
+P r o bl e m :   V e r y   s l o w !   N ee d   t o   do   200 0   f o r w a r d   pa ss e s   t h r o u g h   C NN   p er   i m a g e
+R e g io ns   o f   I n t e r e s t   ( R o I )   f r o m   a   p r o p os al   m e t h o d   ( ~ 2k )
+Id e a :   O v e r l app i n g   p r o p os a l s   c au s e   a   lo t   o f   r e p e a t e d   w o r k :   s a m e   pi x e ls   p r o c e sse d   m a n y   ti m e s .   C an   w e   av oi d   t h is ?
+55
+`
+R-CNN
+
+SLIDE 56
+R-CNN
+CNN for every region
+Image
+Selective Search
+Crop + resize
+CNN per region
+Class + box
+Fast R-CNN
+Share CNN features
+Image
+CNN once
+Shared feature map
+RoI Pooling
+Class + box
+Selective Search on image
+proposals
+RoI Pooling
+Different proposal sizes, fixed output size
+Shared feature map
+Large proposal
+Small proposal
+Project each proposal onto the feature map
+Divide each RoI into 2 × 2 bins
+1
+2
+3
+2
+4
+1
+4
+5
+2
+1
+3
+2
+2
+1
+3
+4
+1
+2
+0
+2
+1
+7
+1
+2
+4
+1
+0
+2
+6
+1
+1
+3
+2
+1
+2
+3
+6
+5
+4
+8
+6 × 6 RoI
+2 × 2 RoI
+Max in
+each bin
+Fixed  n  ×  n  outputs
+5
+4
+4
+7
+6
+5
+4
+8
+Large RoI
+Small RoI
+Same shape for the
+classification + box head
+2 × 2 output for illustration (typically 7 × 7). Pool independently in each channel.
+…
+`
+R-CNN to Fast R-CNN
+
+SLIDE 57
+R-CNN
+CNN for every region
+Image
+Selective Search
+Crop + resize
+CNN per region
+Class + box
+Fast R-CNN
+Share CNN features
+Image
+CNN once
+Shared feature map
+RoI Pooling
+Class + box
+Selective Search on image
+proposals
+Faster R-CNN
+Learn proposals with RPN
+Image
+CNN once
+Shared feature map
+RoI Pooling
+Class + box
+RPN
+proposals
+Region Proposal Network (RPN)
+Learn proposals directly from the shared feature map
+Anchors at one location
+Small shared network
+Objectness score
+Box adjustments
+Object or background?
+Adjust anchors
+Rank + NMS
+Proposals
+`
+R-CNN to Fast R-CNN
+
+SLIDE 58
+R-CNN
+CNN for every region
+Image
+Selective Search
+Crop + resize
+CNN per region
+Class + box
+Fast R-CNN
+Share CNN features
+Image
+CNN once
+Shared feature map
+RoI Pooling
+Class + box
+Selective Search on image
+proposals
+Faster R-CNN
+Learn proposals with RPN
+Image
+CNN once
+Shared feature map
+RoI Pooling
+Class + box
+RPN
+proposals
+RetinaNet
+Do   detection   in   hierarchical   feature   maps
+`
+R-CNN to  RetinaNet
+
+SLIDE 59
+Difference between R-CNN and  RetinaNet
+R-CNN (Region-based Convolutional Neural Network) works in two distinct steps:
+Step 1 (Region Proposal):  It uses an external algorithm (like Selective Search) to scan the image and generate ~2,000 "region proposals" (candidate bounding boxes) that might contain objects.  This is slow and runs on the CPU.
+Step 2 (Classification & Refinement):  It takes each of those 2,000 proposals, warps them to a fixed size, and runs them  individually  through a CNN to classify the object and refine the bounding box.
+2. RetinaNet (One-Stage Detector)
+RetinaNet is a  one-stage  detector. It skips the region proposal step entirely.
+Step 1 (Dense Prediction):  It passes the entire image through a Feature Pyramid Network (FPN) just once.
+Step 2 (Direct Output):  It directly predicts the bounding boxes and class probabilities for a dense grid of "anchor boxes" across the image in a single forward pass.
+Key Takeaway:  RetinaNet is much faster than R-CNN because it processes the whole image at once, but traditionally, one-stage detectors were less accurate than two-stage detectors.
+`
+Segment   Anything   (SAM)
+
+SLIDE 60
+I npu t   i mag e
+C on v   N et
+C on v   N et
+C on v   N et
+C la s s
+C la s s
+F o r w ar d   e a c h   r e g i o n   t h r ou g h   C on v N et
+W ar p ed   i m a g e   r e g i on s   ( 224 x 224)
+R e g i on s   o f   I n t e r e s t   ( R o I )   fr om   a   p r opo sa l   me t ho d   ( ~ 2 k)
+B b o x
+B b o x
+F a s t   R - C NN :   A ppl y   d i f f e r e n t i ab l e   c r o pp i n g   t o   s h a r e d
+im a g e   f e a t u r e s
+“ Sl o w ”   R - C NN :   R un   CNN   i nd e p e nd e n tl y   f o r   e a c h   r e g io n
+F a st er   R - C NN :   Com pu t e   p r o p os a l s   w i t h   CNN
+C on v N et
+I npu t   i m a g e
+C r o p   +   R e s i z e   f e a t u r es   I m a g e   f e a t u r es
+R u n   w h o l e   imag e   t h r o u g h   C on v N et
+P e r - R e g io n   N e t w o r k
+“B a c k bon e”   n e t w o r k:   A l e xN e t ,   V GG ,   R e s N e t ,   e t c
+R e g ion s   o f   I n t e r e s t   ( R o I s )   fr o m   a   p r opo sa l   m e t ho d
+C N N
+C N N
+C N N
+C a t e g o r y   a n d   bo x   t ra n sf o r m   p er   r e g io n
+Singl e- S t a g e :    F u ll y   c o nv ol u t io nal   d e t e c t o r
+Wi t h   a n c ho r s:   R et i n a Ne t   A n c ho r -F r ee:   F C O S
+B b o x
+C l a s s
+B bo x
+B bo x
+B bo x
+C l a s s
+C l a s s
+C l a s s
+60
+`
+Historical Evolution
+
+SLIDE 61
+Classification
+Semantic Segmentation
+Object Detection
+Instance Segmentation
+CAT
+GRASS ,   CAT ,  TREE ,   SKY
+DOG ,   DOG ,   CAT
+DOG ,   DOG ,   CAT
+No   spatial   extent
+Multiple   Object
+No   objects,   just   pixels
+This   image   is   CC0   public   domain
+61
+Output  from Semantic Segmentation Models :  A  dense pixel-level map  (a mask) where every pixel is assigned a  class label . It does  not  distinguish between different instances of the same class.
+Output  from Instance Segmentation Models :  A  dense pixel-level map   plus   individual object instances . It assigns a class label  and  a unique ID to each distinct object.
+`
+Computer Vision Tasks Besides Object Detection
+
+SLIDE 62
+Image segmentation is the process of partitioning a digital image into multiple image segments.
+Object
+`
+Image segmentation
+
+SLIDE 63
+1) Semantic  image segmentation ; 2) Instance image segmentation
+3) Panoramic segmentation
+ 
+What   are   the   difference   among   (b   and   d)?
+`
+I mage segmentation
+
+SLIDE 64
+Auto-driving
+Human Parsing
+`
+Applications
+
+SLIDE 65
+2026/9/30
+Stage
+Representative Methods
+Timeline
+Teaching Focus
+Stage 1
+Traditional Methods (Thresholding, Edge, Region-based)
+1980s–2000s
+Inspire segmentation concepts from pixel-level analysis
+Stage 2
+Graph Models and Energy Optimization (Graph Cut, CRF)
+2000s
+Understand “region consistency” from geometric and optimization perspectives
+Stage 3
+Deep Learning-based Segmentation (FCN, U-Net, DeepLab)
+2015–2020
+From feature extraction to pixel-wise prediction
+Stage 4
+Foundation and Generative Segmentation (Mask R-CNN, SAM)
+2020–Present
+Toward universal segmentation and multimodal fusion
+`
+Classic algorithms for image segmentation
+
+SLIDE 66
+Threshold Based Segmentation
+Region Based Segmentation
+Edge Based Segmentation
+Deep-Learning  Based Segmentation
+Feature encoder based
+Regional proposal based
+Upsampling /deconvolution based
+Feature augmentation based
+SAM-based
+`
+Classical methods for Image Segmentation
+
+SLIDE 67
+C alculate one or more grayscale thresholds based on the grayscale features of the image ;
+C ompare the grayscale value of each pixel in the image with the threshold ;
+F inally classify the pixels into appropriate categories according to the comparison results .
+`
+1. Threshold-based segmentation method
+
+SLIDE 68
+It   aims   to  directly find  the   target  regions. There are two basic forms of region-based extraction methods: 
+O ne is region growth, which starts from a single pixel and gradually merges to form the desired segmentation region; 
+T he othe r is  starts from the overall situation and gradually cuts to the required segmentation area.
+Similarity Criterion :
+Grayscale Similarity Criterion
+Texture Similarity Criterion
+Color Similarity Criterion
+`
+2. Region-based image segmentation method
+
+SLIDE 69
+The  basic idea  is to first determine the edge pixels in the image, and then connect these pixels together to form the required area boundary.
+Image edges have two elements,  i.e. ,   direction and magnitude . Pixel values along the edge change relatively gently; along the direction  orthogonal  to the edge, the pixel value changes relatively large. 
+          Image 
+cross-section   ( 剖面 )
+The   f irst Derivative 
+The s econd Derivative
+`
+3. Edge-based Segmentation
+
+SLIDE 70
+Encoder-decoder based models ( e.g. , Fully convolutional networks; U-net)
+Convolutional models with graphical models
+Multi-scale and pyramid network based models
+R-CNN based models  (Region-based CNNs)
+Dilated convolutional models and Deeplab model family  (Google)  
+Recurrent neural network based models
+Attention-based models 
+Generative models and adversarial training
+Convolutional models with active contour models
+ SAM :  segment anything  model
+`
+Deep Learning based Segmentation
+
+SLIDE 71
+Encoder: feature extraction   ( downsampling )
+Decoder: generate mask   ( upsampling )
+`
+Fully convolutional networks (no FC layer)
+
+SLIDE 72
+72
+ICCV   2023   Best   paper   nomination
+`
+Segment   Anything   (SAM)
+https://segment-anything.com/demo#
+
+SLIDE 73
+73
+
+SLIDE 74
+74
+`
+A   Large   Foundation   Model   for   Segmentation
+Segment Anything Data Engine
+(1) a model-assisted manual annotation stage ;
+(2) a   semi-automatic stage with a mix of automatically predicted   masks and model-assisted annotation ; 
+(3) a fully automatic   stage .
+
+SLIDE 75
+75
+`
+Overview   of   SAM
+T wo sets of prompts: sparse
+(points, boxes, text) and 
+dense (masks).
+Vision Transformer
+
+SLIDE 76
+76
+`
+Overview   of   SAM
+
+SLIDE 77
+77
+`
+Dataset   of   SAM
+From Fig. 1, w e note that the top-three countries are   from different parts of the world. 
+I n Table 1 ,  SA-1B has a substantially   higher percentage of images in Europe and Asia &   Oceania as well as in middle income countries.
+
+SLIDE 78
+78
+`
+SAM   Survey
+https://github.com/liliu-avril/Awesome-Segment-Anything
+
+SLIDE 79
+Thank you!
+79

@@ -1,0 +1,151 @@
+{
+  "assets": [
+    {
+      "name": "validation-test-images-01.zip",
+      "group": "validation-test-images",
+      "bytes": 450425916,
+      "sha256": "8591a8e5ad8994de57100cc247ee4df6621812ba4fc0b534c7a3d3ea7e7d47a3",
+      "url": "https://github.com/Sma-444/intro-to-AI-project/releases/download/handoff-2026-11-25/validation-test-images-01.zip"
+    },
+    {
+      "name": "validation-test-images-02.zip",
+      "group": "validation-test-images",
+      "bytes": 125484245,
+      "sha256": "26c69f1420c5d0bc9d85ef83d411ea37e0d62cd512ba24dd6ba5ede32062e5ac",
+      "url": "https://github.com/Sma-444/intro-to-AI-project/releases/download/handoff-2026-11-25/validation-test-images-02.zip"
+    },
+    {
+      "name": "core-models-01.zip",
+      "group": "core-models",
+      "bytes": 403284101,
+      "sha256": "2d32f5f4016070e888a32d54671c81e50756a6dd7adda03d742390c18e2d4dd0",
+      "url": "https://github.com/Sma-444/intro-to-AI-project/releases/download/handoff-2026-11-25/core-models-01.zip"
+    },
+    {
+      "name": "core-models-02.zip",
+      "group": "core-models",
+      "bytes": 186988299,
+      "sha256": "78ac3dbcc5f01e05bec5a2bcc1ce8fd77898fc85f8d391e2ebbe5f3270a956d7",
+      "url": "https://github.com/Sma-444/intro-to-AI-project/releases/download/handoff-2026-11-25/core-models-02.zip"
+    },
+    {
+      "name": "training-images-01.zip",
+      "group": "training-images",
+      "bytes": 450417020,
+      "sha256": "29ae8adef162d5b739316da4c5da6cb1092c6b683a886a0b86bec1eba5695c31",
+      "url": "https://github.com/Sma-444/intro-to-AI-project/releases/download/handoff-2026-11-25/training-images-01.zip"
+    },
+    {
+      "name": "training-images-02.zip",
+      "group": "training-images",
+      "bytes": 450481642,
+      "sha256": "05bcde6e4758438ee3634df439a7daa253876605c8be7f4ce48c2be897aea786",
+      "url": "https://github.com/Sma-444/intro-to-AI-project/releases/download/handoff-2026-11-25/training-images-02.zip"
+    },
+    {
+      "name": "training-images-03.zip",
+      "group": "training-images",
+      "bytes": 447340569,
+      "sha256": "cb379a7295901c2960095e71e8909cb2a5bd21ab74ca5cf51b992e8da537fde3",
+      "url": "https://github.com/Sma-444/intro-to-AI-project/releases/download/handoff-2026-11-25/training-images-03.zip"
+    },
+    {
+      "name": "optional-history-01.zip",
+      "group": "optional-history",
+      "bytes": 352869960,
+      "sha256": "e1e72aa397bfeef45741a3fdb43e4b816ac26d82920a4bb50e7dea5f70361124",
+      "url": "https://github.com/Sma-444/intro-to-AI-project/releases/download/handoff-2026-11-25/optional-history-01.zip"
+    },
+    {
+      "name": "optional-history-02.zip",
+      "group": "optional-history",
+      "bytes": 341491257,
+      "sha256": "7bfd8cf89179a4a45787ea3ce51ca36b402769afb4ea12ae2134db8b805cf863",
+      "url": "https://github.com/Sma-444/intro-to-AI-project/releases/download/handoff-2026-11-25/optional-history-02.zip"
+    },
+    {
+      "name": "optional-history-03.zip",
+      "group": "optional-history",
+      "bytes": 421604644,
+      "sha256": "1070b035f03f9a80e83b188f3f2e4fc9c9791b638c1debe5f141d47800824558",
+      "url": "https://github.com/Sma-444/intro-to-AI-project/releases/download/handoff-2026-11-25/optional-history-03.zip"
+    },
+    {
+      "name": "optional-history-04.zip",
+      "group": "optional-history",
+      "bytes": 385107733,
+      "sha256": "f6a44d3404421e91d598dcf300a067ab4010e0302d43c31eab44070b0cbbb172",
+      "url": "https://github.com/Sma-444/intro-to-AI-project/releases/download/handoff-2026-11-25/optional-history-04.zip"
+    },
+    {
+      "name": "optional-history-05.zip",
+      "group": "optional-history",
+      "bytes": 402010831,
+      "sha256": "42d0cc7b633214399dadc28b1a6290efddb7918558b88597af78e7e6f1dc90f3",
+      "url": "https://github.com/Sma-444/intro-to-AI-project/releases/download/handoff-2026-11-25/optional-history-05.zip"
+    },
+    {
+      "name": "optional-history-06.zip",
+      "group": "optional-history",
+      "bytes": 368244119,
+      "sha256": "fc0de478285abff0a3f858a48e8a5925f298365fc651fbae9959aa9727a0e34a",
+      "url": "https://github.com/Sma-444/intro-to-AI-project/releases/download/handoff-2026-11-25/optional-history-06.zip"
+    },
+    {
+      "name": "optional-history-07.zip",
+      "group": "optional-history",
+      "bytes": 396678139,
+      "sha256": "7f86e49a74d978cc3f5213c8644cd58c34b407cd501acbbe55fd803084d00c79",
+      "url": "https://github.com/Sma-444/intro-to-AI-project/releases/download/handoff-2026-11-25/optional-history-07.zip"
+    },
+    {
+      "name": "optional-history-08.zip",
+      "group": "optional-history",
+      "bytes": 398512318,
+      "sha256": "99a72274b6279c47c9a68d831487391b9a0a0f9e5d867896c063953c65ab8ed6",
+      "url": "https://github.com/Sma-444/intro-to-AI-project/releases/download/handoff-2026-11-25/optional-history-08.zip"
+    },
+    {
+      "name": "optional-history-09.zip",
+      "group": "optional-history",
+      "bytes": 374226509,
+      "sha256": "f1fda26c0e75bd95a7770e51b19291b6c2636e80b46cdac62dd102964f8c5d3f",
+      "url": "https://github.com/Sma-444/intro-to-AI-project/releases/download/handoff-2026-11-25/optional-history-09.zip"
+    },
+    {
+      "name": "optional-history-10.zip",
+      "group": "optional-history",
+      "bytes": 365827009,
+      "sha256": "02b9f1405360ea698d58d90d1ee110292f8e4f95272a9710ad71efc0c8ee7b73",
+      "url": "https://github.com/Sma-444/intro-to-AI-project/releases/download/handoff-2026-11-25/optional-history-10.zip"
+    },
+    {
+      "name": "optional-history-11.zip",
+      "group": "optional-history",
+      "bytes": 222065048,
+      "sha256": "b0a61c2f04419b39ce980bb03bf06d2423145e3c6061a1152233f9a7a8b471a1",
+      "url": "https://github.com/Sma-444/intro-to-AI-project/releases/download/handoff-2026-11-25/optional-history-11.zip"
+    },
+    {
+      "name": "optional-history-12.zip",
+      "group": "optional-history",
+      "bytes": 375145466,
+      "sha256": "f8a1e0f46e447f0a54b7b040397d8f3be74eab79b679cd731c3d866193a90a80",
+      "url": "https://github.com/Sma-444/intro-to-AI-project/releases/download/handoff-2026-11-25/optional-history-12.zip"
+    },
+    {
+      "name": "optional-course-and-legacy-01.zip",
+      "group": "optional-course-and-legacy",
+      "bytes": 383048716,
+      "sha256": "b2a44da71fd97d4bf8eebbf4b0ad6d5f23f4357b7ee62ff412a766e9f496d524",
+      "url": "https://github.com/Sma-444/intro-to-AI-project/releases/download/handoff-2026-11-25/optional-course-and-legacy-01.zip"
+    },
+    {
+      "name": "optional-course-and-legacy-02.zip",
+      "group": "optional-course-and-legacy",
+      "bytes": 316681585,
+      "sha256": "5d56d46e25ba3128bebb3244cf1682afeb3062c8da38b161a9ccdb8436508d39",
+      "url": "https://github.com/Sma-444/intro-to-AI-project/releases/download/handoff-2026-11-25/optional-course-and-legacy-02.zip"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "checks": [
+    "causality",
+    "padding",
+    "AMP backward",
+    "visual and decoder update",
+    "BN frozen",
+    "beam batch isolation",
+    "teacher/inference prefix equivalence",
+    "exact reload",
+    "legacy compatibility"
+  ],
+  "batch_size": 24,
+  "losses": [
+    7.3175048828125,
+    7.012434005737305,
+    6.713795185089111
+  ],
+  "peak_gpu_bytes": 524215808,
+  "checkpoint_bytes": 111032331
+}

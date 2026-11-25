@@ -1,0 +1,24 @@
+W1125 12:53:56.601000 11472 .env\site-packages\torch\distributed\elastic\multiprocessing\redirects.py:29] NOTE: Redirects are currently not supported in Windows or MacOs.
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 103/103 [00:00<00:00, 3336.16it/s]
+{
+  "rows": 2500,
+  "control_dir": "E:\\HKUST\u8bfe\u7a0b\\AI\\Introduction to AI\\AIAA2205Project\\captioning\\runs\\dinov2_transformer_336_decoder2_seed2206",
+  "candidate_dir": "E:\\HKUST\u8bfe\u7a0b\\AI\\Introduction to AI\\AIAA2205Project\\captioning\\runs\\dinov2_transformer_336_decoder4_seed2206",
+  "control_mean": 0.6859897971153259,
+  "candidate_mean": 0.6905745267868042,
+  "mean_difference": 0.004584703594446182,
+  "improved": 897,
+  "worse": 870,
+  "equal": 733,
+  "control_below_04": 240,
+  "candidate_below_04": 229,
+  "control_above_07": 1290,
+  "candidate_above_07": 1301,
+  "paired_bootstrap_95_percent_interval": [
+    -0.0007722673050011508,
+    0.01010572693776339
+  ],
+  "caveat": "Conditional on this reused validation set and these selected checkpoints. Bootstrap does not measure training-seed variance or remove model-selection bias."
+}

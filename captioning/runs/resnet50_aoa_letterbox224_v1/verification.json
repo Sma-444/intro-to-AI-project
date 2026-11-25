@@ -1,0 +1,16 @@
+{
+  "epoch": 9,
+  "architecture": "resnet50_spatial_aoa_attention_lstm",
+  "preprocessing": "letterbox",
+  "image_size": 224,
+  "checkpoint_bytes": 124741979,
+  "validation_rows": 2500,
+  "score_on_reload": 0.5765129923820496,
+  "score_recorded": 0.5759313106536865,
+  "baseline_resnet18_score": 0.528876,
+  "difference_vs_baseline": 0.04763699238204955,
+  "baseline_resnet50_score": 0.5779770612716675,
+  "difference_vs_resnet50": -0.00146406888961792,
+  "baseline_aoa_score": 0.5824428796768188,
+  "difference_vs_aoa": -0.005929887294769287
+}

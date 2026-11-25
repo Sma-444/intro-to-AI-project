@@ -1,0 +1,26 @@
+{
+  "checkpoint": "E:\\HKUST\u8bfe\u7a0b\\AI\\Introduction to AI\\AIAA2205Project\\captioning\\runs\\resnet50_aoa_v1\\best_model.pt",
+  "max_words": 24,
+  "variants": {
+    "original_greedy": {
+      "beam_size": 1,
+      "alpha": 0.0,
+      "constrain": false
+    },
+    "constrained_greedy": {
+      "beam_size": 1,
+      "alpha": 0.0,
+      "constrain": true
+    },
+    "beam3_alpha0": {
+      "beam_size": 3,
+      "alpha": 0.0,
+      "constrain": true
+    },
+    "beam3_alpha06": {
+      "beam_size": 3,
+      "alpha": 0.6,
+      "constrain": true
+    }
+  }
+}

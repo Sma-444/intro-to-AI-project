@@ -1,0 +1,308 @@
+SLIDE 1
+AIAA 2205 Introduction to Artificial Intelligence
+Generative Models: VAE and GAN
+Instructor: Chen XU
+The   Hong Kong University of Science and Technology (Guangzhou)
+cx@hkust-gz.edu.cn
+
+SLIDE 2
+Discriminative Models vs Generative Models
+Variational Autoencoders (VAE)
+Generative Adversarial Networks
+28/10/2026
+2
+`
+Outline
+
+SLIDE 3
+Autoencoder Structure
+VAE Structure
+Reasons for the Reparameterization of VAE.
+28/10/2026
+3
+`
+Points to be mastered in this PPT
+
+SLIDE 4
+Generative Models  aim to learn the  pattern in the dataset . They model how the data is generated and can synthesize new data samples that resemble the training distribution.
+Examples: Variational Autoencoders (VAEs), Generative Adversarial Networks (GANs), Diffusion Model, and  Generative Transformers (e.g., GPT).
+Strengths :
+Generate new data (e.g., images, text).
+Handle missing data or incomplete inputs.
+Useful for unsupervised or semi-supervised learning.
+28/10/2026
+4
+`
+Generative Models
+
+SLIDE 5
+Variational Autoencoders (VAE)
+28/10/2026
+5
+
+SLIDE 6
+Autoencoder consists of two components,  encoder  and  decoder . Both are usually feed-forward neural nets.
+It is also associated with a probability distribution  , for drawing samples   to be used by the decoder to generate new data samples.
+ 
+ 
+28/10/2026
+6
+`
+Structure of Autoencoder
+z is the encoded information from the input. Usually, z has a smaller size than the input.
+
+SLIDE 7
+The encoder can be used to convert the input data to encoded information (usually of a smaller size)
+ 
+28/10/2026
+7
+`
+Encoder
+
+SLIDE 8
+The decoder can be used to generate a new data with similar patterns in the training data.
+ 
+A popular distribution for drawing z is Gaussian distribution. 
+28/10/2026
+8
+`
+Decoder during Inference Time
+Randomly drawn z
+
+SLIDE 9
+28/10/2026
+9
+`
+Training Autoencoder
+
+SLIDE 10
+Problem: when generating simulated data (new data), the randomly drawn z may not lie in the region where the decoder saw from training.
+Consequence: The decoder produces unrealistic or meaningless outputs.
+VAE is designed to solve this issue.
+28/10/2026
+10
+`
+Main Issue with a Traditional Autoencoder
+
+SLIDE 11
+28/10/2026
+11
+`
+Probability Parameters Determine Samples
+A probability distribution describes which values are more likely or less likely to occur.
+When we draw samples from a distribution, values with higher probability (or probability density) tend to appear more frequently than those with lower probability (or density).
+The right gives examples 6 Gaussian distributions (marked with different colors) with different parameters.
+The samples are represented with dots.
+
+SLIDE 12
+VAE also consists of an encoder and a decoder.
+It is also associated with a probability   for sampling   during data-generation time.   
+ 
+28/10/2026
+12
+`
+Components of Variational Autoencoder (VAE)
+ 
+ 
+
+SLIDE 13
+28/10/2026
+13
+`
+VAE for Data Generation
+Probability Distribution 
+ 
+Sample
+ 
+Sample
+  denotes a probability distribution for generating the new image (data).
+ 
+
+SLIDE 14
+Select a target probability distribution   for generating noise during inference time (e.g., the standard multivariate Gaussian distribution  ).
+The encoder takes in the input   and outputs the parameters   for a Probability distribution   (e.g., for the Gaussian distribution  ).  
+A sample  z  is drawn from  .
+The decoder generates a probability distribution   for sampling a reconstruction   of the input. 
+The larger is  , the more likely is   close to  , where  denotes a reconstructed sample drawn from  .
+ 
+28/10/2026
+14
+`
+Flow from Input to Output of VAE – Training Time
+ 
+  Predicted Probability
+ 
+ 
+ 
+ 
+
+SLIDE 15
+Reconstruction loss  , which is closely related to  .
+The KL divergence measures distance( ): We want   close to  , so that   during training  is similar to samples from   during inference.
+ 
+28/10/2026
+15
+`
+Training Loss = Reconstruction Loss + KL Divergence
+0
+ 
+ 
+
+SLIDE 16
+Given two probability distributions   and  , the KL divergence is defined as
+Given that   and  , the   is equivalent to
+where    and  .  
+ 
+28/10/2026
+16
+`
+KL Divergence ( Kullback –Leibler divergence)
+
+SLIDE 17
+Standard VAE assumes that   is diagonal. Given that the image samples are  , for each  ,
+the outputs from the encoders are  ; 
+ is sampled from  ;
+the output from the decoder is the probability distribution  . Then, the total loss formula is
+.
+Here,  , and  .
+ 
+28/10/2026
+17
+`
+VAE Loss Formula
+ 
+Reconstruction Error
+KL Divergence Between   and  . 
+ 
+
+SLIDE 18
+28/10/2026
+18
+`
+Apply VAE to Generate Images
+
+SLIDE 19
+28/10/2026
+19
+`
+Reparameterization trick for generating z
+Assume that   is the standard multivariate Gaussian distribution  , and   is a multivariate Gaussian with its mean and covariance specified by  . 
+Then, during the VAE training process, given the input image  , the encoder’s output is  , where   denotes the encoder’s parameters. 
+We denote   The noise    is supposed to be sampled from  . But we replace it with:  where   is randomly sampled from  , the standard multivariate Gaussian distribution.
+This is called as the  reparameterization trick  for sampling    from  .
+ 
+
+SLIDE 20
+28/10/2026
+20
+`
+Reparameterization Illustration
+      
+ 
+
+SLIDE 21
+28/10/2026
+21
+`
+Reparameterization and Gradient Computation
+  Predicted Probability
+ 
+ 
+ 
+Given the input  ,    affects the value of  , and in turn the reconstruction loss  .
+Therefore, when updating  , we need to compute the gradient of the reconstruction loss   with respect to  , in the following flow.
+Without the reparameterization trick, directly sampling    does not provide a differentiable path from    to    for standard backpropagation.
+ 
+ 
+ 
+Reconstruction Loss
+.
+ 
+ 
+
+SLIDE 22
+Generative Adversarial Networks
+28/10/2026
+22
+
+SLIDE 23
+It is used to generate data samples .
+Given the data samples  ,  the generative adversarial network is used to generate samples with the same pattern in  .
+ 
+`
+What is GAN Used For?
+
+SLIDE 24
+The generative adversarial network consists of two networks, one is called the generator   and the other is called the discriminator  .
+The generator   is used to generate samples, and the discriminator   is used to tell whether the input sample is a real one or a fake one.
+ 
+`
+Model Structure
+
+SLIDE 25
+Training Goals :
+ is supposed to be the probability that   is a true data sample. So we want to select values of    such that    for each  .
+  is supposed to be a sample that shares the same distribution as the real sample. So we want to select    such that    for all  .
+ 
+`
+Intuition Behind the Loss For Training
+
+SLIDE 26
+The value   function is defined to select model parameters. For the generative adversarial network model, let   denote the vector of parameters of   and   denote the parameters of  , then the training goal is
+where
+where
+  means    is a sample from the real-data distribution, which is represented in practice by the observed dataset  .
+, where   is a pre-selected distribution, typically a standard multivariate Gaussian  . 
+ 
+`
+Training GAN – Loss Function
+
+SLIDE 27
+`
+Illustrated Chart for Training GAN
+Training Samples for each parameter update step:
+, where    is the    real image.
+, where   is the   newly created fake image for the current step from the generator. 
+ 
+
+SLIDE 28
+28/10/2026
+28
+`
+Training GAN – Parameter Updating Steps
+
+SLIDE 29
+ will be abandoned after training the model.
+ 
+Only the generator   is used to generate samples after training. The method for generate a new sample is
+Draw a sample   from the preselected distribution (e.g.,  ).
+Plug   to   to obtain a fake sample.
+ 
+`
+GAN – Generation Time
+
+SLIDE 30
+`
+Loss   Functions   for   GANs
+Original   GAN:
+Non-saturating GAN :
+LSGAN :
+WGAN :
+Non-saturating GAN changes only the generator's loss from minimizing  to minimizing   , providing stronger gradients when the discriminator confidently identifies fake images.
+ 
+It replaces the binary cross-entropy loss with a squared-error loss to provide more stable gradients and encourage generated images to be classified as real.
+Replaces the original GAN loss with an objective based on the Wasserstein distance, aiming to provide more meaningful gradients and improve training stabilit
+
+SLIDE 31
+28/10/2026
+31
+
+SLIDE 32
+28/10/2026
+32
+
+SLIDE 33
+Thank you for Listening!
+33
+Thank you for Listening!
+33

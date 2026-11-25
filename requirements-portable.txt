@@ -1,0 +1,8 @@
+# First install a matching CUDA build of torch and torchvision separately.
+# Exact observed versions; if unavailable on recipient platform, record a compatible change and revalidate.
+transformers==5.23.0
+numpy==2.5.5
+Pillow==13.0.0
+safetensors==0.8.0
+tokenizers==0.23.3
+huggingface-hub==2.4.0

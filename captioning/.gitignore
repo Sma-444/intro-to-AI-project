@@ -1,0 +1,8 @@
+.env/
+.install-cache/
+.weights/
+__pycache__/
+runs/
+validation_predictions.csv
+validation_predictions_best.csv
+test_predictions.csv

@@ -1,0 +1,18 @@
+{
+  "rows": 2500,
+  "control_mean": 0.595902144908905,
+  "candidate_mean": 0.675967276096344,
+  "mean_difference": 0.08006519079208374,
+  "improved": 1521,
+  "worse": 735,
+  "equal": 244,
+  "control_below_04": 480,
+  "candidate_below_04": 262,
+  "control_above_07": 870,
+  "candidate_above_07": 1236,
+  "paired_bootstrap_95_percent_interval": [
+    0.07242862153798342,
+    0.08730472344905138
+  ],
+  "caveat": "Conditional on this reused validation set and these selected checkpoints. Bootstrap does not measure training-seed variance or remove model-selection bias."
+}

@@ -1,0 +1,153 @@
+W1122 20:09:26.928000 16804 .env\site-packages\torch\distributed\elastic\multiprocessing\redirects.py:29] NOTE: Redirects are currently not supported in Windows or MacOs.
+
+Loading weights:   0%|          | 0/223 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 223/223 [00:00<00:00, 3577.50it/s]
+Transformer trial: 1417 tokens, 25,788,937 parameters
+epoch 01/16 step 100/500 loss=6.3744
+epoch 01/16 step 200/500 loss=5.4043
+epoch 01/16 step 300/500 loss=4.7819
+epoch 01/16 step 400/500 loss=4.3501
+epoch 01/16 step 500/500 loss=4.0303
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 103/103 [00:00<00:00, 3262.55it/s]
+epoch 01: similarity=0.458000, best=0.458000, minutes=2.69, peak=0.64 GB
+epoch 02/16 step 100/500 loss=2.4420
+epoch 02/16 step 200/500 loss=2.3900
+epoch 02/16 step 300/500 loss=2.3351
+epoch 02/16 step 400/500 loss=2.2899
+epoch 02/16 step 500/500 loss=2.2470
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 103/103 [00:00<00:00, 3141.78it/s]
+epoch 02: similarity=0.575470, best=0.575470, minutes=2.42, peak=0.64 GB
+epoch 03/16 step 100/500 loss=1.9414
+epoch 03/16 step 200/500 loss=1.9191
+epoch 03/16 step 300/500 loss=1.8961
+epoch 03/16 step 400/500 loss=1.8919
+epoch 03/16 step 500/500 loss=1.8837
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 103/103 [00:00<00:00, 3456.00it/s]
+epoch 03: similarity=0.612711, best=0.612711, minutes=1.75, peak=1.01 GB
+epoch 04/16 step 100/500 loss=1.7770
+epoch 04/16 step 200/500 loss=1.7688
+epoch 04/16 step 300/500 loss=1.7649
+epoch 04/16 step 400/500 loss=1.7554
+epoch 04/16 step 500/500 loss=1.7454
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 103/103 [00:00<00:00, 3026.55it/s]
+epoch 04: similarity=0.634295, best=0.634295, minutes=1.79, peak=1.01 GB
+epoch 05/16 step 100/500 loss=1.6281
+epoch 05/16 step 200/500 loss=1.6340
+epoch 05/16 step 300/500 loss=1.6322
+epoch 05/16 step 400/500 loss=1.6334
+epoch 05/16 step 500/500 loss=1.6293
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 103/103 [00:00<00:00, 2916.17it/s]
+epoch 05: similarity=0.649030, best=0.649030, minutes=1.76, peak=1.01 GB
+epoch 06/16 step 100/500 loss=1.5076
+epoch 06/16 step 200/500 loss=1.5227
+epoch 06/16 step 300/500 loss=1.5297
+epoch 06/16 step 400/500 loss=1.5304
+epoch 06/16 step 500/500 loss=1.5298
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 103/103 [00:00<00:00, 4428.36it/s]
+epoch 06: similarity=0.660487, best=0.660487, minutes=1.72, peak=1.01 GB
+epoch 07/16 step 100/500 loss=1.4358
+epoch 07/16 step 200/500 loss=1.4408
+epoch 07/16 step 300/500 loss=1.4374
+epoch 07/16 step 400/500 loss=1.4442
+epoch 07/16 step 500/500 loss=1.4474
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 103/103 [00:00<00:00, 2739.72it/s]
+epoch 07: similarity=0.670073, best=0.670073, minutes=1.83, peak=1.01 GB
+epoch 08/16 step 100/500 loss=1.3640
+epoch 08/16 step 200/500 loss=1.3706
+epoch 08/16 step 300/500 loss=1.3767
+epoch 08/16 step 400/500 loss=1.3749
+epoch 08/16 step 500/500 loss=1.3758
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 103/103 [00:00<00:00, 4467.01it/s]
+epoch 08: similarity=0.677278, best=0.677278, minutes=1.74, peak=1.01 GB
+AMP skipped epoch 9 step 21; scale 262144.0 -> 131072.0
+epoch 09/16 step 100/500 loss=1.3113
+epoch 09/16 step 200/500 loss=1.3124
+epoch 09/16 step 300/500 loss=1.3061
+epoch 09/16 step 400/500 loss=1.3110
+epoch 09/16 step 500/500 loss=1.3104
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 103/103 [00:00<00:00, 3004.75it/s]
+epoch 09: similarity=0.677606, best=0.677606, minutes=1.80, peak=1.01 GB
+epoch 10/16 step 100/500 loss=1.2482
+epoch 10/16 step 200/500 loss=1.2480
+epoch 10/16 step 300/500 loss=1.2480
+epoch 10/16 step 400/500 loss=1.2500
+epoch 10/16 step 500/500 loss=1.2534
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 103/103 [00:00<00:00, 2552.00it/s]
+epoch 10: similarity=0.681643, best=0.681643, minutes=3.13, peak=1.01 GB
+epoch 11/16 step 100/500 loss=1.1964
+epoch 11/16 step 200/500 loss=1.1967
+epoch 11/16 step 300/500 loss=1.2015
+epoch 11/16 step 400/500 loss=1.2042
+epoch 11/16 step 500/500 loss=1.2051
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 103/103 [00:00<00:00, 4110.97it/s]
+epoch 11: similarity=0.680366, best=0.681643, minutes=1.70, peak=1.01 GB
+epoch 12/16 step 100/500 loss=1.1480
+epoch 12/16 step 200/500 loss=1.1545
+epoch 12/16 step 300/500 loss=1.1572
+epoch 12/16 step 400/500 loss=1.1591
+epoch 12/16 step 500/500 loss=1.1590
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 103/103 [00:00<00:00, 3910.79it/s]
+epoch 12: similarity=0.685990, best=0.685990, minutes=1.78, peak=1.01 GB
+AMP skipped epoch 13 step 44; scale 262144.0 -> 131072.0
+epoch 13/16 step 100/500 loss=1.1220
+epoch 13/16 step 200/500 loss=1.1188
+epoch 13/16 step 300/500 loss=1.1258
+epoch 13/16 step 400/500 loss=1.1285
+epoch 13/16 step 500/500 loss=1.1286
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 103/103 [00:00<00:00, 4208.69it/s]
+epoch 13: similarity=0.684734, best=0.685990, minutes=1.76, peak=1.01 GB
+epoch 14/16 step 100/500 loss=1.0961
+epoch 14/16 step 200/500 loss=1.0982
+epoch 14/16 step 300/500 loss=1.0960
+epoch 14/16 step 400/500 loss=1.0961
+epoch 14/16 step 500/500 loss=1.0984
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 103/103 [00:00<00:00, 3142.53it/s]
+epoch 14: similarity=0.685210, best=0.685990, minutes=1.86, peak=1.01 GB
+epoch 15/16 step 100/500 loss=1.0623
+epoch 15/16 step 200/500 loss=1.0656
+epoch 15/16 step 300/500 loss=1.0727
+epoch 15/16 step 400/500 loss=1.0765
+epoch 15/16 step 500/500 loss=1.0773
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 103/103 [00:00<00:00, 3825.33it/s]
+epoch 15: similarity=0.684311, best=0.685990, minutes=2.64, peak=1.01 GB
+epoch 16/16 step 100/500 loss=1.0672
+epoch 16/16 step 200/500 loss=1.0627
+epoch 16/16 step 300/500 loss=1.0598
+epoch 16/16 step 400/500 loss=1.0635
+epoch 16/16 step 500/500 loss=1.0630
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 103/103 [00:00<00:00, 3860.92it/s]
+epoch 16: similarity=0.685349, best=0.685990, minutes=1.90, peak=1.01 GB
+Early stopping
+{"best_validation_similarity": 0.6859897971153259, "epochs_completed": 16, "checkpoint_bytes": 103290825, "decode_policy": "beam3", "length_alpha": 0.6, "seed": 2206}

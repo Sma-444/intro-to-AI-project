@@ -1,0 +1,14 @@
+W1118 16:30:16.364000 1424 .env\site-packages\torch\distributed\elastic\multiprocessing\redirects.py:29] NOTE: Redirects are currently not supported in Windows or MacOs.
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€| 103/103 [00:00<00:00, 3584.13it/s]
+{
+  "epoch": 11,
+  "architecture": "resnet50_spatial_aoa_attention_lstm",
+  "checkpoint_bytes": 124741979,
+  "validation_rows": 2500,
+  "score_on_reload": 0.5824428796768188,
+  "score_recorded": 0.5823262929916382,
+  "baseline_resnet18_score": 0.528876,
+  "difference_vs_baseline": 0.053566879676818835,
+  "baseline_resnet50_score": 0.5779770612716675,
+  "difference_vs_resnet50": 0.004465818405151367
+}

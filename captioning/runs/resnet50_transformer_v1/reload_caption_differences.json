@@ -1,0 +1,45 @@
+{
+  "training_vs_reload_changed_captions": 19,
+  "examples": [
+    {
+      "image_id": "validation_00105",
+      "training": "a man in a brown shirt is sitting in a chair and talking on a cellphone",
+      "reloaded": "a man in a black shirt is sitting in a chair and talking on a cellphone"
+    },
+    {
+      "image_id": "validation_00371",
+      "training": "a brown horse with a blue collar is standing in a wooden fence",
+      "reloaded": "a brown horse with a blue collar is looking over a wooden fence"
+    },
+    {
+      "image_id": "validation_00389",
+      "training": "a woman in a blue jacket is holding a bike",
+      "reloaded": "a woman in a blue jacket is holding a bike with a backpack on his back"
+    },
+    {
+      "image_id": "validation_00439",
+      "training": "an airplane is landing on a runway",
+      "reloaded": "a white and red airplane is landing on a runway"
+    },
+    {
+      "image_id": "validation_00645",
+      "training": "a yellow bus is driving down the street",
+      "reloaded": "a yellow bus is parked in a parking lot"
+    },
+    {
+      "image_id": "validation_00655",
+      "training": "a woman with a blue hair and a blue sweater is smiling",
+      "reloaded": "a young man with a blue hair and a blue shirt is smiling"
+    },
+    {
+      "image_id": "validation_00680",
+      "training": "two men are sitting in front of a television screen",
+      "reloaded": "a group of people are sitting in front of a television screen"
+    },
+    {
+      "image_id": "validation_00746",
+      "training": "a brown dog is laying on a blanket",
+      "reloaded": "a dog is laying on its back on a blanket"
+    }
+  ]
+}

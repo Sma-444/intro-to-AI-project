@@ -1,0 +1,751 @@
+SLIDE 1
+AIAA 2205 Introduction to Artificial Intelligence
+Diffusion Model
+Instructor: Chen XU
+The   Hong Kong University of Science and Technology (Guangzhou)
+cx@hkust-gz.edu.cn
+
+SLIDE 2
+Model Structure of U-Net as a Denoising Network (p14-16)
+The formula for creating a training sample. (p24) 
+Standard Procedures for training a diffusion model.  (p25)
+2/11/2026
+2
+`
+Contents to be Mastered in This PPT
+
+SLIDE 3
+Generative Models  aim to learn the  patten in the dataset . They model how the data is generated and can synthesize new data samples that resemble the training distribution.
+Examples: Variational Autoencoders (VAEs), Generative Adversarial Networks (GANs), Diffusion Model, and  Generative Transformers (e.g., GPT).
+Strengths :
+Generate new data (e.g., images, text).
+Handle missing data or incomplete inputs.
+Useful for unsupervised or semi-supervised learning.
+2/11/2026
+3
+`
+Recall Generative Models
+
+SLIDE 4
+Diffusion
+Models
+From random noise to structured data through iterative denoising
+Core idea:  Learn to reverse a gradual noising process .
+Introduction to Artificial Intelligence
+4
+
+SLIDE 5
+DIFFUSION MODELS
+Introduction to Artificial Intelligence
+Concept and history
+What a diffusion model does
+Examples and applications
+Timeline before and after DDPMs
+Why diffusion became popular
+Mechanism and evaluation
+Forward and reverse processes
+U-Net, conditioning, and latent diffusion
+Training and sampling algorithms
+Strengths, limitations, and current directions
+By the end, you should be able to explain diffusion models without treating them as a black box.
+5
+`
+What We Will Learn
+
+SLIDE 6
+DIFFUSION MODELS
+Introduction to Artificial Intelligence
+6
+`
+What does a diffusion model do?
+A diffusion model generates new data (such as images) by learning to gradually remove noise from random noise until a realistic sample emerges.
+
+SLIDE 7
+DIFFUSION MODELS
+Diffusion models turn the difficult problem of generating realistic images into a sequence of simpler denoising problems that can be learned from data.
+7
+`
+What’s Special About Diffusion Model
+Diffusion
+Model
+Diffusion
+Model
+Diffusion
+Model
+Use NOISE 
+to denoise 
+NOISE
+NOISE
+NOISE
+Note: The same trained diffusion model is reused at every step.
+Use NOISE 
+to denoise 
+Use NOISE 
+to denoise 
+
+SLIDE 8
+DIFFUSION MODELS
+Introduction to Artificial Intelligence
+Practical effectiveness
+The parameterization yielded stable training and strong empirical image quality in DDPMs.
+Connection to score matching
+Noise prediction is closely related to learning the direction toward higher data density.
+Not the only choice
+Modern systems may predict x₀, velocity v, flow, or related targets.
+8
+`
+The Diffusion Model Predicts the Noise (Benefits?)
+
+SLIDE 9
+DIFFUSION MODELS
+The goal
+Learn a complex data distribution  (x) well enough to generate new, realistic, and diverse samples.
+ 
+High Dimension: Images may contain millions of correlated pixel values.
+Complex Distributions: objects, poses, lighting, styles, and backgrounds.
+Competing  O bjectives :  A useful model must balance quality, diversity, and control.
+Limitations of Earlier major families
+VAE:  Generated images may look blurry and lack fine details.
+GAN:  Training can be unstable (model performance fluctuates), and the model may generate only limited varieties of images.
+9
+`
+Why generative modeling was difficult before diffusion Models
+Factors in data that makes the goal difficult:
+
+SLIDE 10
+DIFFUSION MODELS
+10
+`
+Why are Diffusion Models Popular
+Their noise-prediction  training objective is relatively straightforward 
+can produce high-quality, diverse samples. 
+However, diffusion models  do not  eliminate the fundamental difficulty of learning complex data distributions. They provide a different, often effective way to tackle it.
+
+SLIDE 11
+DIFFUSION MODELS
+Introduction to Artificial Intelligence
+2013
+VAE
+Scalable latent-variable learning.
+2014
+GAN
+Adversarial image generation.
+2015
+Diffusion
+Proposal of  Dffisuion  model:
+Gradual noising and learned reversal.
+2020
+DDPM
+( Denoising Diffusion Probabilistic Models )
+Improvement: Use a simplified noise-prediction training objective (before: predict previous step's data distribution).
+Result: high-quality image generation
+2021
+Score-based SDEs
+Broader theory and guided diffusion.
+2022
+Latent diffusion
+Change: performing denoising in a compressed representation (latent space) instead of directly on image pixels
+Result: Practical text-to-image systems.
+2023+
+DiT & video
+DiT : Replaced the commonly used U-Net denoising network with a Transformer, enabling effective scaling.
+11
+`
+Timeline: before and after diffusion models
+Diffusion models were introduced in 2015, became competitive for high-quality image generation around 2020, and subsequently evolved through improvements in training, mathematical foundations, computational efficiency, and neural network architecture.
+Improved diffusion models
+
+SLIDE 12
+Why did DDPMs become a breakthrough?
+DIFFUSION MODELS
+Introduction to Artificial Intelligence
+Ho, Jain, and Abbeel, 2020.
+DDPM
+Simple training target
+At a randomly chosen noise level, predict the exact Gaussian noise that was added.
+Strong sample quality
+Image quality became competitive with leading generative models on benchmark datasets.
+Stable optimization
+The common objective is mean-squared error rather than a minimax game.
+Flexible conditioning
+Class labels, text, masks, layouts, and other signals can guide denoising.
+12
+
+SLIDE 13
+Structure of Diffusion Model 
+13
+
+SLIDE 14
+DIFFUSION MODELS
+Introduction to Artificial Intelligence
+Noisy sample  xₜ
+Denoising network
+ 
+Predicted noise 
+ 
+Timestep      +   optional condition  c
+ 
+If the model can predict the noise, the sampler can estimate a slightly cleaner version of the sample.
+14
+`
+Core of Diffusion Model: Denoising network   
+ 
+represents the denoising network, it could be a  U-Net  or  a  DiT  (Diffusion Transformer) .
+The time step    will be represented by an embedding vector and then enters the computation process;
+  represents the set of learnable parameters of the model;
+  represents the condition (e.g., the prompt, such as “remove the chair in the image”.)
+ 
+
+SLIDE 15
+Structure of a  diffu : a time-conditioned U-Net
+DIFFUSION MODELS
+Introduction to Artificial Intelligence
+Down path: extract multi-scale features
+Up path: reconstruct the denoised output
+15
+`
+Denoising Network as a U-Net (without Attention)
+x+f (x)
+noisy input 
+ 
+For standard diffusion model,    is the noisy image pixels.
+For latent diffusion model,    is the noisy signal in the latent space.
+ 
+
+SLIDE 16
+Structure of a  diffu : a time-conditioned U-Net
+DIFFUSION MODELS
+Introduction to Artificial Intelligence
+16
+`
+U-Net with Attention
+x+f (x)
+Noisy Latent, or noisy image pixels
+Each  Attention  here is a cross-attention module. The query are from the image/latent features, while the key and value are from the prompt. 
+
+SLIDE 17
+DIFFUSION MODELS
+Introduction to Artificial Intelligence
+Ronneberger et al., 2015; Ho et al., 2020; Peebles and Xie, 2023.
+U-Net
+Global understanding
+Downsampling increases the receptive field and helps the network understand object-level structure.
+Multi-scale denoising
+Large structures and tiny textures can be processed at different resolutions.
+Local precision
+Skip connections carry fine spatial information directly to the reconstruction path.
+Modern alternative
+Diffusion Transformers ( DiT ) replace the U-Net backbone with Transformer blocks operating on latent patches.
+17
+`
+Why U-Net fits denoising well
+
+SLIDE 18
+DIFFUSION MODELS
+Introduction to Artificial Intelligence
+The same noisy image can require very different operations depending on the noise level.
+less noise
+more noise
+Small-amount noise
+Remove tiny noise while preserving detail.
+Medium-amount noise
+Recover shapes, edges, and textures.
+Large-amount noise
+Infer coarse semantic structure from near-random noise.
+A sinusoidal or learned time embedding is injected into the denoising network.
+18
+`
+Why input timestep   to the Denoising Network  ?
+ 
+
+SLIDE 19
+DIFFUSION MODELS
+Introduction to Artificial Intelligence
+Rombach et al., 2022.
+Prompt
+Text encoder
+Condition  c (e.g., text input)
+Noisy image features
+Denoiser with cross-attention
+image features attend to the prompt representation
+Guided denoising direction
+The condition changes the denoising direction at every step.
+19
+`
+Conditional diffusion: how a prompt guides generation
+Consider the  text input ( prompt ) :
+“A red fox sitting in a snowy forest at sunset.”
+The diffusion model uses this prompt to guide what kind of image emerges from random noise.
+
+SLIDE 20
+DIFFUSION MODELS
+Introduction to Artificial Intelligence
+Rombach et al., 2022.
+20
+`
+Example Results of Prompted-Guided Generations
+Red fox, Snowy forest, at sunset
+Prompt: “Red fox” → The model may generate an image of a red fox.
+Prompt: “Snowy forest” → The model may generate an image of a snowy forest.
+Prompt: “At sunset” → The model may generate a sunset scene.
+Combined prompt: “A red fox in a snowy forest at sunset” → The model may generate an image combining all three concepts.
+
+SLIDE 21
+Diffusion Model Training
+21
+
+SLIDE 22
+DIFFUSION MODELS
+Introduction to Artificial Intelligence
+A clean image   is noised step by step to become closer and closer to  pure noise . Then, for training the Unet without attention:
+Feature: 
+Prediction Target: noise added to   
+ 
+ 
+ 
+ 
+…
+ 
+ 
+22
+`
+The Forward Process for Training Sample Generation
+noise
+noise
+noise
+noise
+noise
+
+SLIDE 23
+DIFFUSION MODELS
+Introduction to Artificial Intelligence
+23
+`
+Formula for Creating    from   
+ 
+One-step transition
+Given  , compute  , where   is sampled from  . 
+More convenient formula ensuring   is pure noise: 
+Why this formula? It ensures that, for a large  ,   is close to pure noise (i.e., follows the distribution  ).
+ 
+ is a small variance chosen by a noise schedule.
+ 
+Each step keeps most of the signal and adds a little Gaussian noise.
+After many steps, the sample approaches an isotropic Gaussian.
+Noise schedule
+small βₜ
+larger βₜ
+
+SLIDE 24
+DIFFUSION MODELS
+Introduction to Artificial Intelligence
+24
+`
+Creating the Training Dataset
+Create One Training Sample
+For any clean image  , randomly pick  , draw  , and compute
+Now  is a newly created training sample, with   being the feature and   being the prediction target.
+ 
+Small t
+Mostly signal
+Medium t
+Signal plus visible noise
+Large t
+Mostly noise
+For each of the clean images, we repeat the above process multiple times, to generate the final set of training samples.
+
+SLIDE 25
+DIFFUSION MODELS
+Introduction to Artificial Intelligence
+Ho, Jain, and Abbeel, 2020.
+Sample
+ 
+Construct
+ 
+Minimize
+ 
+Known noise  ε
+Noisy input  xₜ
+Predicted noise  ε̂
+MSE loss
+Note:
+25
+`
+Standard Procedures of Training a Diffusion Model
+: The  Unet  to be trained, with    being the set of learnable model parameters. 
+ 
+Optimize
+Solve    to find model parameter values.
+ 
+Repeat to get train dataset. 
+( ) can be resampled during each training iteration.
+ 
+
+SLIDE 26
+DIFFUSION MODELS
+Introduction to Artificial Intelligence
+Ho, Jain, and Abbeel, 2020.
+Question: How to Create Samples to Accommodate Text Input  ?
+ 
+26
+
+SLIDE 27
+DIFFUSION MODELS
+Introduction to Artificial Intelligence
+Ho, Jain, and Abbeel, 2020.
+27
+`
+Create Samples to Facilitate the Diffusion Model to Handel Prompts
+A clean image   with a description   is noised step by step to become closer and closer to  pure noise . Then, for training the  Unet  with attention:
+Feature: 
+Prediction Target: noise added to   
+ 
+
+SLIDE 28
+Diffusion Models at Inference Time
+28
+
+SLIDE 29
+DIFFUSION MODELS
+Introduction to Artificial Intelligence
+1
+Noised Image
+ 
+2
+Predict noise
+ 
+3
+Update sample
+compute a cleaner 
+ 
+29
+`
+How generation works after training
+Training can evaluate random timesteps in parallel across a minibatch, but classical sampling is sequential across timesteps.
+
+SLIDE 30
+DIFFUSION MODELS
+Introduction to Artificial Intelligence
+ 
+Denoise
+The bracketed term removes predicted noise.
+Add stochasticity
+The   term adds randomness, where   controls the amount of added randomness.
+ 
+Accelerate
+DDIM and numerical solvers can use fewer steps or deterministic paths.
+No need to memorize the equation; understand the repeated predict-and-update loop.
+30
+`
+Denoising Noise Formula at Generation Time (DDPM)
+At each step, the model predicts the noise in the current image. However, we cannot simply subtract that noise, because the prediction corresponds to the accumulated noise, not just the noise added at the latest step. The DDPM reverse update uses the noise schedule to determine how much predicted noise to remove so that we move correctly from   to  .
+ 
+
+SLIDE 31
+Training and inference are different
+DIFFUSION MODELS
+Introduction to Artificial Intelligence
+Training
+Generation / inference
+Starting point
+Real data x₀
+Random noise xₜ
+Noise
+Added synthetically and known
+Initially present; removed progressively
+Timesteps
+Random t per training example
+Traverse a schedule from T to 1
+Target
+Known noise ε
+No target image is available
+Main operation
+One denoiser evaluation per example
+Many sequential denoiser evaluations
+Condition
+Caption, label, mask, or none
+User-provided prompt or control signal
+31
+
+SLIDE 32
+Latent Diffusion Model
+32
+
+SLIDE 33
+Latent diffusion: denoise a compressed representation
+DIFFUSION MODELS
+Introduction to Artificial Intelligence
+Rombach et al., 2022.
+Image  x
+Encoder  E
+Diffusion in latent space  z
+Decoder  D
+Output
+33
+Latent Rep. z0
+Latent Diffusion at Inference Time
+Project Image to its Latent Representation
+
+SLIDE 34
+DIFFUSION MODELS
+Introduction to Artificial Intelligence
+The image pixels    is converted to    in the latent space using a trained autoencoder (e.g., VAE).
+ 
+34
+`
+What’s Special About Latent Diffusion Model
+Pixel-space diffusion
+The denoiser processes every image pixel at every sampling step, which is expensive at high resolution.
+Latent-space diffusion
+A pretrained autoencoder compresses the image   to   in the latent space before diffusion and removes imperceptible detail.
+ 
+H × W × 3 pixels
+h × w × c latent
+Lower-dimensional tensors reduce compute and memory.
+Cross-attention supports flexible text or spatial conditioning.
+High-resolution synthesis becomes much more practical.
+The autoencoder can introduce reconstruction limitations.
+Benefits of Latent Representations
+
+SLIDE 35
+DIFFUSION MODELS
+Introduction to Artificial Intelligence
+35
+`
+Denoising Network as a  Unet  (for Latent Diffusion)
+Noisy signal in latent space 
+ 
+Denoising network
+ 
+Predicted noise    in latent space
+ 
+Timestep      +   optional condition  c
+ 
+The main difference between this diffusion model and the latent diffusion model is, it operates in the latent space.
+
+SLIDE 36
+DIFFUSION MODELS
+Introduction to Artificial Intelligence
+Step 1: Train an autoencoder ( ) with clean images
+Step 2: Freeze the trained autoencoder and train the denoising network  .
+The loss function is
+Find optimal   by optimizing  .
+ 
+36
+`
+Training Latent Diffusion Model
+
+SLIDE 37
+During latent diffusion inference, the autoencoder is not used at every timestep. Only its decoder is used once, after the denoising process is completed.
+2/11/2026
+37
+`
+Latent Diffusion Model at   Inference   Time
+
+SLIDE 38
+Stable Diffusion – A Latent Diffusion Model
+2/11/2026
+38
+
+SLIDE 39
+https://huggingface.co/spaces/stabilityai/stable-diffusion-3.5-large
+2/11/2026
+39
+`
+Try the Stable Diffusion Model
+
+SLIDE 40
+DIFFUSION MODELS
+Introduction to Artificial Intelligence
+Noisy latent
+Patchify
+Transformer
+blocks
+Predict noise / target
+timestep + condition
+Main change
+Replace the U-Net backbone with Transformer blocks that process noisy latent patches.
+Why it matters
+Quality improved as model compute, width, depth, and token count increased.
+40
+`
+Diffusion Transformers ( DiT )
+Patchify  means dividing an image or latent representation into small, non-overlapping patches and converting each patch into a token that a Transformer can process.
+The 2x2 purple patch on the left is processed to a token embedding (purple) on the right.
+Transformer generates new representations of all the input tokens
+
+SLIDE 41
+More on Diffusion Models
+41
+
+SLIDE 42
+Introduction to Artificial Intelligence
+VAE
+GAN
+Diffusion
+Training
+Variational lower bound
+Adversarial minimax game
+Denoising / score objective
+Strength
+Organized latent space; fast sampling
+Sharp, fast samples
+Quality, diversity, and conditioning
+Challenge
+Possible oversmoothing
+Instability and mode collapse
+Slow iterative sampling
+Sampling
+One decoder pass
+One generator pass
+Multiple denoising steps
+Diffusion is attractive because quality, diversity, and control are strong together.
+42
+`
+Diffusion compared with VAE and GAN
+
+SLIDE 43
+DIFFUSION MODELS
+Introduction to Artificial Intelligence
+High quality
+Stable objective
+Flexible control
+Scalable backbones
+Editing versatility
+43
+`
+Why are diffusion models so popular?
+
+SLIDE 44
+Introduction to Artificial Intelligence
+Computation and speed
+Many denoiser evaluations per sample
+Expensive training for high-resolution image and video models
+Data and social risks
+Dataset biases and gaps can appear in outputs
+Privacy, consent, attribution, copyright, and misuse require governance
+Imperfect control
+Prompts may be underspecified; exact text, counting, hands, geometry, and layouts can fail.
+Limited interpretability
+Outputs are stochastic, and explaining why a specific result was produced is difficult.
+44
+`
+Limitations in more detail
+
+SLIDE 45
+DIFFUSION MODELS
+Introduction to Artificial Intelligence
+1
+Faster sampling
+solvers, distillation, consistency models, fewer steps
+2
+Better representations
+latent and representation autoencoders
+3
+Scalable architectures
+Diffusion Transformers and sparse variants
+4
+Stronger control
+layouts, poses, depth, references, interactive editing
+5
+Long-form generation
+coherent video, audio, 3D, and world models
+6
+Safety and provenance
+curation, watermarking, detection, governance
+Research is shifting from “Can we generate?” to “Can we generate quickly, controllably, consistently, and responsibly?”
+45
+`
+Current research directions
+
+SLIDE 46
+Seven ideas to remember
+DIFFUSION MODELS
+Introduction to Artificial Intelligence
+1
+A diffusion model learns to reverse gradual corruption by noise.
+2
+The forward process is fixed; the reverse process is learned.
+3
+A common model predicts the added noise at a chosen timestep.
+4
+U-Nets combine global structure with local detail; DiTs scale with Transformers.
+5
+Conditioning guides every denoising step.
+6
+Latent diffusion reduces the cost of high-resolution generation.
+7
+High quality and flexible control drive popularity; slow sampling and societal risks remain.
+46
+
+SLIDE 47
+Quick check
+DIFFUSION MODELS
+Introduction to Artificial Intelligence
+1
+Which part requires learning: the forward process, the reverse process, or both?
+2
+Why can xₜ be generated directly from x₀ during training?
+3
+What information enters the denoiser besides xₜ?
+4
+Why is latent diffusion cheaper than pixel-space diffusion?
+5
+Why is generation slower than a single-pass GAN generator?
+Explain the full model to a partner using only: noise, timestep, denoiser, condition, repeat.
+47
+
+SLIDE 48
+Selected references
+DIFFUSION MODELS
+Introduction to Artificial Intelligence
+1
+Kingma, D. P. & Welling, M. Auto-Encoding Variational Bayes. 2013. arXiv:1312.6114.
+2
+Goodfellow, I. et al. Generative Adversarial Nets. 2014. arXiv:1406.2661.
+3
+Sohl-Dickstein, J. et al. Deep Unsupervised Learning using Nonequilibrium Thermodynamics. 2015. arXiv:1503.03585.
+4
+Ho, J., Jain, A. & Abbeel, P. Denoising Diffusion Probabilistic Models. 2020. arXiv:2006.11239.
+5
+Song, Y. et al. Score-Based Generative Modeling through Stochastic Differential Equations. 2021. arXiv:2011.13456.
+6
+Rombach, R. et al. High-Resolution Image Synthesis with Latent Diffusion Models. 2022. arXiv:2112.10752.
+7
+Ho, J. & Salimans, T. Classifier-Free Diffusion Guidance. 2022. arXiv:2207.12598.
+8
+Peebles, W. & Xie, S. Scalable Diffusion Models with Transformers. 2023. arXiv:2212.09748.
+Foundational papers are listed so students can connect the lecture to the original research.
+48
+
+SLIDE 49
+What can diffusion models generate or edit?
+DIFFUSION MODELS
+Introduction to Artificial Intelligence
+Applications documented by Song et al. (2021) and Rombach et al. (2022).
+Text-to-image:  photorealistic or artistic images
+Inpainting:  fill or replace selected regions
+Super-resolution:  restore plausible detail
+Image-to-image:  guided editing and style transfer
+Extensions:  video, audio, 3D, and scientific data
+49
+
+SLIDE 50
+50
+`
+Text-to-Image Diffusion at Inference Time
+With samples of (image  , description  ), the model is trained in the same way (to predict the added noise) as a latent diffusion model.
+ 
+This illustrates the inference step.
+
+SLIDE 51
+51
+`
+The Inpainting Process
+Condition: Masked image and text prompt. In text-conditioned inpainting, the text prompt should ideally describe the desired content in the masked region.
+
+SLIDE 52
+Thank you for Listening!
+52
+Thank you for Listening!
+52

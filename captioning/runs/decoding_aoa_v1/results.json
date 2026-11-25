@@ -1,0 +1,38 @@
+[
+  {
+    "variant": "original_greedy",
+    "score": 0.5824428796768188,
+    "mean_words": 10.356,
+    "repeated_trigram_count": 97,
+    "beam_size": 1,
+    "alpha": 0.0,
+    "constrain": false
+  },
+  {
+    "variant": "constrained_greedy",
+    "score": 0.5825700163841248,
+    "mean_words": 10.3952,
+    "repeated_trigram_count": 0,
+    "beam_size": 1,
+    "alpha": 0.0,
+    "constrain": true
+  },
+  {
+    "variant": "beam3_alpha0",
+    "score": 0.5865424275398254,
+    "mean_words": 9.6892,
+    "repeated_trigram_count": 0,
+    "beam_size": 3,
+    "alpha": 0.0,
+    "constrain": true
+  },
+  {
+    "variant": "beam3_alpha06",
+    "score": 0.5869023203849792,
+    "mean_words": 9.8844,
+    "repeated_trigram_count": 0,
+    "beam_size": 3,
+    "alpha": 0.6,
+    "constrain": true
+  }
+]

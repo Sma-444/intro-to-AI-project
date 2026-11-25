@@ -1,0 +1,25 @@
+{
+  "checks": [
+    "causality",
+    "padding",
+    "AMP backward",
+    "visual and decoder update",
+    "BN frozen",
+    "beam batch isolation",
+    "teacher/inference prefix equivalence",
+    "exact reload",
+    "legacy compatibility"
+  ],
+  "backbone": "dinov2_small",
+  "visual_tail_blocks": 2,
+  "image_size": 336,
+  "parameters": 25788937,
+  "batch_size": 24,
+  "losses": [
+    7.392789363861084,
+    6.9123311042785645,
+    6.578285217285156
+  ],
+  "peak_gpu_bytes": 1010879488,
+  "checkpoint_bytes": 103290761
+}

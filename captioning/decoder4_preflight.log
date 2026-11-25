@@ -1,0 +1,30 @@
+W1122 18:54:13.224000 26432 .env\site-packages\torch\distributed\elastic\multiprocessing\redirects.py:29] NOTE: Redirects are currently not supported in Windows or MacOs.
+
+Loading weights:   0%|          | 0/223 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 223/223 [00:00<00:00, 4106.03it/s]
+{
+  "checks": [
+    "causality",
+    "padding",
+    "AMP backward",
+    "visual and decoder update",
+    "BN frozen",
+    "beam batch isolation",
+    "teacher/inference prefix equivalence",
+    "exact reload",
+    "legacy compatibility"
+  ],
+  "backbone": "dinov2_small",
+  "visual_tail_blocks": 2,
+  "image_size": 336,
+  "decoder_layers": 4,
+  "parameters": 27895817,
+  "batch_size": 24,
+  "losses": [
+    7.398655891418457,
+    6.813924789428711,
+    6.505502700805664
+  ],
+  "peak_gpu_bytes": 1096305664,
+  "checkpoint_bytes": 111731393
+}

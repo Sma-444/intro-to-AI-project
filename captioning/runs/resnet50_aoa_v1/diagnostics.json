@@ -1,0 +1,35 @@
+{
+  "mean_cosine": 0.5824428419470787,
+  "reference_mean_words": 10.3724,
+  "prediction_mean_words": 10.356,
+  "repeated_trigram": {
+    "count": 97,
+    "mean_cosine": 0.5085868627293822
+  },
+  "length_cap": {
+    "count": 0,
+    "mean_cosine": null
+  },
+  "score_below_04": {
+    "count": 540,
+    "mean_cosine": 0.26931000616815354
+  },
+  "score_above_07": {
+    "count": 824,
+    "mean_cosine": 0.828481258480873
+  },
+  "long_reference": {
+    "count": 225,
+    "mean_cosine": 0.5160201398862733
+  },
+  "other_reference": {
+    "count": 2275,
+    "mean_cosine": 0.5890121201728726
+  },
+  "mean_crop_retained_area": 0.5560957465621554,
+  "crop_retains_less_than_half": {
+    "count": 111,
+    "mean_cosine": 0.5599040900533264
+  },
+  "unique_predictions": 2174
+}

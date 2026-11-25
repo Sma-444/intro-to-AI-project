@@ -1,0 +1,10 @@
+{
+  "rows": 2500,
+  "all_equal": true,
+  "files": [
+    "validation_predictions_reloaded.csv",
+    "inference_verified.csv",
+    "validation_predictions_best.csv"
+  ],
+  "sha256": "555FAF3219B9487E2936FDA05F5B210421B75BC54C23E02ABA8468DE3940BB7A"
+}

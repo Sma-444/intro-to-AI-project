@@ -1,0 +1,380 @@
+SLIDE 1
+AIAA   2205: Introduction   to   AI 
+Overfitting and Model Metrics
+Chen XU
+The   Hong Kong University of Science and Technology (Guangzhou)
+cx@hkust-gz.edu.cn
+
+SLIDE 2
+2
+`
+Contents to be fully mastered in this  session
+What is overfitting and  underfitting ?
+Evaluation Metrics   (ROC,   AUC)
+
+SLIDE 3
+3
+Overfitting   and   Underfitting
+
+SLIDE 4
+4
+Overfitting and underfitting are often responsible for the poor performances of the machine learning algorithms.
+`
+Overfitting and underfitting
+
+SLIDE 5
+5
+Underfitting is typically indicated by poor performance even on the training data.
+It usually happens when we have less data to build an accurate model and also when we try to build a linear model for a non-linear data. 
+`
+Underfitting
+
+SLIDE 6
+6
+Techniques to reduce underfitting:
+1.   Use   more   data; 2 . Increase model complexity  (such as the number of model parameters); 3 . Increase number of features, performing feature engineering ; 4 . Remove noise from the data ; 5 . Increase  # epochs or increase the duration of training .
+`
+How to Reduce  Underfitting
+
+SLIDE 7
+7
+Overfitting: the model fits the training data very well, but fails to generalize to unseen data.
+Common causes include:
+Too little training data 
+A model that is too complex for the amount of data 
+Training for too long, especially for flexible models such as neural networks 
+Noisy training data
+`
+Overfitting
+
+SLIDE 8
+8
+Use more training data or data augmentation.
+Reduce model complexity, such as fewer layers, fewer neurons, or a shallower decision tree.
+Use regularization, such as   or   regularization.
+Use dropout in neural networks.
+Use early stopping based on validation performance.
+Use cross-validation to choose model complexity and  hyperparameters .
+Prune decision trees or limit their maximum depth.
+Use ensemble methods such as bagging or random forests.
+ 
+`
+Techniques to reduce overfitting
+
+SLIDE 9
+  A   regularizer   is an additional criterion to the loss function to make sure that we don’t  overfit .
+  It’s called a  regularizer  since it tries to keep the parameters more normal/regular .
+  It is a bias on the model that forces the learning to prefer certain types of weights over others .
+where   is the parameter that controls the contribution from the  regularizer    to the loss.
+ 
+`
+Regularization
+
+SLIDE 10
+Loss function: penalizes predictions different from the target  value  . 
+ 
+Regularizer : penalizes  large weights. .
+ 
+Key: this function is convex allowing us to use gradient descent
+`
+An Example Loss with Regularization
+ 
+
+SLIDE 11
+`
+Common  regularizers
+How do we encourage small weights?  or penalize  large weights?
+L1 penalizes  all non-zero weights equally.
+Squared  weights penalizes  large values more.
+
+SLIDE 12
+Least squares: squared loss
+Ridge regression: squared loss with L2 regularization
+Lasso regression: squared loss with L1 regularization
+Elastic regression: squared loss with L1  and  L2 regularization
+`
+Common names
+
+SLIDE 13
+2026/9/13
+13
+More Evaluation Metrics for Classification Models
+
+SLIDE 14
+Evaluation metrics are  quantitative measures  used to  evaluate  the performance or effectiveness of a system, model, algorithm, or process. 
+14
+`
+Evaluation Metrics
+
+SLIDE 15
+Imagine you have 2 different probabilistic classification models
+e.g.,  logistic regression  vs.  neural network
+How do you know which one is better?
+Can you provide quantitative evidence beyond a gut feeling and subjective interpretation?
+`
+Why should we care?
+
+SLIDE 16
+Model Prediction
+It’s NOT a
+Heart Attack
+Heart Attack!!!
+Gold Standard
+Truth
+Was NOT a Heart Attack
+A
+B
+Was a Heart Attack
+C
+D
+`
+Recall Basics
+ 
+  are sample numbers.
+ 
+
+SLIDE 17
+Model Prediction
+No Event ( 阴性 )
+Event   ( 阳性 )
+Gold Standard
+Truth
+No   Event   ( 阴性 )
+True Negative
+False Positive
+(Type 1 Error)
+Event   ( 阳性 )
+False Negative
+(Type 2 error)
+True Positive
+假阳性
+假阴性
+Which   one do you think is more severe ？
+`
+Some Terms: confusion matrix
+ 
+
+SLIDE 18
+18
+Although   it   can judge the overall correct rate, it is not a  good  indicator to measure the results in the case of  imbalanced samples  ( however,   this situation often occurs). 
+For example, there is a model for detecting COVID-19   pneumonia. Using this model to investigate COVID-19 pneumonia in a certain community, there are 28 0 , 000  normal cases (no infection) and  50  cases of COVID-19 pneumonia. The model judges everyone as normal  No infection , that is,  no patients  with COVID-19 pneumonia were found, and the accuracy rate at this time was 28 0 , 000 /28 0050  = 99. 9 %. Although the accuracy rate at this time is high, the model did not find COVID-19 patients, so the model is actually  very   bad .
+ 
+`
+Accuracy
+
+SLIDE 19
+Receiver operator characteristic
+Models ability to distinguish between false & true positives
+AUC   (Area Under the Curve)
+`
+ROC Curves 
+ 
+
+SLIDE 20
+TRUE POSITIVE RATE  (also called  Sensitivity )
+FALSE POSITIVE RATE  (also called  Specificity )
+Plot Sensitivity  vs.  (1 – Specificity) False Positive Rate
+ 
+Sensitivity   =
+Specificity   =
+`
+Use Multiple Contingency Tables 
+Model Prediction
+Neg
+Pos
+Gold Standard
+Truth
+Neg
+TN
+FP
+Pos
+FN
+TP
+
+SLIDE 21
+  Proportion of  patients with disease  who are tested positive with a test ；
+  A 100% sensitive test will not have any false negative results ；
+  Therefore, a negative result of a highly sensitive test means it is likely to be  a true negative (it rules out the disease) .
+`
+Sensitivity
+ 
+   
+ 
+
+SLIDE 22
+  Proportion of  patients without disease  who are tested negative with a test
+  A 100% specific test will not have false positive results (although it may have high rate of false negative results)
+  Therefore, a positive result of a highly specific test means it is likely  to be true positive
+`
+Specificity
+ 
+   
+ 
+
+SLIDE 23
+Problem   and   Data   (Breast cancer)
+Diagnosis   Result
+Surgical pathology results
+Total
+Patient   (P)
+Non-patient   (N)
+Positive
+80
+100
+180
+Negative
+20
+800
+820
+Total
+100
+900
+1000
+Compute   the   sensitivity   and   specificity.
+`
+Example
+ 
+   
+ 
+
+SLIDE 24
+Problem   and   Data   (Breast cancer)
+Diagnosis   Result
+Surgical pathology results
+Total
+Patient   (P)
+Non-patient   (N)
+Positive   (P)
+80   (TP)
+100   (FP)
+180
+Negative   (N)
+20   (FN)
+800   (TN)
+820
+Total
+100
+900
+1000
+   Sen:   80%(TP/(TP+FN))   Sp :   89%   (TN/(TN+FP))
+`
+Example
+ 
+Model Prediction
+Neg
+Pos
+Gold Standard
+Truth
+Neg
+TN
+FP
+Pos
+FN
+TP
+
+SLIDE 25
+If the sensitivity of a diagnostic test is relatively low, there will be many false-negative patients. This will delay the patient ’ s visit, affect the development and recovery of the disease, and even lead to premature death of the patient.
+If the specificity of a diagnostic test is relatively low, there will be many false positive patients. This will waste medical resources and cause unprovoked panic and anxiety among patients.
+`
+Summary
+ 
+
+SLIDE 26
+LOGISTIC
+NEURAL
+The   idea   case:
+It would be on the top-left corner of the ROC graph corresponding to the coordinate (0, 1) in the cartesian plane. 
+Both   the Sensitivity and Specificity, would be the highest and the classifier would correctly classify all the Positive and Negative class points.
+`
+ROC Plot
+ 
+
+SLIDE 27
+??
+??
+??
+A
+B
+C
+`
+Visual Perspective
+ 
+
+SLIDE 28
+28
+Suppose   now   we   have   20   samples,   Class   is   the   ground   truth ,   and   Score   is   the   probability   of   the   positive   sample   given   by   the   classifier .  
+Sort by score from largest to smallest
+Set all the scores as a threshold, and then the labels of these 20 samples will change. When its score is greater than or equal to the current threshold, it is a positive sample, otherwise it is no sample.
+In this way, for each threshold, one set of FPR and TPR can be calculated. The example can be a total of 20 sets.
+When the threshold is set to 1 and 0, two points (0,0) and (1,1) on the ROC curve can be obtained.
+`
+How to plot ROC? Let’ s see an example
+ 
+
+SLIDE 29
+2026/9/13
+29
+Let’s   see   an   example!
+ROC   plot
+
+SLIDE 30
+AIAA   2205: Introduction   to   AI 
+Regression and Classification
+Li   LIU
+The   Hong Kong University of Science and Technology (Guangzhou)
+avrillliu@hkust-gz.edu.cn
+
+SLIDE 31
+31
+`
+Review   of   last   course
+Overfitting   and   Underfitting
+Sensitivity,   Specificity,   ROC,   AUC
+
+SLIDE 32
+9/13/2026
+32
+
+SLIDE 33
+33
+How   to   plot   ROC   if   it   is   not   a   binary   classifier   problem?
+
+SLIDE 34
+34
+T he ROC curve is for  binary  classifications .   T her e   are   also  methods for obtaining the ROC curve for  multi-class  classification   problems:
+Suppose the number of test samples is  m  and the number of  classes  is  n .
+After the training is completed, calculate the probability or confidence of each test sample in each category, and obtain a matrix  P   of   size  [ m, n ],  where  each row represents the probability value of a test sample in each category (according to the category label  s ort). 
+Correspondingly, the label of each test sample is converted into a binary-like form, and each position is used to mark whether it belongs to the corresponding  class , which can also obtain an [ m, n ]  size  label matrix  L .
+
+SLIDE 35
+35
+Method : 
+Under each  class , the probability of  m  test samples being that category (column in matrix  P ) can be obtained. 
+Therefore, according to each corresponding column in the probability matrix  P  and the label matrix  L , the false positive rate (FPR) and the true rate (TPR) under  each threshold  can be calculated to draw a ROC curve. 
+In this way, a total of  n  ROC curves can be drawn. Finally,  average  the  n  ROC curves to get the final ROC curve.
+
+SLIDE 36
+Model Prediction
+No Event ( 阴性 )
+Event   ( 阳性 )
+Gold Standard
+Truth
+No   Event   ( 阴性 )
+TN
+FP
+Event   ( 阳性 )
+FN
+TP
+`
+Precision   and   Recall
+Precision  score is the number of true positive results divided by the number of all positive results .
+Recall  score, also known as  Sensitivity  or  true positive rate , is the number of true positive results divided by the number of all samples that should have been identified as positive.
+Specificity   =  
+ 
+Precision   =  
+ 
+Recall   =  
+ 
+
+SLIDE 37
+Thank you!   Questions? 

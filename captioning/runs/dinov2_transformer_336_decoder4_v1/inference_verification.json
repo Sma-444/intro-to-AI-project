@@ -1,0 +1,11 @@
+{
+  "sha256": "CF9D4859570740397BA6F0676679C840FC5310295E42FFF508452EAAED9DF172",
+  "prediction_files": [
+    "validation_predictions_best.csv",
+    "validation_predictions_reloaded.csv",
+    "inference_verified.csv"
+  ],
+  "rows": 2500,
+  "checkpoint_bytes": 111731457,
+  "all_equal": true
+}

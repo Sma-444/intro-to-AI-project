@@ -1,0 +1,248 @@
+SLIDE 1
+AIAA   2205: Introduction   to   AI 
+Regression and Classification
+Chen XU
+The   Hong Kong University of Science and Technology (Guangzhou)
+avrillliu@hkust-gz.edu.cn
+
+SLIDE 2
+`
+Contents to be fully mastered in this  session
+One-hot Representation of 
+Cross-entropy Loss
+What does Overfitting Imply?
+Softmax  function.
+ 
+
+SLIDE 3
+Suppose we want to  predict the target variable   from predictors  . 
+We name it as a  regression problem  if   is a  quantitative (numerical)  variable. For example,  . Examples include predicting house prices, temperatures, or the number of products sold.
+We name it as a  classification problem  if   is  qualitative (categorical) , i.e., if  the sample space of   is (or can be encoded to) a discrete set,  e.g.,  .
+Examples of  classification problems :
+Identify the disease ( ) based on symptoms  .
+Predict whether tomorrow is  rainy  ( ),  sunny  ( ), or  cloudy   .
+ 
+`
+An Overview of Classification
+
+SLIDE 4
+Inconsistent   value type.  Regression model    outputs a continuous value (e.g., real numbers), while the target    value for classification is discrete (e.g., integers).  
+A possible approach is to  encode the classes as integers  and round the regression output to the  nearest class label .
+However, this introduces an  artificial  numerical ordering  and distance between categories, which can lead to  poor predictions .
+ 
+`
+Why not use regression models for classification?
+
+SLIDE 5
+Most regression models have a  paired model counterpart for classifications . For example,
+Logistic regression  (counterpart of  linear regression ).
+Decision tree classifier  (counterpart of  decision tree  regressor ).
+Neural network classifier .
+`
+Specific  Classification Models 
+
+SLIDE 6
+The  type/structure  of model output. 
+The loss function.
+`
+Main Difference between Regression and Classification Models 
+
+SLIDE 7
+Suppose that there are   classes  ( categories or groups ) in the sample set. The output of   in classification model should indicate the class label (i.e., which class does   belong to). Hence,  the potential design of  -value  is
+An integer in  ;  or
+A  vector  in  , where the   entry is positively related with the  predicted probability  for the input sample    to be the    class .
+ 
+`
+Common Design of  𝑓 -Output Types
+
+SLIDE 8
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+For any  ,
+Model Assumption:
+  is  the predicted probability for the input sample  to be  in the    class.
+ 
+Same as a regression FNN.
+Output Layer
+`
+Illustration of an Example Classification FNN
+ 
+
+SLIDE 9
+A  softmax  function  converts a vector of  real-valued scores  into a vector that can serve as a probability distribution.  That is, for any vector  ,
+where  .
+The output from a multi-class neural net classifier can be viewed as  the output of a  softmax  function applied to the previous layer output    (called  scores/logits ). For any  ,  The 
+ 
+`
+The  Softmax  Function
+
+SLIDE 10
+The Design of  Loss Function  for Classification Models   --- Loss built on Probabilities
+An Overview of Classification
+
+SLIDE 11
+Let the  sample set  be denoted as  , where   denotes the label of the   sample. Let the model prediction be  . 
+The  common loss for regression  is the  mean square error  ( mse )  .
+However, MSE is generally not preferred for classification problems.
+Better loss functions for classification are built on  probabilities .
+ 
+`
+Recall the Loss for Regression Models
+
+SLIDE 12
+For an observed sample   where   is the class label. We represent    with a  one-hot  vector :  ,  where for any  , 
+ 
+`
+Represent Class Label   𝑦  as A One-hot Vector
+Examples:
+
+SLIDE 13
+For an observed sample  , where    is the  one-hot representation  described in the previous slide. Let    be the prediction obtained from the classification FNN. Then, 
+  is target probability distribution (the true probability distribution);
+  is the list of predicted probabilities (the predicted probability distribution).
+ 
+`
+One-hot Vector As a Probability Distribution
+
+SLIDE 14
+Suppose    is a variable taking values from the set    with the following probabilities: 
+Then,    is called the  probability distribution  of the random variable  .
+In this example,    is a  random variable  taking values from a discrete set. Check out the case for taking values from a  continuous  set.
+ 
+`
+What is a Probability Distribution?
+
+SLIDE 15
+The observed  𝑦  is the  true probability distribution;
+  is the  predicted probability distribution;
+We need parameter values in   such that   is close to  𝑦   for the input  . Hence, a measure of discrepancy between two probability distributions is needed.
+ 
+`
+The Need for a Measure of Discrepancy between Two Probability Distributions
+
+SLIDE 16
+Suppose there are  two random variables   and  , whose range are  . For any  , define
+The  cross-entropy  between the two distributions    and     is defined as ：
+The  smaller  the cross-entropy is, the  closer  the two probability distributions are to each other.
+If   is the true probability distribution, and   is the predicted probability distribution. Then, the  smaller  the  cross-entropy  is, the  better  the prediction is. 
+ 
+`
+Measure of Discrepancy between Two Probability Distributions: Cross-entropy
+
+SLIDE 17
+where    and  .
+ 
+`
+The Cross-entropy Loss of a Classification FNN
+
+SLIDE 18
+where 
+  is the    sample and    is a one-hot representation of the class label of the    sample.
+ is the  model prediction  (e.g.,   denotes the model’s prediction for   sample’s label =  .
+ 
+`
+Express the Loss as a function of model parameters  𝐿 ( 𝒘 )
+
+SLIDE 19
+`
+How   to   understand   Cross   Entropy   Loss? (Optional)
+
+SLIDE 20
+`
+How   to   understand   Cross   Entropy   Loss?  (Optional)
+
+SLIDE 21
+`
+How   to   understand   Cross   Entropy   Loss  (Optional)
+
+SLIDE 22
+Let’s   see   an   example:
+Computed
+Targets
+Correct?
+0.3,   0.3,   0.4
+0,   0,   1
+Yes
+0.3,   0.4,   0.3
+0,   1,   0
+Yes
+0.1,   0.2,   0.7
+1,   0,   0
+No
+Model   1
+Computed
+Targets
+Correct?
+0.1,   0.2,   0.7
+0,   0,   1
+Yes
+0.1,   0.7 ,   0.2
+0,   1,   0
+Yes
+0.3,   0.4,   0.3
+1,   0,   0
+No
+Model   2
+If   we   use   classification   error,   then   for   model   1,   it   is   1/3=0.33.   For   model   2,   it   is   also   0.33.  
+However,   it   is   easy   to   see   that   model   2   is   superior   to   model   1.  
+Classification error   is   not   good   for   the   classification   problem   in   this   case.
+`
+W hy   using   CE   for   classification?
+
+SLIDE 23
+Let’s   see   if   we   use   the   average   cross   entropy   loss   (ACE).  
+where     is   the   estimated   value ,   and     is   the   corresponding   ground   truth .  
+ 
+For   model   1,   the   first   item   of   model   1   is:  
+by   the   same   manner.   We   can   obtain   the   ACE   for   the:  
+model   1:   .  
+model   2:   .  
+In   the   ACE,   it   can   differentiate   the   superiority   between   model   1   and   model 2.
+ 
+`
+W hy   using   CE   for   classification?
+
+SLIDE 24
+This is the same as regression model training, to obtain the desired value of the model parameters  ,  we solve the minimization problem of
+Then, we obtain the model  .
+ 
+`
+Model Training
+
+SLIDE 25
+A simple and popular metric for evaluating a classification model is the  accuracy.
+ 
+`
+Metrics for Model Assessment
+
+SLIDE 26
+1. The main difference between a regression problem and a classification problem lies in the type of prediction:
+regression predicts numerical quantities;
+classification predicts class labels (usually through predicted class probabilities or scores).
+2. This difference affects the model output structure. For example, a regression model may output one real number, while a  -class classification model often outputs   scores or probabilities.  
+3. The training procedures are often very similar, but they typically use different loss functions. For example:
+Regression: MSE;
+Classification: cross-entropy.
+4. Many other parts of the machine-learning workflow are similar, such  as:data  preprocessing, train/validation/test splitting, optimization, regularization,  hyperparameter  tuning, and model selection.
+ 
+`
+Summary
+
+SLIDE 27
+
+
+SLIDE 28
+See the code for MNIST  Exmaple .

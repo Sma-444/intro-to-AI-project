@@ -1,0 +1,254 @@
+SLIDE 1
+AIAA 2205: Introduction to  AI Regression
+Dr. Chen Xu
+Senior Lecturer @ AI Thrust
+cx@hkust-gz.edu.cn  
+
+SLIDE 2
+Supervised Learning
+Unsupervised  Learning
+Reinforcement Learning
+Input
+Data   with  labels: 
+Data  without  labels: 
+Environment + Feedback
+Goal
+Predict     from  
+Discover patterns or structure
+Learn which actions maximize rewards
+Example
+Email    Spam/Not Spam
+Group customers  into similar types
+Robot learns how to navigate
+Key Idea
+Learn from answers
+Find hidden patterns
+Learn from consequences.
+Supervised Learning
+Unsupervised  Learning
+Reinforcement Learning
+Input
+Environment + Feedback
+Goal
+Discover patterns or structure
+Learn which actions maximize rewards
+Example
+Group customers  into similar types
+Robot learns how to navigate
+Key Idea
+Learn from answers
+Find hidden patterns
+Learn from consequences.
+`
+Recall the 3 Types of Machine Learning
+
+SLIDE 3
+Supervised Learning
+Data Format for SL:  .
+Goal of SL: Predict   (e.g., company’s future income) given the observation of   (e.g., company’s current R&D investment).
+Based on the types of  , there are two main types of SL:
+Regression:   is a  numerical quantity, where the numerical magnitude and distance between values are  meaningful. For example,   could be  a company’s future income 
+Classification:   is a class/category/group. For example,    could be the gender of an observed cat.
+ 
+`
+Main Types of Supervised Learning (SL)
+
+SLIDE 4
+Example Motivating Problem
+We are a consulting firm with a client, with the following setting 
+The client’s factory produces TVs. 
+The client plans to spent $400K on advertisement next year.
+He provides advertisement-sale data in the past years, and the plot is shown on the right.
+On the right figure, each point represents a year and its coordinate equals 
+(advertisement fee,  TV-sales revenue).
+The Task
+The client wants us to predict the TV sale for the next  year, for which the advertisement budget is $400K.
+`
+An Illustrating Example for Regression
+
+SLIDE 5
+Denote the points ( the past  data) in the figure with
+where 
+ denotes the   year’s advertisement  fee, and
+ denotes the   year’s TV sale. 
+So  each pair   represents a point in the figure. 
+ 
+`
+Reframe the Problem with Math Symbols
+
+SLIDE 6
+A  discrete random  variable    is a random variable whose possible values can be listed (either finitely or countably infinitely ). The set of all these possible values is called the  range  of   .  Each possible value   is  associated with a  probability  .   Together, these probabilities constitute the  probability distribution   of  .
+An Example of Discrete Random Variable
+Suppose    is a variable taking possible values from  ,  , and  . Then, its  range  is  .  Its probability distribution is
+ 
+`
+Knowledge Review:  Discrete Random Variables
+
+SLIDE 7
+A  continuous random variable    is  a random variable whose possible values form a continuous set of values, typically an interval or a union of intervals . The set of all these possible values is called the  range  of  .
+Let   be a non-negative function. For  any interval   (e.g.,  ) in the  range  of  , if  , then we say that   is the probability distribution density (PDF) of  .
+An Example Continuous Random Variable
+The standard normal random variable   has a  range  of  , and its PDF is  .
+ 
+`
+Knowledge Review:  Continuous Random Variable
+
+SLIDE 8
+In the previous example problem of TV  sale,  we can view 
+the TV  sale revenue   as a continuous random variable;
+the advertisement fee   as a continuous random variable;
+the value pair   as a n observed  sample (realization) of  ;
+So   are   samples of  .
+ 
+`
+Random Variables in the Example Problem
+
+SLIDE 9
+The Task
+The client wants us to predict the TV  sale revenue  for the next year, for which the advertisement budget is 400K.
+Idea of Solution:  
+If we can find a function   such that
+where   denotes the parameters. Then,
+How to find   using data 
+1) Assume on the structure of  .  
+For example, assume that  , where   are the parameters.
+2) Find the  -value in   so that
+ 
+`
+Keys in the Example Problem
+
+SLIDE 10
+How to find   using data 
+Assume on the structure of  .  
+Different regression algorithms assume different structures of  .  For example, linear regression (LR) assumes that  , where   and   are  parameters  whose value are to be determined. We let    represent the array of parameters in a general model (not necessarily LR).
+2) Find the parameter values (i.e.,   values) in   so that
+Difficulty
+It may  be  impossible to find values  for the function parameters (e.g.,   in the linear regression model)  such that   is true!
+Workaround
+Instead of looking for  parameters’  values (e.g.,  ) that makes   to be true, we look for  parameters’  values such that 
+That is, we solve
+ 
+`
+Plan for Searching 
+ 
+
+SLIDE 11
+ 
+ 
+ 
+ 
+ 
+We interpret using the  linear regression  model as an example. In this model,   and  .  Hence,
+ is a straight line.
+ is square of the  vertical distance  between   and the straight line of 
+So solving (2) is equivalent to finding a straight line that is the closest to all the data points  .
+ 
+So for LR, solving   is equivalent to finding a line  close  to all the data points.  
+ 
+`
+What  We Are Looking for by Solving  the Minimization Problem
+
+SLIDE 12
+Solving 
+is called  f itting the data  or  training the model  . 
+Different  regression models use different structures for  ,  such as the  -nearest neighbor (KNN), the linear model, the tree model, support vector machine, and the neural networks. 
+KNN  uses the following structure, which has no parameters  ,
+where among  ,  are the closest neighbors to 𝑥.
+The linear model uses the following structure
+where   and   are parameters whose value are to be determined by the data.
+The method to solve   depends on the model, and will be discussed in the later classes (classes on optimization).
+ 
+`
+Fit the data (train the model)
+
+SLIDE 13
+After obtaining the value of    from solving the minimization problem,  given that the advertisement expense of  , we can make the prediction of the TV  sale revenue  :
+ 
+`
+Final  Prediction for the Example Problem
+
+SLIDE 14
+Components of Regression (Formal Version)
+Main Types of Supervised Learning (SL)
+
+SLIDE 15
+Assumptions
+Let   be a set of random variables, and   be a random vector, such that there exists a mapping   such that 
+where
+ are called  features ,  predictors , or  input variables .
+ is called the  response, target,  or  output .
+  represents the unpredictable  noise .
+There is a set of observed realizations (samples) of  , denoted as The  . Specifically ,
+     ( a)   is the   realization (sample) of  . 
+    ( b)   is the   realization (sample) of  .
+    In our previous  example,   represent  the yearly advertisement fee and  TV  sale, respectively. For example,   represent their values in the first year.
+ 
+`
+Assumptions for Regression (Formal)
+
+SLIDE 16
+Use the observed dataset   to learn a function   to approximate the unknown true mapping  , so that for any new observation  ,    is a good prediction of  .
+To learn  , regression performs the following two steps
+1) Select a model (i.e., select the structure of  );
+2) Train the model (i.e., find value of  ).
+ 
+`
+Goal  of Regression (Formal)
+
+SLIDE 17
+Different models corresponds to different structure of  . Some popular models are:
+Linear model
+Tree Model
+Support Vector Machine
+Ensemble  Models
+Neural Network
+ 
+`
+Popular Regression Models
+
+SLIDE 18
+The loss function    is used to train the model (i.e., determining the value of  ). Specifically, the optimal parameter    value is determined by solving
+In our TV-sale sale example,    is set as the popular form of
+This form is called the  mean-square-error ( mse ) .
+ 
+`
+Loss Function for Regression
+
+SLIDE 19
+Suppose we have obtained a regression model  . Assessing model accuracy means measuring how well the found   fits the data. That is, how close are the model predictions    to the data  .
+ 
+`
+Assessing Model Accuracy for Regression
+
+SLIDE 20
+Mean Square Error (MSE)
+MSE works find by comparing two models of the same  -structure but different values of  . However, it depends on unit of the numerical values. Question: Suppose there are two models, with different numerical units (say meters and dollars), is the lower- mse  model necessarily better than the higher- mse  model? 
+ Statistics 
+This    statistic is independent from the numerical unit. It also allows the comparison between two regression models for different problems.
+ 
+`
+Measures for Regression Model Accuracy
+
+SLIDE 21
+The following example shows that, if the model’s predictions   are closer to the true   values, then    is higher.
+ 
+ 
+ 
+`
+An Illustration:   Reflects How Well the found  Fits the Data
+ 
+
+SLIDE 22
+Different  machine learning models have different assumptions on the structure of 𝑓, such as the linear model, the tree model, support vector machine, and the neural networks. 
+We  can  use model accuracy measures to select  models – e.g. we choose the model with the highest fitting   between   and    on the validation data (validation data will  be introduced later).
+ 
+`
+Use Model Accuracy Measure to Select Models
+
+SLIDE 23
+Besides prediction, regression can also be used to answer the following questions.
+Which  predictors  are really related  with the response ? (Some may not.)
+What  is the relationship between the response and each predictor ? (The structure of   answers this question.)
+ 
+`
+Beyond Prediction

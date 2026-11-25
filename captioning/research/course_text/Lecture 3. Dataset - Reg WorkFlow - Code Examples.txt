@@ -1,0 +1,207 @@
+SLIDE 1
+AIAA 2205: Introduction to AI Regression
+Dr. Chen Xu
+Senior Lecturer @ AI Thrust
+cx@hkust-gz.edu.cn  
+
+SLIDE 2
+Dataset
+K-fold Cross-validation for Selecting Hyper-parameters
+Example of Predicting California Housing Prices
+2
+`
+Content   in This PPT
+
+SLIDE 3
+3
+What   data   is   good   for   Deep   Learning?
+Is   dataset   size   larger   the   better?
+Some   papers’   main   contribution   is   to   build   a   new   dataset,   like   the   famous   ImageNet   by   Feifei   Li.
+More than 14 million images
+in   ImageNet
+Around   100   -   10000   images
+per   dataset
+ImageNet contains millions of labeled images across thousands of categories; ImageNet-1K, commonly used in deep learning benchmarks, contains 1,000 classes.
+`
+Dataset
+
+SLIDE 4
+4
+Split   to   training   set   (or   training   set   and   validation   set )   and   test   set.  
+V alidation  set :   the model occasionally “ sees ”  this data, but  is not trained with this set . 
+Based   on   validation set results ,   we   update hyperparameters.  
+For small datasets, cross-validation is particularly useful, because creating a separate validation set may waste too much training data.
+`
+Dataset
+
+SLIDE 5
+5
+Split   to   training   set   (or   training   set   and   validation   set )   and   test   set.  
+The training data is used to find model parameters (e.g.,  ).
+The v alidation data   is used to select the  hyper-parameter  of the model  .  For example, for the neural net, the hyper-parameters consist of the number of hidden layers , the number of neurons  in each layer,   and the activation.  
+The test data is for model evaluation.
+ 
+`
+The Use of Train, Validation, and Test Data
+
+SLIDE 6
+6
+`
+Validation-set Approach of Selecting Hyper-parameters
+Select hyper-parameter values
+Train Model on Training Data
+See the Performance of Trained Model on Validation Data
+If validation performance is  not  satisfying
+If validation performance is satisfying
+Test Model on Test Data
+
+SLIDE 7
+7
+This is another method for selecting model hyper-parameters.
+The key parameter is  , the number of folds.
+is the number of groups (folds) into which the dataset is split.
+ 
+`
+k-fold Cross-Validation
+
+SLIDE 8
+8
+Shuffle the dataset randomly
+  Split the dataset into  k  groups
+  For each unique group:
+Take the group as a  validation fold
+Take the remaining groups as a training data set
+Fit a model on the training set and evaluate it on the test set
+Retain the evaluation score and discard the model
+  Summarize the skill of the model using the sample of model evaluation scores   (mean and std)
+`
+k-fold Cross-Validation
+
+SLIDE 9
+9
+Suppose  we have a data sample with 6 observations:
+The first step is to pick a value for  k  in order to determine the number of folds used to split the data. 
+Here, we will use a value of  k   =   3. That means we will shuffle the data and then split the data into 3 groups. 
+Because we have 6 observations, each group will have an equal number of 2 observations.
+1
+[0.1, 0.2, 0.3, 0.4, 0.5, 0.6]
+`
+An   Example
+
+SLIDE 10
+10
+For example:
+Three models are trained and evaluated with each fold given a chance to be the held out test set.
+For example:
+Model   1 : Trained on Fold1 + Fold2, Tested on Fold3
+Model   2 : Trained on Fold2 + Fold3, Tested on Fold1
+Model   3 : Trained on Fold1 + Fold3, Tested on Fold2
+Take the mean and standard deviation of the three validation scores  as the final result.
+1
+2
+3
+Fold1: [0.5, 0.2]
+Fold2: [0.1, 0.3]
+Fold3: [0.4, 0.6]
+`
+An   Example
+
+SLIDE 11
+2026/9/9
+11
+StratifiedKFold  is a variation of K-Fold cross-validation used for classification tasks.
+  In  regular K-Fold , the dataset is split into  K  folds randomly, without considering the distribution of class labels. This may lead to some folds having very few or even no samples of a certain class.
+  In  StratifiedKFold , the splitting is done in a  stratified way , which means that each fold preserves the  same class proportion  as in the full dataset.
+Why use it?
+  Ensures that training and validation sets are representative of the overall dataset.
+  Prevents biased performance estimates when the dataset is imbalanced.
+  Recommended for  classification problems .
+Example: If the dataset has 70% “cats” and 30% “dogs,” then each fold in  StratifiedKFold  will also have approximately 70% cats and 30% dogs.
+`
+StratifiedKFold
+
+SLIDE 12
+12
+Recently,   there   are   some   hot   research   topics   on   data   related   with   the   performance   of    the   Deep   Learning   based   models:
+Collect   large-scale   dataset;
+Imbalanced   (Long   tailed)   data   distribution;
+Weakly   labelled   data,   Noisy   label;
+Useless   data,   noisy data, simple   samples  
+and   hard samples.
+Head   class
+Tailed   classes
+`
+Dataset   Challenges
+
+SLIDE 13
+Example of Regression
+09/09/2026
+13
+
+SLIDE 14
+14
+The task of the regression algorithm is to find the mapping function to map the input variable   ( )   to the  continuous  output variable   ( ).
+Example:  Suppose we want to do the   weather forecasting   ( e.g. ,   temperature) , so for this, we will use the regression algorithm. 
+Regression with Popular  Models :
+Linear Regression
+Decision Tree Regression
+FNN Regression
+Support Vector Regression
+Random Forest Regression
+ 
+`
+Regression Review
+Common   used   loss   functions:
+
+SLIDE 15
+Regression
+15
+
+SLIDE 16
+Regression
+The   price    could   be   affected   by  
+: Living   area
+ 
+16
+
+SLIDE 17
+Regression
+The   price   could   be   affected   by  
+: Living   area
+: Number   of   rooms
+ 
+17
+
+SLIDE 18
+Regression
+The   price   could   be   affected   by  
+: Living   area
+: Number   of   rooms
+: Construction   time
+…
+ 
+18
+
+SLIDE 19
+Regression
+The   price   could   be   affected   by  
+: Living   area
+: Number   of   rooms
+: Construction   time
+…
+ 
+
+SLIDE 20
+Regression Procedure
+Given a regression model (e.g., an FNN), the key steps to obtain the prediction function    is:
+Use validation-set approach to determine the  hyper-parameters  (if any) in the model.
+With the found hyper-parameters’ values, fit the training data to find values of the parameters in    (i.e.,  ).
+Test  ’s performance on the test dataset.
+ 
+
+SLIDE 21
+9/9/2026
+21
+
+SLIDE 22
+Thank you!   Questions? 

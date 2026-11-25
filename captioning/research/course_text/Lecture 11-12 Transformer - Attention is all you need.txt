@@ -1,0 +1,535 @@
+SLIDE 1
+Transformer
+Instructor: Chen XU
+The   Hong Kong University of Science and Technology (Guangzhou)
+cx@hkust-gz.edu.cn
+
+SLIDE 2
+2
+`
+Contents to be Mastered in this PPT
+Transformer at Inference Steps (p3)
+What are the two key components in Transformer? (p4)
+Inner Structure of Encoder (p5)
+How does an attention layer computes its output (p8-16)
+Example of a Multi-head attention layer (p21)
+Structure of a Transformer (p25)
+What is the use  of masking (p27)
+
+SLIDE 3
+3
+`
+Transformer at Inference Steps
+ 
+ 
+ 
+ 
+ 
+ 
+,
+ 
+,
+ 
+,
+ 
+
+SLIDE 4
+The original Transformer architecture consists of two main components: an encoder stack that processes the input sequence and a decoder stack that generates the output sequence.
+4
+`
+Two Key Components of Transformer
+
+SLIDE 5
+`
+Structure of a Single Encoder (Example)
+e1, e2   
+ 
+The encoder provides a new representation to the inputs. Note that dim(e1) = dim(o1) = dim(e2)=dim(o2).
+o1 and o2 are contextualized representation of e1 and e2: meaning that o1 contains information from the whole input sequence.
+The residual connection adds the input of the attention layer to its output, helping preserve information and improve gradient flow during training.
+
+SLIDE 6
+`
+Embeddings
+Inputs   
+ 
+The input to encoder 1 (the bottom encoder) is a list of vectors  , each   corresponding to a token (or word) in the input sentence. For the above figure,  .
+where both embeddings are vectors. 
+Word Embedding   of a   is the row of the embedding matrix   corresponding to  , where   is the number of words in the vocabulary and   is the number of dimension of the word embedding. Often,  . Before training,    is randomly initialized. It will be trained later.
+Positional Encoding.  The positional embedding   of the   token (in the input sentence) is computed from the position  . The goal is to give each position a unique "fingerprint" so the model knows which word comes first, second, or third. The formula for computing the   entry of the positional encoding   is:
+ 
+
+SLIDE 7
+Break from the Theme Review on a Single-Head Self Attention
+7
+
+SLIDE 8
+8
+`
+Input and Output (Vectors)
+x 1
+x 2
+x 3
+x 4
+Self Attention Layer
+z 1
+z 2
+z 3
+z 4
+The following illustrates the input and output from a self-attention layer with an example.
+Token
+Embeddings 
+Contextualized representations
+dim( z 1 )=dim( x 1 )
+I    saw    lovely    cats
+x 1      x 2              x 3                 x 4 
+
+SLIDE 9
+23/10/2026
+9
+query q
+key k
+value v
+word   embedding
+W Q
+W k
+W v
+q 1
+k 2
+k 3
+k 4
+Dot product  q•k
+k 1
+Attention score
+Three projections   of the embedding
+x 1
+x 2
+x 3
+x 4
+`
+Attention Score
+
+SLIDE 10
+23/10/2026
+10
+query
+key
+value
+word   embedding
+W Q
+W k
+W v
+k 2
+k 3
+k 4
+𝑎 12
+𝑎 13
+𝑎 14
+𝑤 ’ 12
+𝑤 ’ 13
+𝑤 ’ 14
+𝑎 11
+𝑤 ’ 11
+q 1
+k 1
+Three projections   of the embedding
+Softmax
+x 1
+x 2
+x 3
+x 4
+`
+Attention Score
+
+SLIDE 11
+23/10/2026
+11
+v 1
+q 1
+k 1
+v 2
+q 2
+k 2
+v 3
+q 3
+k 3
+v 4
+q 4
+k 4
+𝑎 12
+𝑎 13
+𝑎 14
+𝑎 11
+x
+x
+x
+x
+𝑤 ’ 12
+𝑤 ’ 13
+𝑤 ’ 14
+𝑤 ’ 11
+Softmax
+Attention   weight
++
+Self-attention vector
+z 1  =    
+ 
+x 1
+x 2
+x 3
+x 4
+`
+:weighted average
+   
+ 
+
+SLIDE 12
+Softmax
+23/10/2026
+12
+query
+key
+value
+word   embedding
+v 1
+W Q
+W k
+W v
+k 2
+k 3
+k 4
+𝑎 12
+𝑎 13
+𝑎 14
+𝑤 ’ 12
+𝑤 ’ 13
+𝑤 ’ 14
+𝑎 11
+𝑤 ’ 11
+q 1
+k 1
+v 2
+v 3
+v 4
+x
+x
+x
+x
+Self-attention vector   =    
+ 
+sum
+Three projections   of the embedding
+x 1
+x 2
+x 3
+x 4
+`
+Computing 
+ 
+
+SLIDE 13
+13
+﻿﻿﻿﻿﻿﻿﻿﻿﻿Vector Similarity 
+Inner product   reflects how closely is   related to    
+ 
+The larger the inner product is, the similar are the red and green vector to each other (similarity reflects) closeness in relation.
+Divide by norm to make it more rigorous!
+
+SLIDE 14
+23/10/2026
+14
+v 1
+q 1
+k 1
+v 2
+q 2
+k 2
+v 3
+q 3
+k 3
+v 4
+q 4
+k 4
+𝑎 22
+𝑎 23
+𝑎 24
+𝑎 21
+x
+x
+x
+x
+𝑤 ’ 22
+𝑤 ’ 23
+𝑤 ’ 24
+𝑤 ’ 21
+Softmax
+Attention   weight
++
+Self-attention vector
+z 2  =    
+ 
+Attention   score
+x 1
+x 2
+x 3
+x 4
+`
+Output 
+   
+ 
+
+SLIDE 15
+23/10/2026
+15
+v 1
+q 1
+k 1
+v 2
+q 2
+k 2
+v 3
+q 3
+k 3
+v 4
+q 4
+k 4
+𝑎 32
+𝑎 33
+𝑎 34
+𝑎 31
+x
+x
+x
+x
+𝑤 ’ 32
+𝑤 ’ 33
+𝑤 ’ 34
+𝑤 ’ 31
+Softmax
+Attention   weight
++
+Self-attention vector
+z 3  =    
+ 
+Attention   score
+x 1
+x 2
+x 3
+x 4
+`
+Output 
+   
+ 
+
+SLIDE 16
+23/10/2026
+16
+v 1
+q 1
+k 1
+v 2
+q 2
+k 2
+v 3
+q 3
+k 3
+v 4
+q 4
+k 4
+𝑎 42
+𝑎 43
+𝑎 44
+𝑎 41
+x
+x
+x
+x
+𝑤 ’ 42
+𝑤 ’ 43
+𝑤 ’ 44
+𝑤 ’ 41
+Softmax
+Attention   weight
++
+Self-attention vector
+z 4  =    
+ 
+Attention   score
+x 1
+x 2
+x 3
+x 4
+`
+Output 
+   
+ 
+
+SLIDE 17
+Transformer
+23/10/2026
+17
+The formula for attention output :
+
+SLIDE 18
+`
+Dimensions for a Single-Head Attention
+For an input token, vectors of dimension   ( d_model  in the code) are:
+Word embedding   of a token, its positional embedding  , and  . 
+Query vector  , key vector  , and value vector  .
+The weighted average  . 
+Let   denote the input sequence length (i.e., number of tokens), then
+ since  .
+, which is used to produce the final output from the attention:  .
+The number of total attention weights:   (the weights are used to compute { })
+ 
+
+SLIDE 19
+`
+Dimensions for a  -Heads Attention 
+ 
+For an input token, vectors of dimension  :
+Word embedding   of a token, its positional embedding  , and  . 
+For the   head ( ), the following vectors are of dimension   ( d_k  in the code):
+Query vector  ,  key vector  ,  and value vector   is of dimension  .
+The weighted average  .
+, where 
+For the above input token
+where  , and note that  .
+ 
+
+SLIDE 20
+Let’s go back to the Encoder Structure
+20
+
+SLIDE 21
+`
+Single-head Self-Attention Layer
+,  
+,  
+,  
+ 
+ 
+This slide illustrates how to compute   in   
+ 
+
+SLIDE 22
+`
+Multi-head Self-Attention Layer
+Refer to “Attention is all you need_Notes.docx” for computation details
+  is the output from a single head.                z is o in the previous slides on attention
+ 
+Denote   and  . For standard transformer,  . Although   dim( )= , the number of z’s in    is the same as the number of input tokens. It also holds true for other  ’s.
+ 
+ 
+.
+
+SLIDE 23
+`
+Residual and Feed-Forward
+After going through the self-attention layer, the information will be add & normalize, and after that each vector will  indpendently  go through a neural net, and then we do the add & normalize again.
+dim( o1 )=dim( e1 )=dim( x1 ).
+(o1 ,  o2)  enters Encoder 2.
+
+SLIDE 24
+A transformer may have multiple encoders, stacked as its encoding part.
+The decoder boxes on the right represent the same decoder model  reused  at different inference steps,  not  different decoder layers.
+24
+`
+Stacked Encoders
+
+SLIDE 25
+Assume that the output from the encoder is  , where   is the dimension of the embedding of any input token (e.g.,  ). As illustrated in Fig 1.1, the input and output to the decoder is as follows:
+At time 1, the decoder is input with   and <SOS> (Start symbol of a sentence), and outputs  .
+At time 2, the decoder is input with   and “<SOS>  ”, and outputs  .
+At time 3, the decoder is input with   and “<SOS>  ”, and outputs  .
+…
+ 
+25
+`
+Input and Output to the Decoder During Inference
+
+SLIDE 26
+There are two attention layers in the single decoder, the masked multi-head attention layer and the multi-head attention layer.
+26
+`
+Structure of a Transformer
+
+SLIDE 27
+At prediction step  , 
+the input to MMA is (<SOS>,  ). 
+the output from MMA is  .
+ 
+27
+`
+The Masked Multi-head Attention (MMA, self-attention)
+
+SLIDE 28
+We let   for illustration purposes. Denote the embeddings of the input as  , and the output from the MMA as  , where  . Then, the following illustrates how are the outputs computed.
+ 
+28
+`
+The Masked Multi-head Attention (MMA, self-attention)
+The main effect of the mask is, when computing  o_τ , all the information after τ (i.e., the future information) is masked out.
+  contributes to predicting the token at position 4, without accessing future tokens..
+ 
+
+SLIDE 29
+29
+`
+Cross Attention Layer (The Multi-Head Attention Layer in the Decoder)
+Unlike decoder self-attention, cross-attention does not use a causal mask. However, padding masks may still be applied.
+
+SLIDE 30
+30
+`
+Output from Cross Attention
+For the cross-attention layer
+Input from MMA: 
+Input from  endcoder : 
+Output: 
+Query q from MMA (decoder);
+Key k and Value v from encoder.
+Note:  number of  ’ s can be different from the number of b’s. But the number of o’s must be equal to  the number of b’s.
+ 
+Note that, for this cross attention layer,   is computed using the output   from the previous MMA layer (in decoder) while   and   are computed using the encoder outputs  . This is the reason why it is called  cross-attention.  Here,  ,   and   consist of learnable parameters that all belong to the decoder (not the encoder).
+ 
+ 
+ 
+ 
+Illustrates the computation of  .
+ 
+
+SLIDE 31
+31
+`
+Dimensions of Input and Output
+Suppose the encoder produces   vectors and the decoder has   input vectors at prediction step  , each of dimension  .
+ 
+
+SLIDE 32
+32
+`
+Handling a Variable Number of Vectors from Cross-Attention Layer
+At time step  , the input to the decoder contain   and {<SOS>,  }. There are   vectors output from the cross-attention layer. This number of vectors changes as   changes. So how is this handled by the rest part of the decoder? At inference step  , the decoder produces   final hidden vectors. Only the  last  hidden vector is passed through the output linear layer and  softmax  to predict the next token  .
+ 
+
+SLIDE 33
+33
+`
+Learnable Parameters in a Transformer
+The word embedding matrix  , where 
+(1)   is the number of tokens in the vocabulary; 
+(2)    is the dimension of the embedding vector that represents any token, e.g.,  ;
+(3) Each row of   represents a token.
+The matrices   of each self- and cross- attention layer used to compute the query, value, and key of each embedding. Recall that  ,  , and  .
+The parameters of other modules (e.g., Weights and biases of the feed-forward networks (FFNs), scale and shift parameters of Layer Normalization, and so on).
+ 
+
+SLIDE 34
+34
+`
+Flow for Training the Encoder-Decoder Transformer
+
+SLIDE 35
+Thank you for Listening!
+35

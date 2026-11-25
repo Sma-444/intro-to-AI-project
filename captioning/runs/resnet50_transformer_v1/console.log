@@ -1,0 +1,83 @@
+Transformer trial: 1417 tokens, 27,666,377 parameters
+epoch 01/16 step 100/500 loss=6.3967
+epoch 01/16 step 200/500 loss=5.4347
+epoch 01/16 step 300/500 loss=4.8186
+epoch 01/16 step 400/500 loss=4.3984
+epoch 01/16 step 500/500 loss=4.0814
+W1120 10:21:23.751000 52412 .env\site-packages\torch\distributed\elastic\multiprocessing\redirects.py:29] NOTE: Redirects are currently not supported in Windows or MacOs.
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 103/103 [00:00<00:00, 3402.46it/s]
+epoch 01: similarity=0.393261, best=0.393261, minutes=2.10, peak=0.75 GB
+epoch 02/16 step 100/500 loss=2.5303
+epoch 02/16 step 200/500 loss=2.4631
+epoch 02/16 step 300/500 loss=2.4003
+epoch 02/16 step 400/500 loss=2.3616
+epoch 02/16 step 500/500 loss=2.3229
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 103/103 [00:00<00:00, 3204.01it/s]
+epoch 02: similarity=0.511506, best=0.511506, minutes=0.94, peak=0.50 GB
+epoch 03/16 step 100/500 loss=2.0447
+epoch 03/16 step 200/500 loss=2.0140
+epoch 03/16 step 300/500 loss=1.9967
+epoch 03/16 step 400/500 loss=1.9819
+epoch 03/16 step 500/500 loss=1.9695
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 103/103 [00:00<00:00, 3573.90it/s]
+epoch 03: similarity=0.545120, best=0.545120, minutes=1.11, peak=0.68 GB
+epoch 04/16 step 100/500 loss=1.7782
+epoch 04/16 step 200/500 loss=1.7857
+epoch 04/16 step 300/500 loss=1.7818
+epoch 04/16 step 400/500 loss=1.7781
+epoch 04/16 step 500/500 loss=1.7796
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 103/103 [00:00<00:00, 3258.61it/s]
+epoch 04: similarity=0.568875, best=0.568875, minutes=1.06, peak=0.68 GB
+epoch 05/16 step 100/500 loss=1.6285
+epoch 05/16 step 200/500 loss=1.6324
+epoch 05/16 step 300/500 loss=1.6273
+epoch 05/16 step 400/500 loss=1.6346
+epoch 05/16 step 500/500 loss=1.6320
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 103/103 [00:00<00:00, 2419.02it/s]
+epoch 05: similarity=0.582566, best=0.582566, minutes=1.12, peak=0.68 GB
+epoch 06/16 step 100/500 loss=1.5112
+epoch 06/16 step 200/500 loss=1.5094
+epoch 06/16 step 300/500 loss=1.5109
+epoch 06/16 step 400/500 loss=1.5136
+epoch 06/16 step 500/500 loss=1.5098
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 103/103 [00:00<00:00, 3043.61it/s]
+epoch 06: similarity=0.588450, best=0.588450, minutes=1.08, peak=0.68 GB
+epoch 07/16 step 100/500 loss=1.3934
+epoch 07/16 step 200/500 loss=1.3945
+epoch 07/16 step 300/500 loss=1.3981
+epoch 07/16 step 400/500 loss=1.4002
+epoch 07/16 step 500/500 loss=1.4017
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 103/103 [00:00<00:00, 3452.13it/s]
+epoch 07: similarity=0.594795, best=0.594795, minutes=1.12, peak=0.68 GB
+epoch 08/16 step 100/500 loss=1.2941
+Traceback (most recent call last):
+  File "E:\HKUST课程\AI\Introduction to AI\AIAA2205Project\captioning\train_transformer.py", line 178, in <module>
+    run(parser.parse_args())
+    ~~~^^^^^^^^^^^^^^^^^^^^^
+  File "E:\HKUST课程\AI\Introduction to AI\AIAA2205Project\captioning\train_transformer.py", line 125, in run
+    norm = nn.utils.clip_grad_norm_(model.parameters(),1.,error_if_nonfinite=True)
+  File "E:\HKUST课程\AI\Introduction to AI\AIAA2205Project\captioning\.env\site-packages\torch\nn\utils\clip_grad.py", line 42, in _no_grad_wrapper
+    return func(*args, **kwargs)
+  File "E:\HKUST课程\AI\Introduction to AI\AIAA2205Project\captioning\.env\site-packages\torch\nn\utils\clip_grad.py", line 231, in clip_grad_norm_
+    total_norm = _get_total_norm(grads, norm_type, error_if_nonfinite, foreach)
+  File "E:\HKUST课程\AI\Introduction to AI\AIAA2205Project\captioning\.env\site-packages\torch\nn\utils\clip_grad.py", line 42, in _no_grad_wrapper
+    return func(*args, **kwargs)
+  File "E:\HKUST课程\AI\Introduction to AI\AIAA2205Project\captioning\.env\site-packages\torch\nn\utils\clip_grad.py", line 111, in _get_total_norm
+    raise RuntimeError(
+    ...<4 lines>...
+    )
+RuntimeError: The total norm of order 2.0 for gradients from `parameters` is non-finite, so it cannot be clipped. To disable this error and scale the gradients by the non-finite norm anyway, set `error_if_nonfinite=False`

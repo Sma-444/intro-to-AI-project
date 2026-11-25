@@ -1,0 +1,47 @@
+{
+  "fetched_at": "2026-11-20T02:25:12.609588+00:00",
+  "repositories": [
+    {
+      "repo": "facebookresearch/dinov2",
+      "files": [
+        {
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/facebookresearch/dinov2/7764ea0f912e53c92e82eb78a2a1631e92725fc8/README.md",
+          "permalink": "https://github.com/facebookresearch/dinov2/blob/7764ea0f912e53c92e82eb78a2a1631e92725fc8/README.md",
+          "bytes": 32799,
+          "sha256": "d1bc2e9686522bbd66ed6123dc81eb36b3a98e8ea9a2ca97778f54a1c641c9e1"
+        }
+      ],
+      "commit": "7764ea0f912e53c92e82eb78a2a1631e92725fc8",
+      "license": {
+        "key": "apache-2.0",
+        "name": "Apache License 2.0",
+        "spdx_id": "Apache-2.0",
+        "url": "https://api.github.com/licenses/apache-2.0",
+        "node_id": "MDc6TGljZW5zZTI="
+      },
+      "url": "https://github.com/facebookresearch/dinov2"
+    },
+    {
+      "repo": "facebookresearch/dinov3",
+      "files": [
+        {
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/facebookresearch/dinov3/6876159a11b4df116f30f667f8c9888617df0751/README.md",
+          "permalink": "https://github.com/facebookresearch/dinov3/blob/6876159a11b4df116f30f667f8c9888617df0751/README.md",
+          "bytes": 36231,
+          "sha256": "da4e6e2fa1f2580be9a782338dc108ae68f98b6c9d10636583f97d8a340e664d"
+        }
+      ],
+      "commit": "6876159a11b4df116f30f667f8c9888617df0751",
+      "license": {
+        "key": "other",
+        "name": "Other",
+        "spdx_id": "NOASSERTION",
+        "url": null,
+        "node_id": "MDc6TGljZW5zZTA="
+      },
+      "url": "https://github.com/facebookresearch/dinov3"
+    }
+  ]
+}

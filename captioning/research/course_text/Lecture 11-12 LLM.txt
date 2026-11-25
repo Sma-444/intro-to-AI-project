@@ -1,0 +1,646 @@
+SLIDE 1
+AIAA 2205 Introduction to Artificial Intelligence
+Large Language Models
+Instructor: Chen XU
+The   Hong Kong University of Science and Technology (Guangzhou)
+cx@hkust-gz.edu.cn
+
+SLIDE 2
+Pretraining
+Pretrained encoder: BERT
+Pretrained decoder: GPTs
+Pretrained   encoder-decoder : T5
+21/10/2026
+2
+`
+Contents Covered in this PPT
+
+SLIDE 3
+What is BERT used for?
+BERT is encoder-only.
+What is GPT used for?
+GPT is decoder only.
+What is T5?
+21/10/2026
+3
+`
+Contents to be Mastered in this PPT
+
+SLIDE 4
+21/10/2026
+4
+Pretraining
+
+SLIDE 5
+21/10/2026
+5
+Previous methods (e.g., word2vec) represent each word type with a single vector
+Pretrained embeddings may encode semantic information; for example, tokens with similar meanings may have similar embedding representations.
+`
+Word Embedding Can be Pretrained
+
+SLIDE 6
+21/10/2026
+6
+Learn how to incorporate context in an LSTM or transformer while training on the task.
+`
+Methods to Pretrain Word Embedding Models
+
+SLIDE 7
+21/10/2026
+7
+In modern NLP:
+All (or almost all) parameters in NLP networks are initialized via pretraining
+This has been exceptionally effective at building strong:
+Representations of language
+Parameter initializations for strong NLP models
+Probability distributions over language that we can sample from
+`
+The Whole Models Can Also be Pretrained
+
+SLIDE 8
+21/10/2026
+8
+Pretraining methods hide parts of the input from the model and train the model to reconstruct those parts.
+`
+How to Pretrain Models?
+
+SLIDE 9
+21/10/2026
+9
+Stanford University is located in___, California.  [Trivia]
+I  put___fork  down on the table.  [Syntax]
+The woman walked across the street, checking for traffic over___ shoulder.  [Coreference]
+I went to the ocean to see the fish, turtles, seals, and ___.   [Lexical semantics/topic]
+`
+What can we learn from reconstructing the input?
+By learning to reconstruct masked tokens from their surrounding context, BERT learns useful representations of language, including semantic, syntactic, and contextual relationships.
+
+SLIDE 10
+21/10/2026
+10
+Fine-tuning a pretrained model on a specific task can achieve better performance than 
+training a new model from scratch, especially when task-specific training data are limited.
+`
+Next Step of Pretraining: Finetuning
+
+SLIDE 11
+Pretraining gives the model useful general representations, so task-specific training can focus on adapting this knowledge to the new task rather than learning everything from scratch.
+21/10/2026
+11
+`
+Advantage of Pretrained Model
+
+SLIDE 12
+21/10/2026
+12
+Pretrained Model: Learning representations of language from unlabeled data or easily labeled data.
+Applying the pretrained model for a specific task on a small amount of labeled data.
+`
+Example Use of Pretrained Model: Transfer Learning
+
+SLIDE 13
+21/10/2026
+13
+Decoders
+Language models!  What we’ve seen  so   far.
+Nice to generate  from; can’t  condition  on  future   words .
+Encoders
+Gets  bidirectional context  – can condition on   future!
+Encoder-
+Decoders
+A Transformer contains both encoders (blue) and Decoders (red).
+`
+Model Type for Pre-Training
+
+SLIDE 14
+21/10/2026
+14
+Encoders  Pretraining
+
+SLIDE 15
+21/10/2026
+15
+What  pretraining objective  to   use? 
+Encoders get  bidirectional context 
+Idea: replace some fraction of words in the input with a special  [MASK]  token; predict these words.
+Called  Masked LM : only add loss terms from words that are “masked out.”
+Typical model: BERT
+Masked Language Model
+`
+Pretraining Encoders
+
+SLIDE 16
+21/10/2026
+16
+BERT
+B idirectional  E ncoder  R epresentations from  T ransformers
+It is used to convert sentences to  embeddings  (a list of vectors).
+BERT allows generating contextualized embeddings
+BERT   is   masked   LM
+Replace   input   word   with   [MASK] token or a random token
+It is a pre-training model developed by Google 
+`
+BERT (Overview)
+
+SLIDE 17
+21/10/2026
+17
+`
+Input to and Output from BERT 
+Graph By Daniel Voigt Godoy - https://dvgodoy.github.io/dl-visuals/BERT/, CC BY 4.0, https://commons.wikimedia.org/w/index.php?curid=151177214
+BERT Output:  Contextualized  word  embeddings  are token representations whose meanings depend on the surrounding words in the sentence.
+
+SLIDE 18
+21/10/2026
+18
+During inference:
+The input   is a sentence (sequence of words).
+The output   is a list of vectors, where each vector corresponds to a token in the input sentence.
+ 
+Input tokens:  [CLS]  The   cat   sat  [SEP]
+Indices:         0     1     2     3     4
+BERT Output (after final layer):
+Position 0:  [0.12, -0.34, 0.56, ..., 0.78]  ← vector for [CLS]
+Position 1:  [0.45, 0.23, -0.11, ..., 0.34]  ← vector for "The"
+Position 2:  [0.67, -0.22, 0.89, ..., -0.45] ← vector for "cat"
+Position 3:  [-0.33, 0.77, 0.12, ..., 0.91]  ← vector for "sat"
+Position 4:  [0.21, -0.56, 0.44, ..., -0.23] ← vector for [SEP]
+`
+BERT (Input and Output)
+
+SLIDE 19
+21/10/2026
+19
+BERT is the encoder part of the transformer model.
+`
+BERT Model Structure
+Contextualized embeddings of Inputs
+
+SLIDE 20
+21/10/2026
+20
+Two tasks are performed simultaneously to train a BERT.
+ Masked token prediction. 
+ Next-sentence prediction.
+`
+Two Tasks for Training a BERT
+
+SLIDE 21
+21/10/2026
+21
+Mask out 15% of the input words, and then predict the masked words
+Replace input word with  [MASK]  80% of the time
+Replace input word with a  random token  10% of the time
+Leave input  word unchanged  10% of the time (but still predict it!)
+`
+Masked Language Model (MLM)
+
+SLIDE 22
+21/10/2026
+22
+
+SLIDE 23
+21/10/2026
+23
+To learn relationships between sentences, predict whether sentence B is actual sentence that proceeds sentence A, or a random sentence
+50%
+50%
+`
+Next Sentence Prediction (NSP)
+
+SLIDE 24
+21/10/2026
+24
+
+SLIDE 25
+21/10/2026
+25
+Example 1 of a training sample  .
+: [CLS] The [MASK] sat on the mat [SEP] It was tired [SEP]
+: MLM target: "cat“. NSP target ( y_nsp ) = 1 (real next sentence)
+Example 2 of a training sample 
+: [CLS] The [MASK] sat on the mat [SEP] The sun goes up [SEP]
+: MLM target: "cat“. NSP target ( y_nsp ) = 0 (false next sentence)
+ in each training sample consists of two sentences, separated with the symbol of [SEP]. Some tokens in   are masked, and these tokens appear as part of  .
+ in each training sample contains two parts, one is the masked token, and the other is an indicator on whether the second sentence in   is the next-sentence of the first one.
+ 
+ 
+`
+Two Tasks (MLM & NSP) at Same Time
+
+SLIDE 26
+Input Tokens      ↓
+[BERT Encoder] ← This is the "core" BERT we save after training     ↓
+Hidden States (embeddings)      ↓
+[Task-Specific Heads]     ↓
+Logits (predictions)     ↓
+Loss computation     ↓
+Update Model Parameters
+21/10/2026
+26
+`
+BERT Training Flow
+
+SLIDE 27
+Step 1: Get  Embeddings  with BERT
+Hidden_states  are  embeddings  from BERT
+21/10/2026
+27
+`
+Code Implementation – Forward Pass
+
+SLIDE 28
+Step 2 MLM Head
+21/10/2026
+28
+`
+Code Implementation – Forward Pass
+
+SLIDE 29
+Step 3 MLM Loss
+21/10/2026
+29
+`
+Code Implementation – Forward Pass
+
+SLIDE 30
+Step 4 NSP Head
+21/10/2026
+30
+`
+Code Implementation – Forward Pass
+
+SLIDE 31
+Step 5 NSP Loss
+Step 6 Total Loss
+21/10/2026
+31
+`
+Code Implementation – Forward Pass
+
+SLIDE 32
+21/10/2026
+32
+It is trained on
+Using two approaches
+2500M words in Wikipedia
+800M words on different books
+Next sentence prediction
+Masked language model
+`
+Training Dataset for BERT
+
+SLIDE 33
+21/10/2026
+33
+Embeddings of similar words by BERT are close to each other, implying that BERT understands these words and the embeddings are meaningful representations.
+He didn’t receive  fair  treatment.
+ 
+fair
+Fun  fair  in New York city this summer.
+ 
+fair
+Tom deserves  unbiased  judgement.
+ 
+unbiased
+ 
+Carnival  was packed with fun activities.
+carnival
+`
+Benefits of BERT
+
+SLIDE 34
+21/10/2026
+34
+BERT can generate embeddings for the entire sentence, which can be obtained by pooling (e.g., mean/max pooling) of word  embeddings .
+Amazing movie, I couldn’t blink an eye for initial 45 minutes. It was that intense and interesting at the same time.
+ 
+768 length
+`
+Benefits of BERT
+
+SLIDE 35
+21/10/2026
+35
+For example: email classification as spam or not
+Six chance to win CASH! From 100 to 200000 pounds …
+ 
+BERT
+768 length
+Spam   ?
+…
+`
+Application of BERT
+
+SLIDE 36
+21/10/2026
+36
+BERT encoder reads the entire sequence of words at once.
+It allows the model to learn the context of a word based on all of its surroundings.
+BERT does not need manual labeled data
+High cost of computation
+BERT base: 12 layers, 4 days of training (16 TPUs)
+BERT large: 24 layers, 4 days of training (64 TPUs)
+`
+Features of BERT
+
+SLIDE 37
+21/10/2026
+37
+It’s irresistibly good
+RoBERTa: Robustly Optimized BERT Approach
+Variants of BERT: Robustly Optimized BERT Approach ( RoBERTa )  
+
+SLIDE 38
+21/10/2026
+38
+RoBERTa :  more compute, more data  can improve  pretraining  even  when not  changing the underlying  Transformer   encoder.
+Mainly just train BERT for longer and remove next sentence prediction!
+RoBERTa: Robustly Optimized BERT Approach
+Variants of BERT: Robustly Optimized BERT Approach ( RoBERTa )  
+
+SLIDE 39
+21/10/2026
+39
+SpanBERT : masking contiguous spans of words makes a harder, more useful pretraining task
+RoBERTa: Robustly Optimized BERT Approach
+Variants of BERT: Robustly Optimized BERT Approach ( RoBERTa )  
+
+SLIDE 40
+21/10/2026
+40
+BERT and other   pretrained encoders don’t naturally lead to nice autoregressive (1-word-at-a-time) generation   methods.
+RoBERTa: Robustly Optimized BERT Approach
+Limitation of pretrained Encoder
+
+SLIDE 41
+21/10/2026
+41
+De coders  Pretraining
+
+SLIDE 42
+Pretraining   Decoders
+21/10/2026
+42
+Pretrain decoders as language models and then use them as generators, finetuning their
+This is helpful in tasks where the output is a sequence with a vocabulary like that at pretraining time!
+Dialogue (context=dialogue history)
+Summarization (context=document)
+Typical model: GPTs
+Prediction step 
+ 
+
+SLIDE 43
+21/10/2026
+43
+ChatGPT: a dialogue-based AI chatbot that can understand and respond to natural language.
+ChatGPT is built on GPT.
+RoBERTa: Robustly Optimized BERT Approach
+ChatGPT
+
+SLIDE 44
+21/10/2026
+44
+RoBERTa: Robustly Optimized BERT Approach
+ChatGPT: A General-Purpose Generative AI and Conversational Assistant.
+Caution: It is not always trustable, check the correctness of its answers before using them !!! 
+
+SLIDE 45
+21/10/2026
+45
+𝑓
+What is machine learning? 
+machine
+function
+machine
+learning
+it
+𝑓
+……
+What is machine learning? machine 
+learning
+it
+machine
+learning
+𝑓
+END
+END
+What is machine learning? machine learning is a field of study in artificial intelligence…
+RoBERTa: Robustly Optimized BERT Approach
+How does ChatGPT Work at Inference Time (Intuitive Illustration)?
+N ext-token probability distribution
+
+SLIDE 46
+21/10/2026
+46
+The core of ChatGPT is GPT (ChatGPT is like a car and GPT is like its engine).
+GPT: Generative Pre-Training (Transformer)
+It is a generative pre-training of a  language model  on a diverse corpus of unlabeled text, followed by discriminative fine-tuning on each specific task.
+It uses a multi-layer  Transformer decoder  for the unsupervised pre-training language model
+Supervised fine-tuning was conducted on different tasks
+RoBERTa: Robustly Optimized BERT Approach
+ChatGPT Work at Inference Time?
+
+SLIDE 47
+21/10/2026
+47
+RoBERTa: Robustly Optimized BERT Approach
+GPT Series
+GPT-3.5: used to create the chatbot ChatGPT    GPT-4    GPT-5    GPT-6
+
+SLIDE 48
+21/10/2026
+48
+Transformer
+GPT-2
+GPT-3
+06/2018
+02/2019
+05/2020
+11/2022
+ChatGPT
+06/2017
+10/2018
+GPT
+BERT
+Encoder from Transformer
+Decoder from Transformer
+RoBERTa: Robustly Optimized BERT Approach
+Timeline with Transformer and BERT
+
+SLIDE 49
+21/10/2026
+49
+Recall: GPT is a decoder-only transformer.  GPT-1 was pretrained on unlabeled text and could   subsequently be  fine-tuned  separately for different downstream tasks. 
+RoBERTa : Robustly Optimized BERT Approach
+GPT-1
+Structure for Fine-tuning
+Supervised fine-tuning Taks
+
+SLIDE 50
+21/10/2026
+50
+Type 1: Supervised Fine-Tuning (SFT) .
+How it works: The pre-trained GPT-3 model is further trained on a smaller, high-quality dataset of labeled examples. For instance, to create a coding assistant like Codex, you would fine-tune GPT-3 on millions of pairs of (problem description, solution code).
+Type 2: In-Context Learning (Few-Shot, One-Shot, Zero-Shot)
+This is a unique capability of large models like GPT-3.  It doesn't involve training at all  . The model learns to perform a task from the instructions and examples provided directly in the prompt.
+How it works : You show the model a few examples of the task you want it to do directly in your input text. The model recognizes the pattern and applies it to a new, final example .
+Few-Shot : Providing a few examples in the prompt.
+One-Shot : Providing just one example.
+Zero-Shot : Providing only an instruction, no examples.
+RoBERTa : Robustly Optimized BERT Approach
+Fine-Tuning Tasks (Example with GPT-3)
+
+SLIDE 51
+21/10/2026
+51
+Path 3: Training from Human Feedback (RLHF).
+This is the advanced technique used to create models like  ChatGPT , making them more helpful, harmless, and honest.
+Step 1 (Supervised Fine-Tuning): First, human labelers write example conversations to teach the model the desired tone and format.
+Step 2 (Training a Reward Model - RM): The model generates multiple responses to a prompt. Human labelers rank these responses from best to worst. This data is used to train a separate "Reward Model" that learns to score responses based on human preferences .
+Step 3 (Reinforcement Learning): Finally, GPT-3 is  fine-tuned  using a reinforcement learning algorithm (like PPO). The model gets a "reward" score from the Reward Model for its output and learns to adjust its responses to maximize that reward, effectively aligning its behavior with human values .
+RoBERTa : Robustly Optimized BERT Approach
+Fine-Tuning Tasks (Example with GPT-3)
+
+SLIDE 52
+21/10/2026
+52
+RoBERTa: Robustly Optimized BERT Approach
+Evolution of GPT Models
+GPT models evolved from text generation systems into multimodal, reasoning-capable, and increasingly agentic AI systems.
+Stage 1: Foundation
+GPT-1 (2018):  Introduced pretrained decoder-only Transformer for NLP tasks
+GPT-2 (2019):  Scaled up text generation and improved generative quality.
+GPT-3 (2020):  Demonstrated strong few-shot prompting ability at large scale.
+Stage 2: Conversational & Multimodal
+GPT-3.5 (2022):  Improved instruction following and conversation.
+GPT-4 (2023):  Significantly stronger reasoning and multimodal understanding.
+GPT-4o (2024):  Enabled real-time multimodal interaction with text, image, and audio.
+GPT-4.5 (2025):  Improved conversational quality and intent understanding.
+Stage 3: Reasoning & Agents
+GPT-5 (2025):  Unified fast response and deeper reasoning.
+GPT-5.5 (2026):  Improved coding, research, and agentic workflows.
+GPT-5.6 (2026):  Further improved reasoning efficiency and technical performance.
+GPT-6 (2026):  Latest generation with further advances in general AI capability.
+
+SLIDE 53
+21/10/2026
+53
+Limitations
+ChatGPT  sometimes produces wrong   answers
+ChatGPT  can be affected by changes to the way a question is asked
+RoBERTa: Robustly Optimized BERT Approach
+GPT Limitations
+
+SLIDE 54
+21/10/2026
+54
+Encoder -decoder Pretraining
+
+SLIDE 55
+21/10/2026
+55
+The  encoder   portion benefits from  bidirectional  context; the  decoder   portion  is  used  to train the whole model through language   modeling .
+The typical model: T5
+RoBERTa: Robustly Optimized BERT Approach
+Pretraining Encoder-decoder Transformers
+
+SLIDE 56
+56
+`
+Flow for Training the Encoder-Decoder Transformer
+
+SLIDE 57
+21/10/2026
+57
+Transformer
+GPT-2
+GPT-3
+06/2018
+02/2019
+05/2020
+11/2022
+ChatGPT
+06/2017
+10/2018
+GPT
+BERT
+06/2020
+T5
+Encoder- Decoder Transformer
+RoBERTa: Robustly Optimized BERT Approach
+Large Language Models – T5
+
+SLIDE 58
+21/10/2026
+58
+Every task ,  including translation, question answering, and classification, is cast as feeding T5 model  text as input  and training it to  generate some target text . 
+T5:  T ext- T o- T ext  T ransfer  T ransformer
+The idea of T5 is to treat all text-based language problems into a text-to-text format.
+RoBERTa: Robustly Optimized BERT Approach
+T5 Model
+
+SLIDE 59
+21/10/2026
+59
+RoBERTa: Robustly Optimized BERT Approach
+Text-to-Text Task
+
+SLIDE 60
+21/10/2026
+60
+A prefix to tell the model what to do with the input text.
+T5 treats different NLP tasks as text-to-text problems, using task prefixes to specify what the model should do.
+T5 uses a unified text-to-text framework, allowing one appropriately trained model to perform multiple NLP tasks, such as translation, summarization, and classification, guided by task prefixes.
+The key takeaway: T5's innovation is not that task prefixes magically enable new abilities, but that different NLP tasks can share the same model architecture and text-generation interface.
+RoBERTa: Robustly Optimized BERT Approach
+T5: Take Task Prefix as An Instruction
+
+SLIDE 61
+21/10/2026
+61
+C4 (Colossal Clean Crawled Corpus) is a massive, cleaned English web-text dataset (approximately 750 GB) developed to provide high-quality, diverse training data for T5 pretraining.
+RoBERTa: Robustly Optimized BERT Approach
+C4: Dataset for Training T5
+
+SLIDE 62
+21/10/2026
+62
+Replace different-length spans from the input with unique placeholders; decode out the spans that were removed!
+RoBERTa: Robustly Optimized BERT Approach
+Pretraining Objective
+
+SLIDE 63
+21/10/2026
+63
+Replace different-length spans from the input with unique placeholders; decode out the spans that were removed!
+RoBERTa: Robustly Optimized BERT Approach
+Pretraining Objective
+
+SLIDE 64
+21/10/2026
+64
+Finetuning on various downstream tasks…
+RoBERTa: Robustly Optimized BERT Approach
+Finetuning Tasks
+
+SLIDE 65
+21/10/2026
+65
+Model size variants
+RoBERTa: Robustly Optimized BERT Approach
+Model Size Variants
+
+SLIDE 66
+21/10/2026
+66
+Multilingual T5: T5 is trained on multilingual corpus (101 languages) 
+RoBERTa: Robustly Optimized BERT Approach
+mT5: Multi-language T5
+
+SLIDE 67
+Thank you for Listening!
+67
+Thank you for Listening!
+67

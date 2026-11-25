@@ -1,0 +1,20 @@
+{
+  "rows": 2500,
+  "control_dir": "E:\\HKUST\u8bfe\u7a0b\\AI\\Introduction to AI\\AIAA2205Project\\captioning\\runs\\dinov2_transformer_336_v1",
+  "candidate_dir": "E:\\HKUST\u8bfe\u7a0b\\AI\\Introduction to AI\\AIAA2205Project\\captioning\\runs\\dinov2_transformer_336_decoder4_v1",
+  "control_mean": 0.6862614750862122,
+  "candidate_mean": 0.6893803477287292,
+  "mean_difference": 0.0031189171131700277,
+  "improved": 930,
+  "worse": 867,
+  "equal": 703,
+  "control_below_04": 239,
+  "candidate_below_04": 246,
+  "control_above_07": 1257,
+  "candidate_above_07": 1296,
+  "paired_bootstrap_95_percent_interval": [
+    -0.002513944823294878,
+    0.008857183507643638
+  ],
+  "caveat": "Conditional on this reused validation set and these selected checkpoints. Bootstrap does not measure training-seed variance or remove model-selection bias."
+}

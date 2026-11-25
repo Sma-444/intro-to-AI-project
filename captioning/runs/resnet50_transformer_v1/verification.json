@@ -1,0 +1,19 @@
+{
+  "epoch": 11,
+  "architecture": "resnet50_spatial_transformer",
+  "decode_policy": "beam3",
+  "preprocessing": "resize256_centercrop224",
+  "image_size": 224,
+  "checkpoint_bytes": 111032331,
+  "validation_rows": 2500,
+  "score_on_reload": 0.595902144908905,
+  "score_recorded": 0.596045970916748,
+  "baseline_resnet18_score": 0.528876,
+  "difference_vs_baseline": 0.06702614490890502,
+  "baseline_resnet50_score": 0.5779770612716675,
+  "difference_vs_resnet50": 0.01792508363723755,
+  "baseline_aoa_score": 0.5824428796768188,
+  "difference_vs_aoa": 0.013459265232086182,
+  "best_aoa_beam_score": 0.5869023203849792,
+  "difference_vs_aoa_beam": 0.008999824523925781
+}

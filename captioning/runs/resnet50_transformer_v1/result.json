@@ -1,0 +1,8 @@
+{
+  "best_validation_similarity": 0.596045970916748,
+  "epochs_completed": 15,
+  "checkpoint_bytes": 111032331,
+  "decode_policy": "beam3",
+  "length_alpha": 0.6,
+  "seed": 2205
+}

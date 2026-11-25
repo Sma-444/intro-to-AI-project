@@ -1,0 +1,2216 @@
+SLIDE 1
+AIAA   2205: Introduction   to   AI 
+Convolutional Neural Networks (CNN)
+Chen XU
+The   Hong Kong University of Science and Technology (Guangzhou)
+cx@hkust-gz.edu.cn
+
+SLIDE 2
+How is convolution performed by a convolutional layer.
+Workflow of a CNN.
+What are padding, stride, and pooling?
+The use of filters: to extract features in the input.
+2
+`
+Contents To Be Fully Mastered in This Session
+
+SLIDE 3
+Convolution helps extracting features from images for image processing tasks.
+3
+`
+Processing Images with Convolution
+Extract Vertical Features
+Extract Horizontal Features
+
+SLIDE 4
+4
+`
+More Features Extracted by Convolution
+The emboss or texture extracted by convolution is essentially the “high-contrast outlines” and “repeating surface patterns”.
+
+SLIDE 5
+5
+`
+More Examples of Convolution
+The Laplacian edge detector is a tool that finds the exact boundaries of objects
+
+SLIDE 6
+Convolution applies a small matrix to local regions of an image (numerically represented) to produce a new image, called a feature map.
+6
+`
+What is Convolution?
+
+SLIDE 7
+A grayscale image is a grid of pixels (intuitively, small squares).
+The brightness of each pixel can be represented by a value between 0-255.
+0: Black.
+255: White.
+values in between = shades of gray (e.g., 128 ≈ mid-gray) .
+7
+`
+Numerical Representation of A Grey Scale Image
+
+SLIDE 8
+8
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1
+1
+0
+0
+1
+1
+1
+1
+1
+1
+0
+0
+1
+1
+1
+1
+1
+1
+0
+0
+1
+1
+1
+1
+1
+1
+0
+0
+0
+1
+1
+1
+0
+0
+0
+0
+0
+1
+1
+1
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+input
+output
+kernel
+1
+2
+1
+0
+0
+0
+- 1
+- 2
+- 1
+`
+Convolution: a 2-D example
+
+SLIDE 9
+9
+0
+0
+0
+0
+0
+0 1
+0 2
+0 1
+0
+0
+1
+1
+0
+0 0
+0 0
+0 0
+1
+1
+1
+1
+0
+0 - 1
+1 - 2
+1 - 1
+1
+1
+1
+0
+0
+1
+1
+1
+0
+1
+1
+1
+1
+1
+1
+0
+0
+0
+1
+1
+1
+0
+0
+0
+0
+0
+1
+1
+1
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+input
+output
+1
+2
+1
+0
+0
+0
+- 1
+- 2
+- 1
+- 3
+sliding  window  dot   product
+•
+•
+Match numbers multiplied together, then take the sum.
+kernel
+`
+Convolution: a 2-D Example Kernel
+
+SLIDE 10
+10
+0
+0
+0
+0
+0
+0 1
+0 2
+0 1
+0
+0
+1
+1
+0
+0 0
+0 0
+0 0
+0
+1
+1
+1
+0
+1 - 1
+1 - 2
+1 - 1
+0
+1
+1
+0
+1
+1
+1
+1
+0
+1
+1
+1
+1
+1
+1
+0
+0
+0
+1
+1
+1
+0
+0
+0
+0
+0
+1
+1
+1
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+input
+output
+1
+2
+1
+0
+0
+0
+- 1
+- 2
+- 1
+- 3
+- 4
+sliding  window  dot   product
+•
+•
+Match numbers multiplied together, then take the sum.
+kernel
+`
+Convolution: a 2-D Example Kernel
+
+SLIDE 11
+11
+0
+0
+0
+0
+0
+0 1
+0 2
+0 1
+0
+0
+1
+1
+0
+0 0
+0 0
+0 0
+0
+1
+1
+1
+0
+1 - 1
+1 - 2
+1 - 1
+0
+1
+1
+0
+1
+1
+1
+1
+0
+1
+1
+1
+1
+1
+1
+0
+0
+0
+1
+1
+1
+0
+0
+0
+0
+0
+1
+1
+1
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+input
+output
+1
+2
+1
+0
+0
+0
+- 1
+- 2
+- 1
+- 3
+- 4
+- 4
+sliding  window  dot   product
+•
+•
+kernel
+`
+Convolution: a 2-D Example Kernel
+
+SLIDE 12
+12
+0
+0
+0
+0
+0
+0 1
+0 2
+0 1
+0
+0
+0
+1
+0
+0 0
+0 0
+1 0
+0
+1
+1
+1
+0
+1 - 1
+1 - 2
+1 - 1
+0
+1
+1
+0
+1
+1
+1
+1
+0
+1
+1
+1
+1
+1
+1
+0
+0
+0
+1
+1
+1
+0
+0
+0
+0
+0
+1
+1
+1
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+input
+output
+1
+2
+1
+0
+0
+0
+- 1
+- 2
+- 1
+- 3
+- 4
+- 4
+- 4
+sliding  window  dot   product
+•
+•
+kernel
+`
+Convolution: a 2-D Example Kernel
+
+SLIDE 13
+13
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1
+1
+0
+0
+1
+1
+1
+1
+1
+1
+0
+0
+1
+1
+1
+1
+1
+1
+0
+0
+1
+1
+1
+1
+1
+1
+0
+0
+0
+1
+1
+1
+0 1
+0 2
+0 1
+0
+0
+1
+1
+1
+0 0
+0 0
+0 0
+0
+0
+0
+0
+0
+0 - 1
+0 - 2
+0 - 1
+input
+output
+1
+2
+1
+0
+0
+0
+- 1
+- 2
+- 1
+- 3
+- 4
+- 4
+- 4
+- 4
+- 3
+- 3
+- 4
+- 4
+- 3
+- 1
+0
+0
+0
+0
+0
+0
+0
+2
+1
+0
+1
+3
+3
+2
+1
+0
+1
+3
+3
+1
+3
+4
+3
+1
+0
+sliding  window  dot   product
+•
+•
+kernel
+`
+Convolution: a 2-D Example Kernel
+
+SLIDE 14
+14
+𝑟 :   kernel   radius  kernel   size   =   2 𝑟   +   1
+    input   kernel   weights
+coordinates   in  a   local   window
+output   map
+*   In   ConvNets,   convolution   is   often   implemented   as   cross- correlation   (no   flipping)
+ 
+`
+Convolution in 2D: Formula
+
+SLIDE 15
+15
+For an input signal (e.g., an image), convolution examines  each region  and detects if there is a pre-specified pattern in it. In the example on the right:
+Animation   from:   https://lena-voita.github.io/nlp_course/models/convolutional.html
+Play the animation on the right.
+The blue image is the input.
+The pattern is a cat face.
+Convolution detects if a cat face is present.
+The green image is the detection result.
+`
+How does Convolution Detects the Feature?
+
+SLIDE 16
+kernel
+This   example   is   a   Sobel   edge   extractor   of   horizontal   edges.
+1
+2
+1
+0
+0
+0
+- 1
+- 2
+- 1
+∗
+=
+16
+`
+Kernel for Extracting Horizontal Edges
+
+SLIDE 17
+1
+2
+1
+0
+0
+0
+- 1
+- 2
+- 1
+1
+0
+- 1
+2
+0
+- 2
+1
+0
+- 1
+one   kernel ,   one   feature
+∗
+∗
+=
+=
+17
+Kernel’s feature: A horizontal edge pattern. Bright area above, dark area below.
+Kernel’s feature: A vertical edge pattern. Bright area left, dark area on the right.
+`
+One Kernel, One Feature
+
+SLIDE 18
+one   kernel ,   one   feature
+∗
+∗
+=
+=
+18
+Kernel’s feature: A horizontal edge pattern. Bright area above, dark area below.
+Kernel’s feature: A vertical edge pattern. Bright area left, dark area on the right.
+Horizontal edges are lit up.
+Vertical edges are lit up.
+`
+Visualize the Kernel
+
+SLIDE 19
+19
+`
+Terminology: Filter and Kernel
+A kernel
+1
+2
+1
+0
+0
+0
+- 1
+- 2
+- 1
+A kernel is a 2D tensor (matrix) of real values.
+Convention A:  A filter is another name of kernel.
+Convention B:  A filter contains one or multiple kernels.
+In our slides, we use Convention B , which is consistent with the  PyTorch  implementation. 
+
+SLIDE 20
+20
+`
+Multiple Filters for Extracting Multiple Features
+Note: The result from a single filter is called a  feature map.
+
+SLIDE 21
+The Case for a Color Image (RGB image)
+21
+
+SLIDE 22
+22
+Modern image sensors (in phones, cameras, DSLRs, etc.) don't capture a single number per pixel. Instead, they have separate light-sensitive elements that respond mainly to red, green, or blue wavelengths. So an RGB image is really three grayscale images stacked together
+`
+Three Color Channels (RGB)
+
+SLIDE 23
+23
+`
+An Example Convolutional Layer with a Single Filter
+Notes
+For a convolutional layer, each single layer contain    kernels, where    is the number of input channels. In this example,  .
+The results from kernels in the same filter are added together.
+A convolutional layer may contain several filters.
+ 
+
+SLIDE 24
+24
+`
+An Example Convolutional Layer with two Filters
+Notes
+For a convolutional layer, each single layer contain    kernels, where    is the number of input channels. In this example,  .
+The results from kernels in the same filter are added together.
+A convolutional layer may contain several filters.
+ 
+
+SLIDE 25
+25
+`
+An Example CNN with Two Convolutional Layers
+Convolutional Layer 1
+Input: Three channels (i.e., three matrices)
+Two filters (each contain three kernels).
+Output: Two feature maps (i.e., two matrices)
+Convolutional Layer 2
+Input: Two channels (i.e., two feature maps)
+Three filters (each contain two kernels).
+Output: Three feature maps (i.e., two matrices)
+
+SLIDE 26
+Phrase
+What it means
+“ An  Input channel"
+A plane of the input
+“ An  Output channel"
+A feature map produced by one filter
+"The kernel for channel c"
+The 2D slice of the filter that operates on input channel c
+26
+`
+Terminology: Channels
+
+SLIDE 27
+27
+`
+Illustration of Channels
+
+SLIDE 28
+28
+`
+The Fully-Connected (FC) Layer  
+A fully-connected layer is a regular FNN layer.
+
+SLIDE 29
+Tensor:   high- dimension   array
+feature   maps
+3- D   tensor:   C   ×   H   ×   W
+C:   channels
+H:   height
+W:   width
+29
+Convolution:   tensor   views
+
+SLIDE 30
+Tensor:   high- dimension   array
+feature   maps
+3- D   tensor:   C   ×   H   ×   W
+C:   channels
+H:   height
+W:   width
+filters
+4- D   tensor:   C o   ×   C i   ×  
+C o :   output   channels  (number of filters)
+C i :   input   channels
+K h ,   K w :   filter   height,   width
+30
+Convolution:   tensor   views
+
+SLIDE 31
+Input Shape
+C i   ×   H i   ×   W i :  3   × 64   ×  64
+Output Shape
+C o   ×   H o   ×   W o :  16   ×   64   ×   64
+Shape of Filters:
+C o   ×   C i   ×   K h   ×   K w :  16   ×   3   ×   3   ×   3
+31
+Tensor:   high- dimension   array
+feature   maps
+3- D   tensor:   C   ×   H   ×   W
+C:   channels
+H:   height
+W:   width
+filters
+4- D   tensor:   C o   ×   C i   ×   K h   ×   K w
+C o :   output   channels  (number of filters)
+C i :   input   channels
+K h ,   K w :   filter   height,   width
+`
+Convolution: tensor views
+
+SLIDE 32
+Structure of a Convolutional Layer
+32
+
+SLIDE 33
+Comparing with the regular FNN layer we learnt before, the special points in a convolutional layer are mainly shared weights and local window. We illustrate this idea with an example convolutional layer with  1D input .
+The input image has one color channel with 4 pixels. It is flattened to a 1D array and then fed to the input layer.
+The conv layer has 1 kernel with two weights  .
+Different parts in the input layer share the same weights.
+ 
+33
+`
+Structure of an Example Convolutional Layer with 1D Input 
+
+SLIDE 34
+34
+`
+Difference between Convolutional Layer and Fully-connected Layer
+Input to Conv Layer: Different neurons may share the same weights.
+Input to FC Layer: Different neurons do not share weights.
+
+SLIDE 35
+More Explanations on Structure of a Convolutional Layer
+35
+
+SLIDE 36
+36
+Input layer
+Convolutional Layer
+`
+Convolution Feature: local connection + weight sharing
+
+SLIDE 37
+37
+Input layer
+Convolutional Layer
+`
+Convolution Feature: local connection + weight sharing
+
+SLIDE 38
+38
+Input layer
+Convolutional Layer
+`
+Convolution Feature: local connection + weight sharing
+
+SLIDE 39
+39
+Input layer
+Convolutional Layer
+`
+Convolution Feature: local connection + weight sharing
+
+SLIDE 40
+convolution
+#   params   =   3   here
+40
+Input layer
+Convolutional Layer
+`
+Convolution Feature: local connection + weight sharing
+
+SLIDE 41
+convolution
+locally   connected
+#   params   =   3   here
+#   params   =   12   here  no   weight- sharing
+41
+`
+Convolution Feature: local connection + weight sharing
+
+SLIDE 42
+convolution
+locally   connected
+fully   connected
+#   params   =   3   here
+#   params   =   12   here  no   weight- sharing
+#   params   =   24   here  no   weight- sharing
+42
+`
+Convolution Feature: local connection + weight sharing
+
+SLIDE 43
+43
+Filters in the Convolutional Layers
+weights:   C o   ×   C i   ×   K h   ×   K w
+bias:   C o
+In FC-Layers
+Weights 
+Biases 
+ 
+`
+CNN Parameters to Be Trained
+
+SLIDE 44
+More Designs on Convolution  --Padding and Stride
+44
+
+SLIDE 45
+45
+input:   H   ×   W   =   8   ×   8
+output:   H   ×   W   =   6   ×   6
+filter
+`
+Convolution without Padding
+Convolution without padding  (often called  "valid" convolution  or  "no padding" ) means you slide the kernel only over positions where it fits entirely inside the input 
+
+SLIDE 46
+46
+input:   H   ×   W   =   8   ×   8
+output:   H   ×   W   =   6   ×   6
+filter
+`
+Convolution without Padding
+
+SLIDE 47
+Convolution:   padding
+47
+input:   H   ×   W   =   8   ×   8
+output:   H   ×   W   =   6   ×   6
+filter
+`
+Convolution without Padding
+
+SLIDE 48
+48
+input:   H   ×   W   =   8   ×   8
+output:   H   ×   W   =   6   ×   6
+filter
+`
+Convolution without Padding
+
+SLIDE 49
+49
+input:   H   ×   W   =   8   ×   8
+output:   H   ×   W   =   6   ×   6
+filter
+`
+Convolution without Padding
+
+SLIDE 50
+50
+input:   H   ×   W   =   8   ×   8
+output:   H   ×   W   =   6   ×   6
+filter
+`
+Convolution without Padding
+
+SLIDE 51
+51
+input:   H   ×   W   =   8   ×   8
+output:   H   ×   W   =   6   ×   6
+filter
+H out   =   H in   –   K h   +   1
+`
+Convolution without Padding
+
+SLIDE 52
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+52
+output:   H   ×   W   =   8   ×   8
+filter
+`
+Convolution with Padding
+
+SLIDE 53
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+53
+output:   H   ×   W   =   8   ×   8
+filter
+`
+Convolution with Padding
+
+SLIDE 54
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+54
+output:   H   ×   W   =   8   ×   8
+filter
+`
+Convolution with Padding
+
+SLIDE 55
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+55
+output:   H   ×   W   =   8   ×   8
+filter
+`
+Convolution with Padding
+
+SLIDE 56
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+56
+output:   H   ×   W   =   8   ×   8
+filter
+`
+Convolution with Padding
+
+SLIDE 57
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+57
+output:   H   ×   W   =   8   ×   8
+filter
+`
+Convolution with Padding
+
+SLIDE 58
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+58
+output:   H   ×   W   =   8   ×   8
+filter
+`
+Convolution with Padding
+
+SLIDE 59
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+59
+output:   H   ×   W   =   8   ×   8
+filter
+`
+Convolution with Padding
+
+SLIDE 60
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+60
+output:   H   ×   W   =   8   ×   8
+filter
+`
+Convolution with Padding
+
+SLIDE 61
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+61
+output:   H   ×   W   =   8   ×   8
+filter
+pad   = 	 kernel_size   /   2
+maintains   feature   map   size
+H out   =   H in   +   2pad h   –   K h   +   1
+`
+Convolution with Padding
+
+SLIDE 62
+stride   =   2
+62
+output
+filter
+`
+Convolution with Stride
+
+SLIDE 63
+stride   =   2
+o
+Convolution:   stride
+input
+63
+output
+filter
+o
+`
+Convolution with Stride
+
+SLIDE 64
+stride   =   2
+o
+o
+Convolution:   stride
+input
+64
+output
+filter
+o
+o
+`
+Convolution with Stride
+
+SLIDE 65
+stride   =   2
+o
+o
+o
+Convolution:   stride
+input
+65
+output
+filter
+o
+o
+o
+`
+Convolution with Stride
+
+SLIDE 66
+stride   =   2
+o
+o
+o
+o
+Convolution:   stride
+input
+66
+output
+filter
+o
+o
+o
+o
+`
+Convolution with Stride
+
+SLIDE 67
+stride   =   2
+o
+o
+o
+o
+o
+Convolution:   stride
+input
+67
+output
+filter
+o
+o
+o
+o
+o
+`
+Convolution with Stride
+
+SLIDE 68
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+Convolution:   stride
+input
+68
+output
+filter
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+`
+Convolution with Stride
+
+SLIDE 69
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+Convolution:   stride
+input:   H   ×   W   =   8   ×   8
+69
+output:   H   ×   W   =   4   ×   4
+filter
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+stride   =   2
+`
+Convolution with Stride
+
+SLIDE 70
+Convolution:   stride
+input:   H   ×   W   =   8   ×   8
+70
+output:   H   ×   W   =   4   ×   4
+filter
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+stride   =   2
+reduces   feature   map   size
+compress   and   abstract
+H out   =   ⌊ (H in   +   2pad h –   K h )   /   str ⌋ +   1
+*rounding   operation   depends   on   libraries
+`
+Convolution with Stride
+
+SLIDE 71
+Padding  → adds extra pixels (usually zeros) around the borders of the input → helps control / prevent shrinking of the output size and preserves border information.
+Stride  → controls how many pixels the filter jumps / skips after each position → used to reduce ( downsample ) the output size and increase the receptive field quickly.
+71
+`
+Summary: Padding and Stride
+
+SLIDE 72
+Pooling: A Technique to Reduce Amount of Parameters
+72
+
+SLIDE 73
+Pooling
+`
+Convolution with Pooling
+An Example Output from a Convolutional Layer 
+Pooling reduces the spatial size (H × W) of feature maps by summarizing a local window (e.g., max or average) → lowers computation and memory, provides a form of translation invariance, and increases the effective receptive field.
+
+SLIDE 74
+Reduce the spatial size
+Reduce the amount of parameters
+Avoid over-fitting
+`
+Purposes of Pooling
+
+SLIDE 75
+Max Pooling
+Average Pooling
+`
+Popular Pooling Methods
+Max pool ing   with 2   2 filters and stride 2
+ 
+
+SLIDE 76
+Fully Connected Feedforward network
+[c at ,  dog ,   pig,   horse]
+Convolution
+Max 
+Convolution
+Max 
+Flattened
+Can repeat many times
+ground   truth:   [1,   0,   0, 0]
+`
+Flow of An Example CNN
+
+SLIDE 77
+77
+Co n v   (C ou t = 20 ,   K = 5 ,   P = 2 ,   S= 1 ) 	 2 0   x   2 8   x   2 8 	 2 0   x   1   x   5   x   5
+R e L U 	 2 0   x   2 8   x   28
+M a x P oo l ( K = 2 ,   S= 2 ) 	 2 0   x   1 4   x   1 4
+Co n v   (C ou t = 50 ,   K = 5 ,   P = 2 ,   S= 1 ) 	 5 0   x   1 4   x   1 4 	 5 0   x   2 0   x   5   x   5
+R e L U 	 5 0   x   1 4   x   14
+M a x P oo l (K = 2 ,   S= 2 ) 	 5 0   x   7   x   7
+Fl a t t e n 	 2450
+Line ar   ( 245 0   - >   500 ) 	 50 0 	 245 0   x   500
+R e L U   	 500
+Line ar   ( 50 0   - >   10 ) 	 1 0 	 50 0   x   10
+L e c un   e t   al ,   “ G r adi e n t - bas e d   l e a r nin g   appli e d   t o   d o c u m e n t   r e c o g niti o n ” ,   1998
+L a y e r
+O u t pu t   S i z e
+W e ig h t   S i z e
+I nput
+1   x   2 8   x   2 8
+`
+Example CNN with Dimensions
+
+SLIDE 78
+78
+M a x P oo l ( K = 2 ,   S= 2 ) 	 2 0   x   1 4   x   1 4
+Co n v   (C ou t = 50 ,   K = 5 ,   P = 2 ,   S= 1 ) 	 5 0   x   1 4   x   1 4 	 5 0   x   2 0   x   5   x   5
+R e L U 	 5 0   x   1 4   x   14
+M a x P oo l (K = 2 ,   S= 2 ) 	 5 0   x   7   x   7
+Fl a t t e n 	 2450
+Line ar   ( 245 0   - >   500 ) 	 50 0 	 245 0   x   500
+R e L U   	 500
+Line ar   ( 50 0   - >   10 ) 	 1 0 	 50 0   x   10
+L e c un   e t   al ,   “ G r adi e n t - bas e d   l e a r nin g   appli e d   t o   d o c u m e n t   r e c o g niti o n ” ,   1998
+L a y e r
+O u t pu t   S i z e
+W e ig h t   S i z e
+I nput
+1   x   2 8   x   2 8
+Co n v   (C ou t = 20 ,   K= 5 ,   P = 2 ,   S= 1 )
+2 0   x   2 8   x   28
+2 0   x   1   x   5   x   5
+R e L U
+2 0   x   2 8   x   28
+`
+Example CNN with Dimensions
+
+SLIDE 79
+79
+Co n v   (C ou t = 50 ,   K = 5 ,   P = 2 ,   S= 1 ) 	 5 0   x   1 4   x   1 4 	 5 0   x   2 0   x   5   x   5
+R e L U 	 5 0   x   1 4   x   14
+M a x P oo l (K = 2 ,   S= 2 ) 	 5 0   x   7   x   7
+Fl a t t e n 	 2450
+Line ar   ( 245 0   - >   500 ) 	 50 0 	 245 0   x   500
+R e L U   	 500
+Line ar   ( 50 0   - >   10 ) 	 1 0 	 50 0   x   10
+L e c un   e t   al ,   “ G r adi e n t - bas e d   l e a r nin g   appli e d   t o   d o c u m e n t   r e c o g niti o n ” ,   1998
+L a y e r
+O u t pu t   S i z e
+W e ig h t   S i z e
+I nput
+1   x   2 8   x   2 8
+Co n v   (C ou t = 20 ,   K= 5 ,   P = 2 ,   S= 1 )
+2 0   x   2 8   x   28
+2 0   x   1   x   5   x   5
+R e L U
+2 0   x   2 8   x   28
+M a x P oo l ( K= 2 ,   S= 2 )
+2 0   x   1 4   x   1 4
+`
+Example CNN with Dimensions
+
+SLIDE 80
+80
+M a x P oo l (K = 2 ,   S= 2 ) 	 5 0   x   7   x   7
+Fl a t t e n 	 2450
+Line ar   ( 245 0   - >   500 ) 	 50 0 	 245 0   x   500
+R e L U   	 500
+Line ar   ( 50 0   - >   10 ) 	 1 0 	 50 0   x   10
+L e c un   e t   al ,   “ G r adi e n t - bas e d   l e a r nin g   appli e d   t o   d o c u m e n t   r e c o g niti o n ” ,   1998
+L a y e r
+O u t pu t   S i z e
+W e ig h t   S i z e
+I nput
+1   x   2 8   x   2 8
+Co n v   (C ou t = 20 ,   K= 5 ,   P = 2 ,   S= 1 )
+2 0   x   2 8   x   28
+2 0   x   1   x   5   x   5
+R e L U
+2 0   x   2 8   x   28
+M a x P oo l ( K= 2 ,   S= 2 )
+2 0   x   1 4   x   1 4
+Co n v   (C ou t = 50 ,   K= 5 ,   P = 2 ,   S= 1 )
+5 0   x   1 4   x   14
+5 0   x   2 0   x   5   x   5
+R e L U
+5 0   x   1 4   x   14
+`
+Example CNN with Dimensions
+
+SLIDE 81
+81
+Fl a t t e n 	 2450
+Line ar   ( 245 0   - >   500 ) 	 50 0 	 245 0   x   500
+R e L U   	 500
+Line ar   ( 50 0   - >   10 ) 	 1 0 	 50 0   x   10
+L e c un   e t   al ,   “ G r adi e n t - bas e d   l e a r nin g   appli e d   t o   d o c u m e n t   r e c o g niti o n ” ,   1998
+L a y e r
+O u t pu t   S i z e
+W e ig h t   S i z e
+I nput
+1   x   2 8   x   2 8
+Co n v   (C ou t = 20 ,   K= 5 ,   P = 2 ,   S= 1 )
+2 0   x   2 8   x   28
+2 0   x   1   x   5   x   5
+R e L U
+2 0   x   2 8   x   28
+M a x P oo l ( K= 2 ,   S= 2 )
+2 0   x   1 4   x   1 4
+Co n v   (C ou t = 50 ,   K= 5 ,   P = 2 ,   S= 1 )
+5 0   x   1 4   x   14
+5 0   x   2 0   x   5   x   5
+R e L U
+5 0   x   1 4   x   14
+M a x P oo l (K = 2 ,   S= 2 )
+5 0   x   7   x   7
+`
+Example CNN with Dimensions
+
+SLIDE 82
+82
+Line ar   ( 245 0   - >   500 ) 	 50 0 	 245 0   x   500
+R e L U   	 500
+Line ar   ( 50 0   - >   10 ) 	 1 0 	 50 0   x   10
+L e c un   e t   al ,   “ G r adi e n t - bas e d   l e a r nin g   appli e d   t o   d o c u m e n t   r e c o g niti o n ” ,   1998
+L a y e r
+O u t pu t   S i z e
+W e ig h t   S i z e
+I nput
+1   x   2 8   x   2 8
+Co n v   (C ou t = 20 ,   K= 5 ,   P = 2 ,   S= 1 )
+2 0   x   2 8   x   28
+2 0   x   1   x   5   x   5
+R e L U
+2 0   x   2 8   x   28
+M a x P oo l ( K= 2 ,   S= 2 )
+2 0   x   1 4   x   1 4
+Co n v   (C ou t = 50 ,   K= 5 ,   P = 2 ,   S= 1 )
+5 0   x   1 4   x   14
+5 0   x   2 0   x   5   x   5
+R e L U
+5 0   x   1 4   x   14
+M a x P oo l (K = 2 ,   S= 2 )
+5 0   x   7   x   7
+Fl a t t e n
+2450
+`
+Example CNN with Dimensions
+
+SLIDE 83
+83
+Line ar   ( 50 0   - >   10 ) 	 1 0 	 50 0   x   10
+L e c un   e t   al ,   “ G r adi e n t - bas e d   l e a r nin g   appli e d   t o   d o c u m e n t   r e c o g niti o n ” ,   1998
+L a y e r
+O u t pu t   S i z e
+W e ig h t   S i z e
+I nput
+1   x   2 8   x   2 8
+Co n v   (C ou t = 20 ,   K= 5 ,   P = 2 ,   S= 1 )
+2 0   x   2 8   x   28
+2 0   x   1   x   5   x   5
+R e L U
+2 0   x   2 8   x   28
+M a x P oo l ( K= 2 ,   S= 2 )
+2 0   x   1 4   x   1 4
+Co n v   (C ou t = 50 ,   K= 5 ,   P = 2 ,   S= 1 )
+5 0   x   1 4   x   14
+5 0   x   2 0   x   5   x   5
+R e L U
+5 0   x   1 4   x   14
+M a x P oo l (K = 2 ,   S= 2 )
+5 0   x   7   x   7
+Fl a t t e n
+2450
+Linear   (245 0   - >   500)
+500
+245 0   x   500
+R e L U
+500
+`
+Example CNN with Dimensions
+
+SLIDE 84
+84
+L e c un   e t   al ,   “ G r adi e n t - bas e d   l e a r nin g   appli e d   t o   d o c u m e n t   r e c o g niti o n ” ,   1998
+L a y e r
+O u t pu t   S i z e
+W e ig h t   S i z e
+I nput
+1   x   2 8   x   2 8
+Co n v   (C ou t = 20 ,   K= 5 ,   P = 2 ,   S= 1 )
+2 0   x   2 8   x   28
+2 0   x   1   x   5   x   5
+R e L U
+2 0   x   2 8   x   28
+M a x P oo l ( K= 2 ,   S= 2 )
+2 0   x   1 4   x   1 4
+Co n v   (C ou t = 50 ,   K= 5 ,   P = 2 ,   S= 1 )
+5 0   x   1 4   x   14
+5 0   x   2 0   x   5   x   5
+R e L U
+5 0   x   1 4   x   14
+M a x P oo l (K = 2 ,   S= 2 )
+5 0   x   7   x   7
+Fl a t t e n
+2450
+Linear   (245 0   - >   500)
+500
+245 0   x   500
+R e L U
+500
+Linear   (50 0   - >   10)
+10
+50 0   x   10
+`
+Example CNN with Dimensions
+
+SLIDE 85
+85
+L e c un   e t   al ,   “ G r adi e n t - bas e d   l e a r nin g   appli e d   t o   d o c u m e n t   r e c o g niti o n ” ,   1998
+As   w e   g o   t h r o u g h   the   n e t w o rk:
+Sp a t ia l   s i z e   d ec r e a s e s
+(us i n g   p oo li n g   o r   s t ri d e d   c o n v )
+Nu m b e r   o f   c h a nn e l s   in c r e a s e s
+( t o t a l   “ v o l u m e ”   i s   p r e s e r v e d !)
+L a y e r
+O u t pu t   S i z e
+W e ig h t   S i z e
+I nput
+1   x   2 8   x   2 8
+Co n v   (C ou t = 20 ,   K= 5 ,   P = 2 ,   S= 1 )
+2 0   x   2 8   x   28
+2 0   x   1   x   5   x   5
+R e L U
+2 0   x   2 8   x   28
+M a x P oo l ( K= 2 ,   S= 2 )
+2 0   x   1 4   x   1 4
+Co n v   (C ou t = 50 ,   K= 5 ,   P = 2 ,   S= 1 )
+5 0   x   1 4   x   14
+5 0   x   2 0   x   5   x   5
+R e L U
+5 0   x   1 4   x   14
+M a x P oo l (K = 2 ,   S= 2 )
+5 0   x   7   x   7
+Fl a t t e n
+2450
+Linear   (245 0   - >   500)
+500
+245 0   x   500
+R e L U
+500
+Linear   (50 0   - >   10)
+10
+50 0   x   10
+`
+Example CNN with Dimensions
+
+SLIDE 86
+86
+L e c un   e t   al ,   “ G r adi e n t - bas e d   l e a r nin g   appli e d   t o   d o c u m e n t   r e c o g niti o n ” ,   1998
+As   w e   g o   t h r o u g h   the   n e t w o rk:
+Sp a t ia l   s i z e   d ec r e a s e s
+(us i n g   p oo li n g   o r   s t ri d e d   c o n v )
+Nu m b e r   o f   c h a nn e l s   in c r e a s e s
+( t o t a l   “ v o l u m e ”   i s   p r e s e r v e d !)
+S o m e   m o d er n   a r ch i t e ct u r e s   b r e a k   t h i s   t r e nd   - -   s t a y   t un e d !
+L a y e r
+O u t pu t   S i z e
+W e ig h t   S i z e
+I nput
+1   x   2 8   x   2 8
+Co n v   (C ou t = 20 ,   K= 5 ,   P = 2 ,   S= 1 )
+2 0   x   2 8   x   28
+2 0   x   1   x   5   x   5
+R e L U
+2 0   x   2 8   x   28
+M a x P oo l ( K= 2 ,   S= 2 )
+2 0   x   1 4   x   1 4
+Co n v   (C ou t = 50 ,   K= 5 ,   P = 2 ,   S= 1 )
+5 0   x   1 4   x   14
+5 0   x   2 0   x   5   x   5
+R e L U
+5 0   x   1 4   x   14
+M a x P oo l (K = 2 ,   S= 2 )
+5 0   x   7   x   7
+Fl a t t e n
+2450
+Linear   (245 0   - >   500)
+500
+245 0   x   500
+R e L U
+500
+Linear   (50 0   - >   10)
+10
+50 0   x   10
+`
+Example CNN with Dimensions
+
+SLIDE 87
+PyTorch  Implementations
+87
+
+SLIDE 88
+88
+`
+PyTorch  Convolution Layer
+N : Batch size
+C : Number of channels
+L  :  1D Input Length 
+( H, W ) : Height and width of 2D input.  
+( D, H, W ) :  Dimension number, height, and width of 3D Input.
+PyTorch   Module
+Input Shape
+Example Input
+Conv1d
+(N,  , L)
+Speech (1D)
+Conv2d
+(N,  , H, W)
+Image (2D)
+Conv3d
+(N,  , D, H, W)
+Video (3D)
+PyTorch   Module
+Input Shape
+Example Input
+Conv1d
+Speech (1D)
+Conv2d
+Image (2D)
+Conv3d
+Video (3D)
+
+SLIDE 89
+89
+`
+PyTorch  Module for 2D Convolutional Layer
+
+SLIDE 90
+90
+`
+PyTorch  Convolution Layer
+
+SLIDE 91
+CNN Code Implementation: See CIFAR10_SimpleCNN_PyTorch.ipynb
+91
+
+SLIDE 92
+Batch Normalization
+92
+
+SLIDE 93
+Idea: “Normalize” the outputs of a layer so they have zero mean and unit variance
+Why? Helps reduce “internal covariate shift”, improves optimization. 
+93
+Io f f e   and   S z e g e d y ,   “ Ba t c h   n o r m ali z a ti o n :   A cc e l e r a tin g   d ee p   n e t w o rk   t r ainin g   b y   r e du c in g   i nt er nal   c o v a r i a t e   shi f t ” ,   I C M L   2015
+`
+Batch Normalization
+
+SLIDE 94
+94
+`
+Batch Normalization for a Single Output Channel
+Suppose there is a batch of   input images. The output for the    image is denoted as  . Then, we compute the sample mean and standard deviation for this output channel 
+Batch-normalization formula, where   is added for numerical stability. 
+ 
+
+SLIDE 95
+95
+`
+Batch Normalization for Multiple Output Channels
+Suppose a convolutional layer contain   channels. Then, for any output channel, the batch normalization method is the same as that for a single channel (explained in the previous slide). Specifically, for the   channel,
+Let the output of channel   from the   input be denoted as  .
+Compute the sample mean and standard deviation for this output channel 
+Batch-normalization formula, where   is added for numerical stability. 
+ 
+
+SLIDE 96
+96
+Conv Layer
+BN
+t a nh
+FC
+BN
+t a nh
+Us u a ll y   i n s e r t e d   a f t e r   F u ll y   C o nne c t e d   o r   C o n v o l u t i o n al   l ay e r s ,   a n d   b e f o r e   n o n li ne a r i t y .
+I off e   a nd   S z ege d y,   “ Bat c h   no r m a li zat i on :   A cc e l e rat i n g   d ee p   n e t w o r k   tra i n i n g   b y   r e du c i n g   i n t e r n a l   c ov ar i at e   s h i f t ”,   I CM L   201 5
+`
+Batch Normalization Step
+
+SLIDE 97
+M a k e s   d ee p   n e t w o r k s   muc h   e a si er   t o   t r a i n !
+A ll o w s   h i g h er   l e arn i n g   r a t e s ,   f a s t er   c o nv e r g e n c e
+N e t w o r k s   b e c o m e   m o r e   r o bu s t   t o   i n i t i a li z a t io n
+Ac t s   as   r e g u l ar i z a t io n   dur i n g   t r a i n i n g
+Z e r o   o v e rh e ad   a t   t e s t - ti m e:   c an   b e   f u s e d   wit h   c o n v!
+No t   w e l l-und e r s t oo d   th e o r e t i c a ll y   ( y e t )
+97
+I off e   a nd   S z ege d y,   “ Bat c h   no r m a li zat i on :   A cc e l e rat i n g   d ee p   n e t w o r k   tra i n i n g   b y   r e du c i n g   i n t e r n a l   c ov ar i at e   s h i f t ”,   I CM L   201 5
+FC
+BN
+t a nh
+FC
+BN
+t a nh
+`
+Benefits of Batch Normalization
+
+SLIDE 98
+CNN-Based Vision Models
+98
+
+SLIDE 99
+LeNet , 1998
+AlexNet , 2012
+VGGNet , 2014
+ResNet , 2015
+Inception Net
+ResNet
+Unet
+`
+The popular CNNs   
+5%   is   the   human   level
+Error   rate
+
+SLIDE 100
+100
+5  layers 
+2 conv and 3 FC
+60 thousand parameters
+Only two complete convolutional layers
+Conv, nonlinearities, and  as one FC layer
+ 
+`
+LeNet
+
+SLIDE 101
+AlexNet :  a layered model composed of convolution, subsampling, and further operations followed by a holistic representation and all-in-all a landmark classifier .  
+ILSVRC12   ( ImageNet Large Scale Visual Recognition Challenge 2012 ) . 
++ data
++  GPU
++ non-saturating nonlinearity
+  ( e.g.,   ReLU )
++ regularization
+`
+AlexNet : 2012. Input 224*224*3. GPU.
+
+SLIDE 102
+16 layers
+Only 3   3 convolutions   (unlike   AlexNet )
+138 million parameters
+ 
+Deeper
+`
+VGGNet
+
+SLIDE 103
+https://www.mygreatlearning.com/blog/resnet/#sh1
+ResNet 18
+ResNet 34
+ResNet50 
+ResNet101 
+ResNet152 
+ResNet50V2 
+ResNet101V2 
+ResNet152V2 
+Residual   block
+`
+ResNet
+
+SLIDE 104
+2026/9/30
+104
+✅  What is the Degradation Problem?
+In deep learning, it's intuitive to think:   The deeper the network, the better its representational capacity, and thus the lower the training error.
+However, in practice:
+  When we increase the number of layers in a plain deep neural network (e.g., beyond 20 or 50 layers),
+  Training error actually increases , which is unexpected.
+  This is  not caused by overfitting , since it happens on the training set itself.
+  Instead, it's a symptom of optimization difficulties — gradients may vanish, explode, or become unstable.
+This phenomenon is called the  degradation problem .
+
+SLIDE 105
+2026/9/30
+105
+
+SLIDE 106
+2026/9/30
+106
+✅  Why Is This Effective?
+   The identity mapping  x→x  is easy to learn.
+   If some layers are not needed, the network can simply learn F(x)   =   0, effectively skipping them.
+  Thus, deeper networks behave no worse than shallower ones — avoiding degradation.
+  This enables building very deep networks ( e.g. , ResNet-50, ResNet-101) with good performance.
+
+SLIDE 107
+107
+1 1   Convolution
+ 
+adjust the number of channels;
+increase nonlinearity;
+reduce parameter .
+`
+GoogLeNet  (Inception net)
+
+SLIDE 108
+108
+`
+GoogLeNet  (Inception net)
+
+SLIDE 109
+109
+`
+GoogLeNet  (Inception net)
+Example:
+  Input size:  
+  Four output branches:
+Branch 1  (1×1 conv): 
+Branch 2  (1×1 → 3×3 conv): 
+Branch 3  (1×1 → 5×5 conv): 
+Branch 4  (pool → 1×1 conv): 
+ 
+After Filter Concatenation:
+All outputs share the same  spatial dimension (28×28) , so they can be concatenated along the  channel axis :
+ 
+
+SLIDE 110
+`
+Computational complexity
+Comparing   Complexity

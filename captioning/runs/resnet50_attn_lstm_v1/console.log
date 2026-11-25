@@ -1,0 +1,112 @@
+Device: cuda; images: 12000 train / 2500 validation
+Backbone: resnet50; parameters: 30,047,945
+Vocabulary: 1417; batch size: 24; checkpoint dir: E:\HKUST�γ�\AI\Introduction to AI\AIAA2205Project\captioning\runs\resnet50_attn_lstm_v1
+Trainable encoder layers initially: none; unfreeze layer4 after 2 epochs
+epoch 01/16 step 0100/500 token_loss=4.2674
+epoch 01/16 step 0200/500 token_loss=3.6306
+epoch 01/16 step 0300/500 token_loss=3.2963
+epoch 01/16 step 0400/500 token_loss=3.0855
+epoch 01/16 step 0500/500 token_loss=2.9335
+W1118 15:27:00.049000 48592 .env\site-packages\torch\distributed\elastic\multiprocessing\redirects.py:29] NOTE: Redirects are currently not supported in Windows or MacOs.
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|��������������������| 103/103 [00:00<00:00, 3429.93it/s]
+epoch 01: loss=2.9335, validation_similarity=0.508898, time=2.1 min, predictions=E:\HKUST�γ�\AI\Introduction to AI\AIAA2205Project\captioning\runs\resnet50_attn_lstm_v1\validation_predictions.csv
+Saved new best checkpoint: 0.508898 (120.5 MB)
+epoch 02/16 step 0100/500 token_loss=2.1237
+epoch 02/16 step 0200/500 token_loss=2.1080
+epoch 02/16 step 0300/500 token_loss=2.0787
+epoch 02/16 step 0400/500 token_loss=2.0587
+epoch 02/16 step 0500/500 token_loss=2.0385
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|��������������������| 103/103 [00:00<00:00, 2619.90it/s]
+epoch 02: loss=2.0385, validation_similarity=0.540785, time=1.1 min, predictions=E:\HKUST�γ�\AI\Introduction to AI\AIAA2205Project\captioning\runs\resnet50_attn_lstm_v1\validation_predictions.csv
+Saved new best checkpoint: 0.540785 (120.5 MB)
+Unfroze ResNet layer4 for low-rate fine-tuning
+epoch 03/16 step 0100/500 token_loss=1.8239
+epoch 03/16 step 0200/500 token_loss=1.8136
+epoch 03/16 step 0300/500 token_loss=1.8063
+epoch 03/16 step 0400/500 token_loss=1.8020
+epoch 03/16 step 0500/500 token_loss=1.7948
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|��������������������| 103/103 [00:00<00:00, 2289.50it/s]
+epoch 03: loss=1.7948, validation_similarity=0.564401, time=1.4 min, predictions=E:\HKUST�γ�\AI\Introduction to AI\AIAA2205Project\captioning\runs\resnet50_attn_lstm_v1\validation_predictions.csv
+Saved new best checkpoint: 0.564401 (120.5 MB)
+epoch 04/16 step 0100/500 token_loss=1.6017
+epoch 04/16 step 0200/500 token_loss=1.6027
+epoch 04/16 step 0300/500 token_loss=1.6057
+epoch 04/16 step 0400/500 token_loss=1.6033
+epoch 04/16 step 0500/500 token_loss=1.6028
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|��������������������| 103/103 [00:00<00:00, 2520.51it/s]
+epoch 04: loss=1.6028, validation_similarity=0.575930, time=1.5 min, predictions=E:\HKUST�γ�\AI\Introduction to AI\AIAA2205Project\captioning\runs\resnet50_attn_lstm_v1\validation_predictions.csv
+Saved new best checkpoint: 0.575930 (120.5 MB)
+epoch 05/16 step 0100/500 token_loss=1.4575
+epoch 05/16 step 0200/500 token_loss=1.4596
+epoch 05/16 step 0300/500 token_loss=1.4594
+epoch 05/16 step 0400/500 token_loss=1.4596
+epoch 05/16 step 0500/500 token_loss=1.4614
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|��������������������| 103/103 [00:00<00:00, 2983.41it/s]
+epoch 05: loss=1.4614, validation_similarity=0.573624, time=1.4 min, predictions=E:\HKUST�γ�\AI\Introduction to AI\AIAA2205Project\captioning\runs\resnet50_attn_lstm_v1\validation_predictions.csv
+epoch 06/16 step 0100/500 token_loss=1.3480
+epoch 06/16 step 0200/500 token_loss=1.3387
+epoch 06/16 step 0300/500 token_loss=1.3415
+epoch 06/16 step 0400/500 token_loss=1.3434
+epoch 06/16 step 0500/500 token_loss=1.3491
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|��������������������| 103/103 [00:00<00:00, 3263.36it/s]
+epoch 06: loss=1.3491, validation_similarity=0.576663, time=1.0 min, predictions=E:\HKUST�γ�\AI\Introduction to AI\AIAA2205Project\captioning\runs\resnet50_attn_lstm_v1\validation_predictions.csv
+Saved new best checkpoint: 0.576663 (120.5 MB)
+epoch 07/16 step 0100/500 token_loss=1.2536
+epoch 07/16 step 0200/500 token_loss=1.2545
+epoch 07/16 step 0300/500 token_loss=1.2584
+epoch 07/16 step 0400/500 token_loss=1.2615
+epoch 07/16 step 0500/500 token_loss=1.2637
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|��������������������| 103/103 [00:00<00:00, 3461.09it/s]
+epoch 07: loss=1.2637, validation_similarity=0.577920, time=1.0 min, predictions=E:\HKUST�γ�\AI\Introduction to AI\AIAA2205Project\captioning\runs\resnet50_attn_lstm_v1\validation_predictions.csv
+Saved new best checkpoint: 0.577920 (120.5 MB)
+epoch 08/16 step 0100/500 token_loss=1.1766
+epoch 08/16 step 0200/500 token_loss=1.1848
+epoch 08/16 step 0300/500 token_loss=1.1897
+epoch 08/16 step 0400/500 token_loss=1.1924
+epoch 08/16 step 0500/500 token_loss=1.1956
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|��������������������| 103/103 [00:00<00:00, 3115.14it/s]
+epoch 08: loss=1.1956, validation_similarity=0.576887, time=1.0 min, predictions=E:\HKUST�γ�\AI\Introduction to AI\AIAA2205Project\captioning\runs\resnet50_attn_lstm_v1\validation_predictions.csv
+epoch 09/16 step 0100/500 token_loss=1.1434
+epoch 09/16 step 0200/500 token_loss=1.1427
+epoch 09/16 step 0300/500 token_loss=1.1440
+epoch 09/16 step 0400/500 token_loss=1.1464
+epoch 09/16 step 0500/500 token_loss=1.1466
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|��������������������| 103/103 [00:00<00:00, 2443.39it/s]
+epoch 09: loss=1.1466, validation_similarity=0.577387, time=1.0 min, predictions=E:\HKUST�γ�\AI\Introduction to AI\AIAA2205Project\captioning\runs\resnet50_attn_lstm_v1\validation_predictions.csv
+epoch 10/16 step 0100/500 token_loss=1.0938
+epoch 10/16 step 0200/500 token_loss=1.0966
+epoch 10/16 step 0300/500 token_loss=1.1032
+epoch 10/16 step 0400/500 token_loss=1.1056
+epoch 10/16 step 0500/500 token_loss=1.1051
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|��������������������| 103/103 [00:00<00:00, 2878.94it/s]
+epoch 10: loss=1.1051, validation_similarity=0.577543, time=1.7 min, predictions=E:\HKUST�γ�\AI\Introduction to AI\AIAA2205Project\captioning\runs\resnet50_attn_lstm_v1\validation_predictions.csv
+epoch 11/16 step 0100/500 token_loss=1.0679
+epoch 11/16 step 0200/500 token_loss=1.0688
+epoch 11/16 step 0300/500 token_loss=1.0718
+epoch 11/16 step 0400/500 token_loss=1.0708
+epoch 11/16 step 0500/500 token_loss=1.0722
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|��������������������| 103/103 [00:00<00:00, 2842.32it/s]
+epoch 11: loss=1.0722, validation_similarity=0.575831, time=1.7 min, predictions=E:\HKUST�γ�\AI\Introduction to AI\AIAA2205Project\captioning\runs\resnet50_attn_lstm_v1\validation_predictions.csv
+Early stopping after 4 stale validation epochs

@@ -1,0 +1,10 @@
+{
+  "epoch": 7,
+  "architecture": "resnet50_spatial_additive_attention_lstm",
+  "checkpoint_bytes": 120542243,
+  "validation_rows": 2500,
+  "score_on_reload": 0.5779770612716675,
+  "score_recorded": 0.5779203176498413,
+  "baseline_resnet18_score": 0.528876,
+  "difference_vs_baseline": 0.04910106127166747
+}

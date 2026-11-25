@@ -1,0 +1,25 @@
+{
+  "scope": "handoff correctness only; 24 training images, 8 validation images; not an optimization result",
+  "image_counts": {
+    "Training": 12000,
+    "Validation": 2500,
+    "Test": 2625
+  },
+  "original_code_unchanged": true,
+  "best_model": {
+    "bytes": 111731457,
+    "sha256": "9f8cbab63c8c012d78273a796c06906969ba0eaac391969b18a66e6afaa2c595",
+    "score": 0.6905744671821594
+  },
+  "verified_prediction_files_match": true,
+  "warm_start_checks": [
+    "strict initialization and vocabulary/config match",
+    "one real AMP optimizer update",
+    "frozen patch projection unchanged",
+    "source hash recorded",
+    "new LR applied",
+    "checkpoint save/load",
+    "completed-budget resume loads state and exits"
+  ],
+  "scope_limit": "Resume across an interrupted mid-budget epoch and Linux/GPU portability not tested; 8-epoch recipe not run."
+}

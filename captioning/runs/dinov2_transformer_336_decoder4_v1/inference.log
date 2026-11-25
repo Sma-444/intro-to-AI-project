@@ -1,0 +1,2 @@
+W1122 19:30:44.259000 40152 .env\site-packages\torch\distributed\elastic\multiprocessing\redirects.py:29] NOTE: Redirects are currently not supported in Windows or MacOs.
+Wrote 2500 predictions to captioning\runs\dinov2_transformer_336_decoder4_v1\inference_verified.csv

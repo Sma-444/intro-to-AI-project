@@ -1,0 +1,683 @@
+SLIDE 1
+AIAA   2205:   Introduction   to   Artificial Intelligence
+1
+XU, Chen
+The   Hong Kong University of Science and Technology (Guangzhou)
+cx@hkust-gz.edu.cn
+
+SLIDE 2
+2026 - Present, Senior Lecturer in   AI   Thrust,   HKUST(GZ)
+2019 - 2026, Senior Lecturer ,   Engineering Dept., SMBU, Shenzhen
+2018   -   2019,   Oriental Patron Investment Management ,  HongKong .  
+  PhD  in Mathematics (minor in Finance), Indiana University Bloomington (Aug 2012 – Jun 2018)
+  MPhil  in Mathematics, The University of Hong Kong (2006 - 2008)
+  BSc  in Mathematics, East China Normal University (2002 - 2006 )
+`
+I ntroduction to the Instructor
+Dr. XU, Chen
+Teaching Experiences
+Education
+Work Experiences
+Senior Lecturer at AI Thrust
+https ://facultyprofiles.hkust-gz.edu.cn/faculty-personal-page/XU-Chen/cx  
+  Machine Learning (undergraduate level) (Fall 2022, Fall 2023, Fall 2024, Fall 2025).
+  Mathematical  Analysis for Engineering I (Fall 2020, Fall 2021).
+  Mathematical  Analysis for Engineering II (Spring 2021, Spring 2022, Spring 2023, Spring 2024, Spring 2025 ).
+
+SLIDE 3
+Research Interests
+  Optimization for Machine  Learning
+ Asset  Pricing with AI Algorithm
+ Reinforcement Learning Algorithm
+  Xu , C . (2025). Global optimization with a power-transformed objective and Gaussian smoothing. In  Proceedings of the 42nd International Conference on Machine Learning ( ICML  2025) .
+ Gao , Z.,  Xu, C .*, Li, F.,  Jia , Y.,  Harandi , M., & Wu, Y .*.  Exploring data geometry for continual learning. In  Proceedings of the IEEE/CVF conference on computer vision and pattern recognition  ( CVPR  2023)
+  Xu , C . , & Zhang, Y.* (2022). Estimating the memory parameter for potentially non-linear and non-Gaussian time series with wavelets.  Inverse Problems , 38(3), 035004. 
+(JCR Q1 journal in  Mathematics)
+  Housworth , E. A., Walker, T. B., &  Xu, C.  (2019). Structural asset pricing theory with wavelets.  Quantitative Finance , 19(10), 1659-1672. 
+(JCR Q2 journal in Economics). 
+*  Corrsponding  Author.
+Representative Publications
+I aim to build more efficient and capable algorithms with theoretical  guarantees for machine learning, finance, and applied math.
+Research Goal
+`
+Past Research Works
+
+SLIDE 4
+Info   about   This   Course
+Brief Introduction   to   Artificial   Intelligence   (AI)
+4
+`
+Outline   of   Today’s Class
+
+SLIDE 5
+Info   about   This   Course
+Introduction   to   Artificial   Intelligence   (AI)
+5
+`
+Outline   of   Today’s Class
+
+SLIDE 6
+Contents Teaching  Plan
+#Weeks
+Topic
+Learning Focus & Activities
+1
+Introduction to AI: Concept, Data, Model and Task
+Course overview; understanding AI as a mapping from data to tasks; discussion of real-world AI systems and limitations
+2
+Regression and Classification
+Supervised learning tasks; comparison between regression and classification; examples of evaluation metrics
+3
+Optimization
+Intuition of optimization in model training; gradient-based learning; convergence and overfitting discussion
+4
+CNN and Object Detection
+Visual perception in AI; convolutional neural networks; object detection pipeline with illustrative examples
+5
+RNN, Transformer and LLM 1
+Sequential modeling motivation; RNN and attention mechanisms; evolution toward Transformer models
+6
+RNN, Transformer and LLM 2
+Large Language Models (LLMs); pretraining and fine-tuning; capabilities and known limitations of LLMs
+7
+VAE + GAN
+Generative modeling motivation; latent representations; comparison between VAE and GAN frameworks
+8
+Diffusion Model
+Noise-based generative modeling; intuition of diffusion and  denoising  processes; comparison with GAN-based methods
+9
+Introduction to Few-shot Learning
+Learning with limited data; transfer learning concepts; practical challenges in few-shot scenarios
+10
+Introduction to Multi-modal Learning
+Multi-modal data (text, vision, speech); fusion strategies; benefits and challenges of multi-modal AI
+11
+AI+X Research & Applications: AI Agents I
+Agentic AI concepts and workflows; LLM-based planning and tool use; 
+12
+AI+X Research & Applications: AI Agents II
+Practical applications and implementation of simple AI agents.
+13
+Introduction to AI Security
+Adversarial attacks; robustness and trustworthiness of AI systems; security risks in real-world deployments
+
+SLIDE 7
+`
+Teaching  P hilosophy
+
+SLIDE 8
+Course Info.:
+Quiz+Project+Final
+Quiz+Project+Final
+Quiz+Project+Final
+Quiz+Project  (Optional Final)
+Quiz+Project+Final
+Quiz+Project+Final
+
+SLIDE 9
+Assessment and Grading
+Format Grade 
+F  to  A+, corresponding to different intervals in [0, 100].
+Assessment Composition  (In total:100+bounus 6) : 
+In-Class Quiz (9+bonus 6)
+Project (36)
+Final Exam (55)
+In-Class  Quiz  ( 9+bonus 6)
+Five open-book quizzes  in  total,  each accounts for  3.  You are required to take any three of them, the rest two are bonuses . 
+Final Exam  (55)
+A closed-book hand-written exam.
+Group Project  (report, no presentation,  36)
+Due Date: Last class meeting in Week 13. 
+There are two  types of  projects   for you to choose.
+Type 1 : Read  a paper from a given pool,  understand  it
+(optional) grow your own thinking of the problem
+(optional) practice a minor or major  improvement
+Type 2 : Propose  your own project  idea. e.g .:
+Do coding (with help of LLMs) and realize a demo of a tech  innovation;
+Do a survey/research on a specific topic, formalize a  potentially publishable  academic  paper;
+…
+
+SLIDE 10
+Textbook and References
+“Deep Learning”, Ian  Goodfellow ,  Yoshua   Bengio , Aaron  Courville
+"Hands-On Machine Learning with  Scikit -Learn,  Keras , and  TensorFlow  (3rd ed.)",  Aurelien   Geron
+
+SLIDE 11
+Policies
+Usage of  LLMs   and agents  to help your learning process / homework / projects:  使用 LLMs 和智能体辅助学习过程 / 作业 / 论文：
+NOT forbidden  不禁止 ;   Encourage   鼓励
+Required: Declaration of the usage  要求：声明使用情况
+Show good understanding and skills in using LLMs and agents  展示对 LLMs 和智能体的良好理解和使用技能
+Clear and comprehensive  清晰且全面
+Grading of the  projects  will be graded based on  作业 / 论文的评分将基于：
+The  projects  itself  作业 / 论文本身
+The declaration part  声明部分
+Attendance  出勤 :   No mandatory roll call  不强制点名
+Interruption and questions in class  课上打断和提问
+Welcome  欢迎
+Cheating and plagiarism  作弊与欺诈
+Zero tolerance  零容忍
+e.g. , (not limited to): Homework, data   or   False declaration of LLM usage
+
+SLIDE 12
+Communications
+Canvas
+Wechat   Group/Emails
+Course   Slides   will be   available in Canvas files .
+I will build a  wechat  group for this session now.
+
+SLIDE 13
+Office Hours
+Dr. Chen XU.
+After   class and by appointment.
+TA (To be determined).
+
+SLIDE 14
+Why  do you want to learn about AI?
+
+SLIDE 15
+Possible Reason 1
+To understand  how AIs around you  work.
+
+SLIDE 16
+AI   is now used almost everywhere.
+16
+AI   for   Computer   Vision
+Autonomous-driving
+Medical   AI  
+AI   for   Videos and Audios
+
+SLIDE 17
+17
+A humanoid robot for housework 
+Possible  AI Components
+Vision Model
+Language Model
+Reinforcement Learning (RL )
+
+SLIDE 18
+Reason 2
+To detect whether what you see and hear are generated by AI.
+
+SLIDE 19
+19
+Do you think   this is   real?
+
+SLIDE 20
+Reason 3
+To build something with AI by yourself in the future. For example, intelligent robots that can think and move like humans.
+
+SLIDE 21
+This course provides you with the  fundamental  knowledge!
+
+SLIDE 22
+The relationship among AI, Deep Learning, and Machine Learning
+The structure of neural networks
+The  derivative  of activation functions
+Loss functions
+22
+`
+Contents to be fully mastered in this course
+
+SLIDE 23
+Info   about   This   Course
+Brief Introduction   to   Artificial   Intelligence   (AI)
+23
+`
+Outline   of   this   week
+
+SLIDE 24
+You already use AI every day
+🎬
+Recommendations
+Navigation
+🔐
+Face ID
+🛒
+Online  Shopping
+💬
+Chatbots
+Spam filters
+Introduction to AI • Class 1
+An AI-Generated Image.
+
+SLIDE 25
+Artificial Intelligence (AI)  is the interdisciplinary engineering science focused on creating  systems capable of performing tasks that typically require human intelligence , including:
+  Perception  ( e.g.,  recognizing speech/images   etc. )
+  Cognition  ( e.g.,  reasoning, planning, decision-making)
+  Action  ( e.g.,  autonomous movement, real-time adaptation)
+`
+What is the definition of AI?
+
+SLIDE 26
+Introduction to AI • Class 1
+Core of AI is  a Computational  Model 
+Workflow of an AI model
+DATA
+photos, text,  audio
+MODEL
+learns patterns from data
+OUTPUT
+prediction, content, decision, action
+AI Model mimics the human brain.
+An AI-Generated Image.
+
+SLIDE 27
+Introduction to AI • Class 1
+What is a computational model?
+
+SLIDE 28
+Introduction to AI • Class 1
+What is a computational model?
+A computational model is a function  . Examples are:
+(a) Deterministic output:  . 
+(b) Random output:  , where 
+ 
+
+SLIDE 29
+`
+Function
+A ​ ​function​ ​ is a fundamental concept in mathematics and computer science that defines a ​ ​mapping from inputs to outputs​ ​ based on a specific rule.
+ 
+  x :   Independent variable (input)
+  f :   Function rule
+  y :   Dependent variable (output)
+“ The laws of everything can be abstracted into functions ” 
+( 万物规律皆可抽象为函数 )--- Galileo  伽利略
+
+SLIDE 30
+Introduction to AI • Class 1
+How does AI  M odel Work as a Function
+DATA ( )
+ 
+photos, text, audio, tables
+MODEL ( )
+ 
+learns patterns from data
+OUTPUT ( )
+ 
+prediction, content, decision, action
+Note: The output from AI is based on   but not necessarily equal to  .
+ 
+
+SLIDE 31
+Introduction to AI • Class 1
+How to Obtain a Smart AI Model  ?
+ 
+There are two factors that determine a function 
+1. The rule for computing the output. For example,  .
+2. The parameter values in the rule. For example,    are parameters in the above example.
+The  machine learning algorithms  are methods to find    for  performing tasks successfully.
+ 
+* Note that some function may not have a computation formula.
+ 
+
+SLIDE 32
+Introduction to AI • Class 1
+Procedures of a Machine Learning Algorithm
+In general, a machine learning  algo . performs the following:
+1) Assume a computation rule for  ;
+2) Find the values of the parameters involved in the rule based on the data.
+Different machine learning algorithms  assume  different computation rules in  . For example, linear regression algorithm assumes a linear functional form of    (e.g.,  ).
+ 
+
+SLIDE 33
+Introduction to AI • Class 1
+Deep Learning
+In deep learning, the computational rule of   is assumed to be a neural network, which  will be introduced in later classes.
+Deep learning refers to the machine learning algorithm that finds  a large (i.e., many hidden layers)  neural  network as  .
+ 
+
+SLIDE 34
+Artifical
+Artificial Intelligence
+Machine Learning
+Deep Learning
+Machine Learning   is a subset of  Artificial Intelligence
+Deep Learning 
+is a subset of
+Machine Learning
+Deep Learning uses neural networks to simulate human like decision making
+34
+`
+Subsets of Artificial Intelligence
+
+SLIDE 35
+Introduction to AI • Class 1
+Three Main Types of Machine Learning
+Supervised Learning
+Unsupervised  Learning
+Reinforcement Learning
+Input
+Data   with  labels: 
+Data  without  labels: 
+Environment + Feedback
+Goal
+Predict     from  
+Discover patterns or structure
+Learn which actions maximize rewards
+Example
+Email    Spam/Not Spam
+Divide customers  into different types, where customers in the same type are similar. There is no clue on what each type should be like beforehand.
+Robot learns how to navigate.
+Key Idea
+Learn from answers
+Find hidden patterns
+Learn from consequences.
+Supervised Learning
+Unsupervised  Learning
+Reinforcement Learning
+Input
+Environment + Feedback
+Goal
+Discover patterns or structure
+Learn which actions maximize rewards
+Example
+Divide  customers  into  different types, where customers in the same type are similar. There is no clue on what each type should be like beforehand.
+Robot learns how to  navigate.
+Key Idea
+Learn from answers
+Find hidden patterns
+Learn from consequences.
+
+SLIDE 36
+Which AI  m odel is used for the AI’s capability of seeing, understanding, creating, and acting, respectively?
+
+SLIDE 37
+AI can SEE
+Workflow.
+Image ( )  → Vision  model ( )  → labels /  locations of objects in the image ( )
+ 
+Introduction to AI • Class 1
+The major task involved in “SEE” is image processing, whose model    is  obtained with a  supervised learning  algorithm.  We also call such models as  vision  models.
+ 
+Image processing tasks
+Image  classification: what is in the image?
+Object detection: where are the objects?
+Medical  imaging: how to  denoise  the image?
+F ace ID: does the person captured by the camera match with his/her ID?
+An AI-Generated Image.
+
+SLIDE 38
+AI can UNDERSTAND
+Text-related tasks.
+Summarize  documents and answer  questions.
+Translate , draft, explain, tutor, and code.
+Important  question: does the model understand like humans do?
+Text → Language model → useful response
+Introduction to AI • Class 1
+The major task involved in  “UNDERSTAND”  is  text  processing, whose model   is obtained  using  supervised learning  (and reinforcement learning).  We also call such models as  language  models.
+ 
+An AI-Generated Image.
+
+SLIDE 39
+AI can CREATE
+Generative AI: models produce new content.
+Generation Tasks.
+Text , images, video, music, and code.
+The input is often a prompt; the output is a new  artifact.
+Later  topics: LLMs, VAE, GAN, diffusion models.
+Prompt ( )  → Generative  model ( )  → new  content  ( )
+ 
+Introduction to AI • Class 1
+Generative  models  can involve all three major machine-learning  algorithms,  although their roles differ across the training process.
+An AI-Generated Image.
+
+SLIDE 40
+AI can PREDICT
+Prediction is the classical heart of machine learning.
+Data →  Supervised Learning Model  → predicted value / class
+Introduction to AI • Class 1
+The AI model   for predicting result   from the observed data   is trained with supervised learning algorithms.
+Prediction Tasks
+Regression : predict a  number.
+Classification : predict a category .
+Examples: prices, disease risk, demand,  fraud.
+ 
+An AI-Generated Image.
+
+SLIDE 41
+AI can ACT
+Modern systems increasingly use tools and take actions.
+Act Tasks.
+Coding  assistants modify files.
+Research agents search, read, and summarize.
+Robots and vehicles act in the physical world.
+Observe → Plan → Act → Observe again
+Introduction to AI • Class 1
+The AI model   for  selecting an optimal action from  the observed  environment status   is trained with  reinforcement  learning algorithms.
+ 
+An AI-Generated Image.
+
+SLIDE 42
+More Recent AI
+
+SLIDE 43
+From AI Models to AI Agents
+Input  →  Model  →  Output
+Traditional Model Workflow
+Goal → Reason/Plan Model  →  Use Tools  → Observe → Act
+AI Agent Workflow
+A  major direction in AI is to build systems that  can decide  what to do next, use tools, observe the result, and continue until a task is completed,  which is much more than just producing answers.  These are  AI  agents .
+
+SLIDE 44
+Recommended Decision
+
+SLIDE 45
+From Digital AI to Embodied AI Embodied AI: When AI Enters the Physical World
+Digital AI
+See → Understand  →  Plan  → Act → See again
+Embodied AI
+Text/Image/Data  → AI → Digital  output
+Examples:  Chatbot , Recommendation, Image generation, Coding agent. 
+Examples: Robot, Autonomous vehicle, Robot arm, Home robot
+
+SLIDE 46
+
+
+SLIDE 47
+How did we get here?
+A short story, not a full history.
+1950s
+Rule-based  AI*
+1990s–2000s
+Machine learning
+2012
+Deep learning in vision
+2017
+Transformer
+2022
+Generative AI mainstream
+2025–2026
+Multimodal + agents
+Trend: Rules → Learning → Deep learning → Foundation models → Agents
+Introduction to AI • Class 1
+* Rule-based  AI is a computer system that makes decisions and solves problems by following explicit, human-written "if-then" instructions rather than learning patterns from  data.
+
+SLIDE 48
+AI industry status: adoption is no longer niche
+The useful nuance: adoption is high, but scaling and reliability remain hard.
+88%
+organizations report regular AI use in at least one business function
+McKinsey 2025
+70%
+organizations use generative AI in at least one business function
+Stanford AI Index 2026
+53%
+population-level generative-AI adoption within about three years
+Stanford AI Index 2026
+Message for students: AI is already being used widely, but many organizations are still learning how to use it well.
+Introduction to AI • Class 1
+Sources: McKinsey State of AI 2025; Stanford AI Index 2026
+
+SLIDE 49
+The AI industry is a stack
+When people say “AI industry,” they usually mean a whole ecosystem.
+Applications
+education • healthcare • coding • finance • robotics
+Models
+LLMs • vision models • multimodal models
+Platforms / cloud
+training • deployment • APIs • monitoring
+Hardware
+GPUs • accelerators • data centers
+Data + energy
+datasets • electricity • cooling • infrastructure
+Introduction to AI • Class 1
+An AI-Generated Image.
+
+SLIDE 50
+Who builds frontier AI?
+A practical view of research, industry, and universities.
+Industry now dominates frontier model production
+>90%
+of notable AI models in 2025 came from industry.
+Why?
+Large-scale compute and engineering teams.
+Data infrastructure and deployment pipelines.
+Huge product incentives.
+Why universities still matter
+New ideas, evaluation, safety, open research, and talent training.
+Introduction to AI • Class 1
+Source: Stanford AI Index 2026
+
+SLIDE 51
+The industry is shifting from capability to reliability
+Modern AI is impressive, but deployment asks harder questions.
+Can the model do this?
+capability
+Can it do this reliably?
+robustness
+Can it do this cheaply?
+cost
+Can it do this safely?
+trust
+A useful industry question: should this AI be used in a real workflow?
+Introduction to AI • Class 1
+
+SLIDE 52
+AI can be brilliant…and strangely bad
+This is sometimes called jagged intelligence.
+Impressive on hard tasks
+Advanced math and science questions
+Sophisticated coding tasks
+Long document summarization
+Multimodal reasoning
+Still fragile on “easy” tasks
+Knowing when it is wrong
+Handling ambiguous real-world context
+Long chains of reliable actions
+Robotics in messy physical environments
+Introduction to AI • Class 1
+
+SLIDE 53
+AI agents are exciting, but not solved
+Agents turn AI from “answering” toward “doing.”
+Goal
+Plan
+Use tools
+Observe
+Revise
+Good for: research assistance, coding, data analysis, workflow automation.
+Still hard: long-horizon reliability, tool mistakes, verification, security.
+Industry deployment is early compared with general AI adoption.
+Introduction to AI • Class 1
+Source: Stanford AI Index 2026: agent deployment remains early
+An AI-Generated Image.
+
+SLIDE 54
+Physical AI is harder than software AI
+Why robotics is still difficult even when language AI is strong.
+Software AI
+Manipulates information
+Text, images, code, files
+Errors can often be corrected digitally
+Fast iteration and deployment
+Physical AI / robotics
+Manipulates the real world
+Messy environments
+Sensors, motors, physics, safety
+Simulation often differs from reality
+Introduction to AI • Class 1
+
+SLIDE 55
+AI is powerful, but…
+Critical thinking is part of learning AI.
+Hallucination
+confident false information
+Bias
+learns from imperfect data
+Brittleness
+unexpected failures
+Privacy & security
+sensitive data and attacks
+Responsibility
+who is accountable?
+Capability ≠ Reliability ≠ Trustworthiness
+Introduction to AI • Class 1
+An AI-Generated Image.
+
+SLIDE 56
+Our journey through  AI (Tentative Timetable)
+A course roadmap from basic ideas to modern systems.
+Overview
+Data • Model •  Task  (Week 1)
+Classical  Machine Learning
+Regression • Classification •  Optimization  (Week 1-3)
+Deep Learning
+CNN • RNN •  Transformer  (Week 4-6)
+Generative AI
+LLM • VAE/GAN •  Diffusion  (Week 7-8)  
+Modern capabilities
+Few-shot • Multimodal •  AI   Agents (Week 9-12)
+Reliable AI
+Security • robustness •  trust  (Week 13)
+Introduction to AI • Class 1
+Aligned with AIAA2205 weekly plan
+
+SLIDE 57
+What I want you to learn
+Not just “what is the algorithm,” but how to think about AI systems.
+What problem is the AI solving?
+What data does it use?
+How does the model learn?
+Why does it work?
+When does it fail?
+Can we trust it?
+These questions will appear again and again throughout the semester.
+Introduction to AI • Class 1
+
+SLIDE 58
+What you learn  in this course
+ AI  Agents
+Embodied AI
+Regression & Classification
+Prediction / Decision Modules
+State and Object Prediction
+Optimization
+Train and adapt models
+Train perception and policies
+CNN & Object detection 
+Visual agents
+ Robot Perception
+Transformer & LLM
+Reasoning, planning, tool use
+Language understanding & Planning
+Generative AI
+Generate plans/content
+World generation / simulation
+Few-shot learning
+Adapt to new tasks
+Adapt robots to new tasks
+Multimodal learning
+Text + image +audio agents
+Vision + Language + action
+AI Security
+Reliable tool use
+Safe physical interaction
+One Foundation, Two Exciting  Directions
+
+SLIDE 59
+What can humans still do better than AI?
+Discuss with your neighbor for one minute. We will revisit your answer at the end of the course.
+An AI-Generated Image.

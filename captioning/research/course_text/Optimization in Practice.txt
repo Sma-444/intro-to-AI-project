@@ -1,0 +1,258 @@
+SLIDE 1
+AIAA   2205: Introduction   to   AI 
+Optimization in Practice
+Chen XU
+The   Hong Kong University of Science and Technology (Guangzhou)
+cx@hkust-gz.edu.cn
+
+SLIDE 2
+Batch GD uses all training samples per update; SGD uses one (randomly selected) sample per update; mini-batch SGD uses a small subset per update.
+Batch GD can get stuck in local minima; SGD's noisy updates make it less prone to this, though not immune.
+Vanilla SGD uses a fixed learning rate, but schedules and momentum are common in practice. Adaptive learning rates mainly improve conditioning and convergence, and can help escape saddle points and plateaus.
+Adam is an efficient adaptive method combining momentum and per-parameter scaling.
+2026/9/18
+2
+`
+Contents to be fully mastered in this  PPT  
+
+SLIDE 3
+Given the observed data samples  , the objective of model training is to find the parameter values    such that the model fits the data:   is close to   for each  .
+The loss function   measures the total discrepancy between model predictions and the observed data.
+Gradient Descent (GD) is an algorithm for solving  .
+ 
+`
+Recap of Model Training
+
+SLIDE 4
+Consider the parameter update rule:  
+GD compute the update term   using  all samples   . This is called  batch training .  (Recall that GD sets  )
+GD is also called  batch GD .
+ 
+`
+Batch GD
+
+SLIDE 5
+Slow and memory heavy if the sample set is large.
+Potential Solution:  Stochastic GD,  mini-batch SGD.
+`
+Issues of Batch GD
+
+SLIDE 6
+It shares the same objective as Batch GD: 
+It randomly selects  one  sample   from    in each update of  .
+ 
+`
+Stochastic GD
+
+SLIDE 7
+Noisy Update.
+Mini-batch SGD may strike a balance between stable (not so noisy) update and computational efficiency.
+`
+Issues with Stochastic GD
+
+SLIDE 8
+It shares the same objective as Batch GD:  .
+It random selects a  mini-batch  of samples   from    in each update of  .
+ 
+`
+Mini-batch SGD
+
+SLIDE 9
+Algorithm
+Samples per  udpate
+Pros
+Cons
+Batch GD
+All training data
+Stable direction; smooth loss
+low and memory-heavy
+SGD
+One example
+Cheap per step; can escape shallow regions
+Noisy updates
+Mini-batch SGD
+A small batch, e.g. 32 or 128
+Fast on GPUs; practical default
+Still noisy, but manageable
+`
+Batch, Stochastic, or Mini-batch?
+
+SLIDE 10
+Batch : samples used for one update of model parameter  .
+Iteration / step : One parameter update.
+Epoch:  One full pass through the whole training set.
+Example: If 1,000 examples are split into batches of 100, then:
+1 epoch =10 iterations. The model sees all data once during that epoch.
+ 
+`
+Common Terminologies 
+
+SLIDE 11
+What  converging  means in practice:
+The loss tends to decrease and then level off.
+Mini-batch training is noisy, so the curve may wiggle.
+In practice, we care about useful progress, not perfect smoothness.
+`
+Convergence in practice
+
+SLIDE 12
+If    is  too small , the training will be slow.
+If    is  too large,  the training may not get close to the true solution (the minimum point). 
+It also holds for Stochastic GD and mini-batch SGD.
+ 
+`
+Effects of Learning Rate on Training Efficiency
+
+SLIDE 13
+13
+`
+Effects of Learning Rate Sizes
+  Final Loss: 0.8
+ 
+, Final Loss: 0.0
+ 
+, Final Loss: 95.9 
+ 
+`
+Number of  𝒘  Updates: 100
+
+SLIDE 14
+To save the effort for learning rate selection, algorithms are designed to adopt an adaptive learning rate, including
+AdaGrad ;
+RMSProp ;
+Adam
+`
+Adaptive Learning Rate
+
+SLIDE 15
+2026/9/18
+15
+`
+Adagrad
+
+SLIDE 16
+2026/9/18
+16
+`
+RMSProp
+
+SLIDE 17
+2026/9/18
+17
+It   maitains an exponential moving average of the gradients (first moment) and an exponential moving average of the squared gradients (second moment), with a bias correction for both.
+`
+Adam
+
+SLIDE 18
+2026/9/18
+18
+i nertia 惯性
+`
+Momentum
+
+SLIDE 19
+2026/9/18
+19
+`
+Nesterov Accelerated Gradient (NAG)
+
+SLIDE 20
+Issues with (mini-batch) SGD that may be improved by Adam
+2026/9/18
+20
+
+SLIDE 21
+What if loss  changes  quickly in one direction and  slowly  in another?  What does gradient descent   do?
+w1
+w2
+09/18/2026
+21
+`
+Optimization: Problem #1 with SGD
+
+SLIDE 22
+What if loss  changes  quickly in one direction and  slowly  in another?  What does gradient descent   do?
+Very  slow  progress along  shallow  dimension, jitter along  steep   direction
+09/18/2026
+22
+`
+Optimization: Problem #1 with SGD
+
+SLIDE 23
+The Optimizers Introduced Previously May Help Save Batch GD from being Trapped in Local Minimums
+2026/9/18
+23
+
+SLIDE 24
+What if the loss  function has  a   local minima   or   saddle   point ?
+loss
+w
+09/18/2026
+24
+`
+Optimization: Problem #2 with SGD
+
+SLIDE 25
+What if the loss  function has  a   local minima   or   saddle   point ?
+Zero gradient,  gradient   descent  gets   stuck
+loss
+w
+09/18/2026
+25
+`
+Optimization: Problem #2 with SGD
+
+SLIDE 26
+What if the loss  function has  a   local minima   or   saddle   point ?
+Saddle points   much  more common  in  high   dimension
+Dauphin et al,  “Identifying  and attacking the  saddle  point problem in high-dimensional non-convex optimization”, NIPS   2014
+09/18/2026
+26
+loss
+`
+Optimization: Problem #2 with SGD
+
+SLIDE 27
+2026/9/18
+27
+Optimizer​​
+​​Mechanism​​
+​​When to Use​​
+​​Strengths​​
+​​Weaknesses​​
+​ ​Momentum​ ​
+Gradient smoothing with velocity.
+General convex optimization.
+Reduces oscillations in valleys.
+May overshoot minima.
+​ ​NAG​ ​
+“ Looks ahead ”  before gradient step.
+High-curvature landscapes.
+Faster convergence than Momentum.
+Slightly more computation per step.
+​ ​ Adagrad ​ ​
+Per-parameter adaptive LR (sum of squares).
+Sparse data 
+(e.g., NLP).
+No manual LR tuning for sparse features.
+LR vanishes over time.
+​ ​ RMSProp ​ ​
+EWMA of squared gradients.
+Non-stationary tasks (e.g., RNNs).
+Fixes Adagrad’s LR decay.
+Needs tuning  β .
+​ ​Adam​ ​
+Momentum + RMSProp + bias correction.
+Deep learning (default choice).
+Fast and stable convergence.
+Hyperparameter-sensitive.
+
+SLIDE 28
+Code Example: Apply Different Optimizers for 
+CIFAR-10 Image Classification
+CIFAR10_MLPClassifier_OptimizerComparison_Instructor.ipynb
+
+SLIDE 29
+9/18/2026
+29
+Thank you!   Questions? 
